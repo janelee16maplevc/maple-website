@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nibi — The Maple Accelerator</title>
+  <meta name="description" content="Nibi is Maple VC's accelerator program for Canadian founders before they reach Silicon Valley.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ── Nibi-specific styles ── */
+
+    .nibi-hero {
+      background: var(--black);
+      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(80px, 12vh, 140px);
+      min-height: 90vh;
+      display: flex; align-items: flex-end;
+      margin-top: var(--nav-h);
+    }
+    .nibi-hero-inner { max-width: 1000px; }
+    .nibi-hero .eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,209,0,0.5); font-weight: 600;
+      margin-bottom: 36px;
+    }
+    .nibi-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8.5vw, 120px);
+      font-weight: 400; line-height: 0.97;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+    }
+    .nibi-hero h1 em { color: var(--yellow); font-style: italic; }
+    .nibi-hero .sub {
+      font-size: clamp(16px, 2vw, 22px);
+      color: rgba(255,249,237,0.5);
+      margin-top: 44px; max-width: 560px; line-height: 1.65;
+    }
+
+    /* ── What is Nibi ── */
+    .nibi-what {
+      background: var(--yellow);
+      padding: clamp(80px, 11vh, 140px) var(--pad);
+    }
+    .nibi-what-inner { max-width: var(--max-w); margin: 0 auto; }
+    .nibi-what h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.02em;
+      max-width: 820px; margin-bottom: 48px;
+    }
+    .nibi-what p {
+      font-size: clamp(17px, 1.9vw, 22px);
+      line-height: 1.7; color: rgba(10,10,10,0.7);
+      max-width: 680px;
+    }
+    .nibi-what p + p { margin-top: 20px; }
+
+    /* ── Pillars ── */
+    .nibi-pillars {
+      background: var(--cream);
+      padding: clamp(80px, 11vh, 140px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .nibi-pillars-inner { max-width: var(--max-w); margin: 0 auto; }
+    .pillar-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px; background: rgba(10,10,10,0.06);
+      margin-top: 48px;
+    }
+    .pillar-card {
+      background: var(--cream); padding: 36px 28px;
+    }
+    .pillar-num  { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+    .pillar-title { font-family: var(--font-display); font-size: 24px; font-weight: 400; margin-bottom: 12px; line-height: 1.2; }
+    .pillar-body  { font-size: 14px; line-height: 1.65; color: rgba(10,10,10,0.55); }
+
+    /* ── Apply CTA ── */
+    .nibi-apply {
+      background: var(--black);
+      padding: clamp(80px, 11vh, 140px) var(--pad);
+      text-align: center;
+    }
+    .nibi-apply-inner { max-width: 680px; margin: 0 auto; }
+    .nibi-apply h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 88px);
+      font-weight: 400; line-height: 0.97;
+      color: var(--cream); letter-spacing: -0.025em;
+      margin-bottom: 32px;
+    }
+    .nibi-apply h2 em { color: var(--yellow); font-style: italic; }
+    .nibi-apply p {
+      font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7;
+      color: rgba(255,249,237,0.45); margin-bottom: 48px;
+    }
+    .apply-btn {
+      display: inline-block;
+      padding: 18px 44px;
+      background: var(--yellow); color: var(--black);
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      border: 2px solid var(--yellow);
+    }
+    .apply-btn:hover { background: transparent; color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">Maple</a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/nibi.html" class="active">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="nibi-hero">
+  <div class="nibi-hero-inner">
+    <p class="eyebrow reveal">A Maple VC Program &nbsp;·&nbsp; The Accelerator</p>
+    <h1 class="reveal d1">
+      Nibi.<br>
+      Before <em>Silicon Valley</em><br>
+      finds you.
+    </h1>
+    <p class="sub reveal d2">
+      Nibi is Maple's accelerator for Canadian founders at the earliest stage —
+      before the pitch is polished, before the term sheet arrives,
+      before anyone else is paying attention.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT IS NIBI -->
+<section class="nibi-what">
+  <div class="nibi-what-inner">
+    <h2 class="reveal">We believe the best founders<br>come with <em>Canadian roots.</em><br>We find them first.</h2>
+    <p class="reveal d1">
+      <em>Nibi</em> means "water" in Ojibwe — the language of the Indigenous people of the land
+      we call Canada. Like water, the best founders find their own path, carving channels
+      others don't see yet. Nibi is where that journey begins.
+    </p>
+    <p class="reveal d2">
+      Our network runs deep across Waterloo, McGill, U of T, UBC, Queen's, and beyond.
+      We meet founders in their dorm rooms, co-working spaces, and garages —
+      long before Sand Hill Road comes calling.
+    </p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="nibi-pillars">
+  <div class="nibi-pillars-inner">
+    <div class="section-header reveal">
+      <span class="section-label">What Nibi Offers</span>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">First Check</div>
+        <div class="pillar-body">Pre-seed capital from Maple before anyone else has conviction. We write the first check so you can build with confidence.</div>
+      </div>
+      <div class="pillar-card reveal d1">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">The Maple Network</div>
+        <div class="pillar-body">Access to employee #1–25 at DoorDash, Flexport, Dropbox, Stripe, Figma, and more — people who built the companies you admire.</div>
+      </div>
+      <div class="pillar-card reveal d2">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Silicon Valley Bridge</div>
+        <div class="pillar-body">We help you make the jump. Introductions to top US investors, customers, and talent when the time is right.</div>
+      </div>
+      <div class="pillar-card reveal d3">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Founder Thesis Support</div>
+        <div class="pillar-body">We work through the 7 pillars of our investment thesis with you: Team, Tech, Timing, Monopoly, Distribution, Defensibility, Secret.</div>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">05</div>
+        <div class="pillar-title">Canadian Community</div>
+        <div class="pillar-body">Join a cohort of Canadian founders building at the frontier. Shared learnings, introductions, and a network that compounds over time.</div>
+      </div>
+      <div class="pillar-card reveal d1">
+        <div class="pillar-num">06</div>
+        <div class="pillar-title">Long-Term Partnership</div>
+        <div class="pillar-body">We're not a 3-month program. Maple backs founders from pre-seed through IPO — we're in it for the full journey.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY CTA -->
+<section class="nibi-apply">
+  <div class="nibi-apply-inner">
+    <h2 class="reveal">Ready to<br>build <em>first?</em></h2>
+    <p class="reveal d1">
+      If you're a Canadian founder at the earliest stage — or a builder with Canadian roots
+      anywhere in the world — we want to hear from you.
+    </p>
+    <a href="/contact.html" class="apply-btn reveal d2">Apply to Nibi →</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
+    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      168 South Park St.<br>
+      San Francisco, CA 94107<br>
+      andre@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/maplevc" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
