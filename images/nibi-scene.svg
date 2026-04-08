@@ -1,0 +1,322 @@
+<svg width="1440" height="800" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- Sky: deep space purple → warm amber at horizon -->
+    <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#06010F"/>
+      <stop offset="22%"  stop-color="#120520"/>
+      <stop offset="50%"  stop-color="#300900"/>
+      <stop offset="76%"  stop-color="#7A2800"/>
+      <stop offset="100%" stop-color="#C85400"/>
+    </linearGradient>
+
+    <!-- Sun fill: yellow → amber -->
+    <linearGradient id="g-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FFE840"/>
+      <stop offset="60%"  stop-color="#FFD100"/>
+      <stop offset="100%" stop-color="#FF9200"/>
+    </linearGradient>
+
+    <!-- River water: very dark, cool-blue tint -->
+    <linearGradient id="g-river" x1="0" y1="268" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#040B14"/>
+      <stop offset="35%"  stop-color="#030810"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+
+    <!-- Bank: dark earth -->
+    <linearGradient id="g-bank" x1="0" y1="268" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#0C0602"/>
+      <stop offset="100%" stop-color="#040100"/>
+    </linearGradient>
+
+    <!-- Light column: sun's path on the river -->
+    <linearGradient id="g-col" x1="0" y1="268" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#FFB800" stop-opacity="0.78"/>
+      <stop offset="22%"  stop-color="#FFD100" stop-opacity="0.44"/>
+      <stop offset="58%"  stop-color="#FFD100" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#FFD100" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- Sky horizon bloom -->
+    <linearGradient id="g-bloom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FF6800" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FF6800" stop-opacity="0.58"/>
+    </linearGradient>
+
+    <!-- Warm glow on river near horizon (sky reflection) -->
+    <linearGradient id="g-wglow" x1="0" y1="268" x2="0" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#C85400" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#FF3800" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Vignette: darken edges -->
+    <radialGradient id="g-vignette" cx="50%" cy="50%" r="75%">
+      <stop offset="0%"   stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="f-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+    <filter id="f-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="f-tiny">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="f-blur10">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+
+    <!-- Clip to sky -->
+    <clipPath id="clip-sky">
+      <rect x="0" y="0" width="1440" height="268"/>
+    </clipPath>
+
+    <!-- Clip to river channel: (670,268)→(770,268)→(1020,800)→(420,800) -->
+    <clipPath id="clip-river">
+      <polygon points="670,268 770,268 1020,800 420,800"/>
+    </clipPath>
+
+  </defs>
+
+  <!-- ══════════════════════════ SKY (0–268) ══════════════════════════ -->
+  <rect width="1440" height="268" fill="url(#g-sky)"/>
+
+  <!-- Stars: warm white, denser toward top -->
+  <g fill="#FFF6D8">
+    <!-- Top band -->
+    <circle cx="42"   cy="18"  r="1.3" opacity="0.90"/>
+    <circle cx="115"  cy="32"  r="0.8" opacity="0.70"/>
+    <circle cx="198"  cy="10"  r="1.1" opacity="0.80"/>
+    <circle cx="280"  cy="38"  r="1.4" opacity="0.85"/>
+    <circle cx="355"  cy="15"  r="0.9" opacity="0.72"/>
+    <circle cx="432"  cy="44"  r="1.0" opacity="0.76"/>
+    <circle cx="510"  cy="8"   r="1.4" opacity="0.83"/>
+    <circle cx="588"  cy="34"  r="0.7" opacity="0.60"/>
+    <circle cx="662"  cy="22"  r="1.2" opacity="0.80"/>
+    <circle cx="720"  cy="10"  r="1.5" opacity="0.90"/>
+    <circle cx="798"  cy="36"  r="0.9" opacity="0.72"/>
+    <circle cx="868"  cy="14"  r="1.1" opacity="0.78"/>
+    <circle cx="948"  cy="30"  r="1.3" opacity="0.84"/>
+    <circle cx="1022" cy="7"   r="0.8" opacity="0.66"/>
+    <circle cx="1098" cy="40"  r="1.2" opacity="0.80"/>
+    <circle cx="1175" cy="19"  r="1.0" opacity="0.74"/>
+    <circle cx="1252" cy="34"  r="1.4" opacity="0.86"/>
+    <circle cx="1328" cy="11"  r="0.9" opacity="0.70"/>
+    <circle cx="1400" cy="28"  r="1.3" opacity="0.82"/>
+    <!-- Second band -->
+    <circle cx="78"   cy="65"  r="1.0" opacity="0.60"/>
+    <circle cx="162"  cy="78"  r="0.8" opacity="0.54"/>
+    <circle cx="248"  cy="55"  r="1.2" opacity="0.70"/>
+    <circle cx="338"  cy="88"  r="0.7" opacity="0.48"/>
+    <circle cx="415"  cy="62"  r="1.1" opacity="0.65"/>
+    <circle cx="502"  cy="76"  r="0.9" opacity="0.56"/>
+    <circle cx="592"  cy="52"  r="1.3" opacity="0.75"/>
+    <circle cx="678"  cy="72"  r="0.8" opacity="0.54"/>
+    <circle cx="758"  cy="58"  r="1.1" opacity="0.68"/>
+    <circle cx="840"  cy="80"  r="0.7" opacity="0.48"/>
+    <circle cx="922"  cy="60"  r="1.0" opacity="0.62"/>
+    <circle cx="1008" cy="73"  r="1.2" opacity="0.72"/>
+    <circle cx="1088" cy="48"  r="0.8" opacity="0.55"/>
+    <circle cx="1168" cy="75"  r="1.0" opacity="0.65"/>
+    <circle cx="1248" cy="60"  r="0.9" opacity="0.58"/>
+    <circle cx="1332" cy="82"  r="1.3" opacity="0.74"/>
+    <circle cx="1415" cy="53"  r="0.7" opacity="0.50"/>
+    <!-- Third band (sparse) -->
+    <circle cx="130"  cy="118" r="0.8" opacity="0.38"/>
+    <circle cx="285"  cy="132" r="1.0" opacity="0.46"/>
+    <circle cx="448"  cy="108" r="0.7" opacity="0.34"/>
+    <circle cx="605"  cy="125" r="0.9" opacity="0.42"/>
+    <circle cx="752"  cy="112" r="0.8" opacity="0.40"/>
+    <circle cx="900"  cy="130" r="1.1" opacity="0.50"/>
+    <circle cx="1055" cy="106" r="0.7" opacity="0.36"/>
+    <circle cx="1210" cy="124" r="0.9" opacity="0.44"/>
+    <circle cx="1365" cy="115" r="0.7" opacity="0.34"/>
+    <!-- Accent brights -->
+    <circle cx="188"  cy="44"  r="1.9" opacity="0.58"/>
+    <circle cx="855"  cy="24"  r="1.7" opacity="0.53"/>
+    <circle cx="1318" cy="46"  r="1.9" opacity="0.56"/>
+  </g>
+
+  <!-- Horizon bloom -->
+  <rect x="0" y="178" width="1440" height="90" fill="url(#g-bloom)" opacity="0.88"/>
+
+  <!-- ══════════════════════════ SUN ══════════════════════════ -->
+  <!-- Center (720, 145), radius 82 — tight in upper sky -->
+  <circle cx="720" cy="145" r="200" fill="#FF8000" opacity="0.08" filter="url(#f-glow)"/>
+  <circle cx="720" cy="145" r="140" fill="#FFB800" opacity="0.10" filter="url(#f-soft)"/>
+  <circle cx="720" cy="145" r="82"  fill="url(#g-sun)" clip-path="url(#clip-sky)"/>
+  <!-- Retro stripe cuts (colors match sky gradient at those y levels) -->
+  <g clip-path="url(#clip-sky)">
+    <rect x="648" y="186" width="144" height="4"  fill="#572000" opacity="0.95"/>
+    <rect x="642" y="195" width="156" height="5"  fill="#642800" opacity="0.95"/>
+    <rect x="634" y="206" width="172" height="7"  fill="#723000" opacity="0.95"/>
+    <rect x="623" y="217" width="194" height="9"  fill="#823A00" opacity="0.95"/>
+    <rect x="608" y="228" width="224" height="11" fill="#924400" opacity="0.90"/>
+  </g>
+
+  <!-- ══════════════════════════ BANKS (below horizon) ══════════════════════════ -->
+  <!-- River channel: left edge from (670,268)→(420,800), right edge from (770,268)→(1020,800) -->
+
+  <!-- Left bank: everything left of the river channel -->
+  <polygon points="0,268  670,268  420,800  0,800" fill="url(#g-bank)"/>
+  <!-- Right bank: everything right of the river channel -->
+  <polygon points="770,268  1440,268  1440,800  1020,800" fill="url(#g-bank)"/>
+
+  <!-- Subtle bank-edge warm lines (rocky bank meeting the river) -->
+  <line x1="670" y1="268" x2="420" y2="800" stroke="#7A3800" stroke-width="1.5" opacity="0.45"/>
+  <line x1="770" y1="268" x2="1020" y2="800" stroke="#7A3800" stroke-width="1.5" opacity="0.45"/>
+
+  <!-- Foreground bank ground details: dark rock/pebble texture near water edge -->
+  <g fill="#0E0603" opacity="0.6">
+    <ellipse cx="440" cy="760" rx="38" ry="10"/>
+    <ellipse cx="400" cy="790" rx="26" ry="7"/>
+    <ellipse cx="470" cy="784" rx="20" ry="6"/>
+    <ellipse cx="1000" cy="760" rx="34" ry="9"/>
+    <ellipse cx="1040" cy="788" rx="22" ry="6"/>
+    <ellipse cx="980" cy="782" rx="18" ry="5"/>
+  </g>
+
+  <!-- ══════════════════════════ RIVER CHANNEL ══════════════════════════ -->
+  <polygon points="670,268 770,268 1020,800 420,800" fill="url(#g-river)"/>
+
+  <!-- Warm atmospheric glow on river near horizon (sky reflection on water) -->
+  <polygon points="670,268 770,268 785,340 655,340" fill="#C85400" opacity="0.30" filter="url(#f-blur10)"/>
+
+  <!-- Horizon seam: bright glowing gap where sky meets river -->
+  <line x1="670" y1="268" x2="770" y2="268" stroke="#FF9200" stroke-width="3"   opacity="0.92"/>
+  <line x1="670" y1="268" x2="770" y2="268" stroke="#FFD100" stroke-width="1"   opacity="0.45" filter="url(#f-tiny)"/>
+  <!-- Extended horizon glow across full width -->
+  <line x1="0"   y1="268" x2="1440" y2="268" stroke="#6A2800" stroke-width="1"  opacity="0.30"/>
+
+  <!-- Perspective convergence lines (all radiate from vanishing point 720, 268) -->
+  <!-- Clipped to river channel -->
+  <g stroke="#FFD100" opacity="0.10" clip-path="url(#clip-river)">
+    <line x1="720" y1="268" x2="420"  y2="800" stroke-width="1.0"/>
+    <line x1="720" y1="268" x2="504"  y2="800" stroke-width="0.8"/>
+    <line x1="720" y1="268" x2="588"  y2="800" stroke-width="0.6"/>
+    <line x1="720" y1="268" x2="652"  y2="800" stroke-width="0.4"/>
+    <line x1="720" y1="268" x2="700"  y2="800" stroke-width="0.4"/>
+    <line x1="720" y1="268" x2="740"  y2="800" stroke-width="0.4"/>
+    <line x1="720" y1="268" x2="788"  y2="800" stroke-width="0.4"/>
+    <line x1="720" y1="268" x2="852"  y2="800" stroke-width="0.6"/>
+    <line x1="720" y1="268" x2="936"  y2="800" stroke-width="0.8"/>
+    <line x1="720" y1="268" x2="1020" y2="800" stroke-width="1.0"/>
+  </g>
+
+  <!-- Horizontal ripple lines — width follows the river channel shape at each y -->
+  <!-- River edges formula: left_x = 670 − 250×(y−268)/532 ; right_x = 770 + 250×(y−268)/532 -->
+  <!-- Near horizon: tight, warm amber -->
+  <g stroke="#FF9200">
+    <line x1="668" y1="272" x2="772" y2="272" stroke-width="0.4" opacity="0.22"/>
+    <line x1="665" y1="279" x2="775" y2="279" stroke-width="0.4" opacity="0.23"/>
+    <line x1="660" y1="287" x2="780" y2="287" stroke-width="0.5" opacity="0.24"/>
+    <line x1="654" y1="296" x2="786" y2="296" stroke-width="0.5" opacity="0.24"/>
+    <line x1="648" y1="307" x2="792" y2="307" stroke-width="0.6" opacity="0.23"/>
+  </g>
+  <!-- Mid-river: Maple yellow, progressively wider and bolder -->
+  <g stroke="#FFD100">
+    <line x1="647" y1="320" x2="793" y2="320" stroke-width="0.7" opacity="0.22"/>
+    <line x1="638" y1="337" x2="802" y2="337" stroke-width="0.8" opacity="0.22"/>
+    <line x1="628" y1="358" x2="812" y2="358" stroke-width="0.9" opacity="0.23"/>
+    <line x1="615" y1="384" x2="825" y2="384" stroke-width="1.1" opacity="0.24"/>
+    <line x1="599" y1="417" x2="841" y2="417" stroke-width="1.3" opacity="0.24"/>
+    <line x1="579" y1="459" x2="861" y2="459" stroke-width="1.5" opacity="0.24"/>
+    <line x1="554" y1="512" x2="886" y2="512" stroke-width="1.7" opacity="0.24"/>
+    <line x1="522" y1="578" x2="918" y2="578" stroke-width="2.0" opacity="0.23"/>
+    <line x1="481" y1="663" x2="959" y2="663" stroke-width="2.3" opacity="0.21"/>
+    <line x1="422" y1="795" x2="1018" y2="795" stroke-width="2.6" opacity="0.17"/>
+  </g>
+
+  <!-- ══════ LIGHT COLUMN: sun's reflection path along the river ══════ -->
+  <!-- Narrows to a point at the vanishing point (720, 268), widens toward viewer -->
+  <!-- At horizon: 10px wide (715–725); at bottom: 180px wide (630–810) -->
+  <polygon points="712,268 728,268 810,800 630,800" fill="url(#g-col)" opacity="0.62"/>
+  <polygon points="715,268 725,268 770,800 670,800" fill="#FFB800"     opacity="0.25"/>
+  <!-- Bright core streak -->
+  <polygon points="718,268 722,268 748,800 692,800" fill="#FFE060"     opacity="0.42"/>
+
+  <!-- Shimmer strokes along the light column -->
+  <g stroke="#FFE060" stroke-linecap="round" clip-path="url(#clip-river)">
+    <line x1="714" y1="310" x2="724" y2="310" stroke-width="1.1" opacity="0.40"/>
+    <line x1="725" y1="308" x2="736" y2="308" stroke-width="0.9" opacity="0.28"/>
+    <line x1="713" y1="335" x2="724" y2="335" stroke-width="1.1" opacity="0.36"/>
+    <line x1="725" y1="333" x2="738" y2="333" stroke-width="0.9" opacity="0.26"/>
+    <line x1="711" y1="366" x2="724" y2="366" stroke-width="1.0" opacity="0.32"/>
+    <line x1="727" y1="364" x2="741" y2="364" stroke-width="0.9" opacity="0.22"/>
+    <line x1="708" y1="404" x2="722" y2="404" stroke-width="1.0" opacity="0.28"/>
+    <line x1="730" y1="401" x2="746" y2="401" stroke-width="0.9" opacity="0.20"/>
+    <line x1="703" y1="451" x2="720" y2="451" stroke-width="1.0" opacity="0.24"/>
+    <line x1="733" y1="447" x2="751" y2="447" stroke-width="0.9" opacity="0.18"/>
+    <line x1="696" y1="508" x2="716" y2="508" stroke-width="1.0" opacity="0.21"/>
+    <line x1="737" y1="503" x2="758" y2="503" stroke-width="0.9" opacity="0.16"/>
+  </g>
+
+  <!-- Distorted sun reflection in river near horizon -->
+  <g clip-path="url(#clip-river)" opacity="0.32">
+    <ellipse cx="720" cy="294" rx="44" ry="12" fill="#FF9200" filter="url(#f-tiny)"/>
+    <rect x="678" y="288" width="84"  height="2.5" fill="#040B14"/>
+    <rect x="673" y="295" width="94"  height="3"   fill="#040B14"/>
+    <rect x="667" y="303" width="106" height="4"   fill="#040B14"/>
+    <rect x="659" y="313" width="122" height="5"   fill="#040B14"/>
+  </g>
+
+  <!-- ══════════════════════════ PINE TREES ══════════════════════════ -->
+  <!-- All rooted at y=268 (horizon line), tips point into sky -->
+  <g fill="#03010A">
+
+    <!-- LEFT BANK — trees get taller moving away from river, toward left edge -->
+    <!-- Near the river edge (small, distant-looking) -->
+    <polygon points="630,268 638,253 646,268"/>
+    <polygon points="612,268 621,247 630,268"/>
+    <polygon points="594,268 603,250 612,268"/>
+    <!-- Mid bank -->
+    <polygon points="555,268 568,238 581,268"/>
+    <polygon points="510,268 526,222 542,268"/>
+    <polygon points="462,268 480,210 498,268"/>
+    <polygon points="412,268 432,198 452,268"/>
+    <!-- Foreground / tall -->
+    <polygon points="346,268 376,165 406,268"/>
+    <polygon points="268,268 304,148 340,268"/>
+    <polygon points="170,268 214,158 258,268"/>
+    <polygon points="52,268  106,145 160,268"/>
+    <polygon points="-28,268  36,162  100,268"/>
+
+    <!-- RIGHT BANK — mirror -->
+    <!-- Near the river edge -->
+    <polygon points="794,268 802,253 810,268"/>
+    <polygon points="810,268 819,247 828,268"/>
+    <polygon points="828,268 837,250 846,268"/>
+    <!-- Mid bank -->
+    <polygon points="859,268 872,238 885,268"/>
+    <polygon points="898,268 914,222 930,268"/>
+    <polygon points="942,268 960,210 978,268"/>
+    <polygon points="988,268 1008,198 1028,268"/>
+    <!-- Foreground / tall -->
+    <polygon points="1034,268 1064,165 1094,268"/>
+    <polygon points="1100,268 1136,148 1172,268"/>
+    <polygon points="1182,268 1226,158 1270,268"/>
+    <polygon points="1280,268 1334,145 1388,268"/>
+    <polygon points="1340,268 1404,162 1468,268"/>
+
+  </g>
+
+  <!-- Tree reflections in river (faint inverted shapes at water's edge) -->
+  <g fill="#03010A" opacity="0.20" clip-path="url(#clip-river)">
+    <!-- Left: near-edge trees only -->
+    <polygon points="630,268 638,283 646,268"/>
+    <polygon points="612,268 621,287 630,268"/>
+    <polygon points="555,268 568,298 581,268"/>
+    <!-- Right: near-edge trees only -->
+    <polygon points="794,268 802,283 810,268"/>
+    <polygon points="810,268 819,287 828,268"/>
+    <polygon points="859,268 872,298 885,268"/>
+  </g>
+
+  <!-- ══════════════════════════ VIGNETTE ══════════════════════════ -->
+  <rect width="1440" height="800" fill="url(#g-vignette)"/>
+
+</svg>

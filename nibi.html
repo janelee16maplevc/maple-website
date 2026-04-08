@@ -8,46 +8,151 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ── Nibi-specific styles ── */
+    /* ══════════════════════════════════════
+       NIBI LOGO
+    ══════════════════════════════════════ */
+    .nibi-logo-wrap {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; line-height: 1;
+    }
+    .nibi-logo-text { display: flex; flex-direction: column; gap: 3px; }
+    .nibi-logo-name {
+      font-family: var(--font-body);
+      font-size: 18px; font-weight: 800; color: var(--black);
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .nibi-logo-sub {
+      font-size: 7.5px; font-weight: 600;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: rgba(10,10,10,0.38); line-height: 1;
+    }
 
+    /* ══════════════════════════════════════
+       HERO — CRT scanline + neon glow
+    ══════════════════════════════════════ */
     .nibi-hero {
       background: var(--black);
       padding: clamp(100px, 14vh, 180px) var(--pad) clamp(80px, 12vh, 140px);
       min-height: 90vh;
       display: flex; align-items: flex-end;
       margin-top: var(--nav-h);
+      position: relative; overflow: hidden;
     }
-    .nibi-hero-inner { max-width: 1000px; }
+    /* SVG scene — retro lake illustration fills the hero background */
+    .nibi-hero-scene {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+      opacity: 0.62;
+    }
+    /* Dark gradient overlay — keeps text legible, especially at the bottom */
+    .nibi-hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(6,1,15,0.35) 0%,
+        rgba(6,1,15,0.12) 35%,
+        rgba(6,1,15,0.72) 100%
+      );
+      pointer-events: none;
+    }
+    /* Subtle CRT scanlines — the retro monitor texture */
+    .nibi-hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 2;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px, transparent 3px,
+        rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px
+      );
+      pointer-events: none;
+    }
+    .nibi-hero-inner { position: relative; z-index: 3; max-width: 1000px; }
     .nibi-hero .eyebrow {
-      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,209,0,0.5); font-weight: 600;
-      margin-bottom: 36px;
+      font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,209,0,0.5); font-weight: 700;
+      margin-bottom: 36px; font-family: var(--font-body);
     }
     .nibi-hero h1 {
       font-family: var(--font-display);
       font-size: clamp(52px, 8.5vw, 120px);
       font-weight: 400; line-height: 0.97;
-      letter-spacing: -0.03em;
-      color: var(--cream);
+      letter-spacing: -0.03em; color: var(--cream);
     }
-    .nibi-hero h1 em { color: var(--yellow); font-style: italic; }
+    /* Neon glow on the yellow italic — synthwave touch */
+    .nibi-hero h1 em {
+      color: var(--yellow); font-style: italic;
+      text-shadow: 0 0 48px rgba(255,209,0,0.3), 0 0 120px rgba(255,209,0,0.1);
+    }
     .nibi-hero .sub {
-      font-size: clamp(16px, 2vw, 22px);
-      color: rgba(255,249,237,0.5);
-      margin-top: 44px; max-width: 560px; line-height: 1.65;
+      font-size: clamp(15px, 1.8vw, 20px);
+      color: rgba(255,249,237,0.45);
+      margin-top: 44px; max-width: 520px; line-height: 1.7;
     }
 
-    /* ── What is Nibi ── */
+    /* Braun-style measurement rule at hero bottom */
+    .nibi-h-rule {
+      display: flex; align-items: flex-end; gap: 0;
+      margin-top: 56px; width: 100%; height: 20px;
+    }
+    .nibi-seg { flex: 1; height: 1px; background: rgba(255,249,237,0.1); align-self: center; }
+    .nibi-tick { width: 1px; flex-shrink: 0; background: rgba(255,249,237,0.22); }
+    .nibi-tick-s { height: 8px; align-self: flex-end; }
+    .nibi-tick-l { height: 18px; align-self: flex-end; }
+    .nibi-h-label {
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,249,237,0.18); font-weight: 700;
+      white-space: nowrap; margin-left: 14px; align-self: flex-end;
+      padding-bottom: 2px;
+    }
+
+    /* ══════════════════════════════════════
+       WHAT IS NIBI — grid texture + data panel
+    ══════════════════════════════════════ */
     .nibi-what {
       background: var(--yellow);
       padding: clamp(80px, 11vh, 140px) var(--pad);
+      position: relative; overflow: hidden;
     }
-    .nibi-what-inner { max-width: var(--max-w); margin: 0 auto; }
+    /* Braun/Dieter-Rams grid overlay on yellow */
+    .nibi-what::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        linear-gradient(rgba(10,10,10,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,10,10,0.045) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+    .nibi-what-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+
+    /* Braun instrument-panel data strip */
+    .nibi-data-panel {
+      display: flex; gap: 0;
+      border: 1.5px solid rgba(10,10,10,0.15);
+      margin-bottom: 52px; width: fit-content;
+    }
+    .nibi-data-item {
+      padding: 12px 22px;
+      border-right: 1.5px solid rgba(10,10,10,0.12);
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .nibi-data-item:last-child { border-right: none; }
+    .nibi-data-key {
+      font-size: 7.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35); font-family: var(--font-body);
+    }
+    .nibi-data-val {
+      font-size: 13px; font-weight: 700; color: var(--black);
+      letter-spacing: 0.01em; font-family: var(--font-body);
+    }
+
     .nibi-what h2 {
       font-family: var(--font-display);
       font-size: clamp(36px, 5vw, 72px);
@@ -55,38 +160,145 @@
       max-width: 820px; margin-bottom: 48px;
     }
     .nibi-what p {
-      font-size: clamp(17px, 1.9vw, 22px);
-      line-height: 1.7; color: rgba(10,10,10,0.7);
-      max-width: 680px;
+      font-size: clamp(16px, 1.8vw, 20px);
+      line-height: 1.75; color: rgba(10,10,10,0.65);
+      max-width: 640px;
     }
     .nibi-what p + p { margin-top: 20px; }
 
-    /* ── Pillars ── */
+    /* ══════════════════════════════════════
+       PILLARS — Braun instrument-panel cards
+    ══════════════════════════════════════ */
     .nibi-pillars {
-      background: var(--cream);
+      background: var(--black);
       padding: clamp(80px, 11vh, 140px) var(--pad);
-      border-top: 1px solid rgba(10,10,10,0.07);
+      border-top: none;
     }
+    .nibi-pillars .section-label { color: rgba(255,249,237,0.28); }
+    .nibi-pillars .section-header { border-bottom: 1px solid rgba(255,249,237,0.07); padding-bottom: 24px; }
     .nibi-pillars-inner { max-width: var(--max-w); margin: 0 auto; }
     .pillar-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2px; background: rgba(10,10,10,0.06);
+      gap: 1px; background: rgba(255,249,237,0.06);
       margin-top: 48px;
     }
     .pillar-card {
-      background: var(--cream); padding: 36px 28px;
+      background: var(--black); padding: 36px 28px;
+      position: relative; overflow: hidden;
+      border-top: 2px solid var(--yellow); /* Braun accent line */
     }
-    .pillar-num  { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
-    .pillar-title { font-family: var(--font-display); font-size: 24px; font-weight: 400; margin-bottom: 12px; line-height: 1.2; }
-    .pillar-body  { font-size: 14px; line-height: 1.65; color: rgba(10,10,10,0.55); }
+    /* Large faint italic number — Braun product reference aesthetic */
+    .pillar-card::after {
+      position: absolute; right: 10px; bottom: -8px;
+      font-family: var(--font-display); font-style: italic;
+      font-size: 96px; font-weight: 400; line-height: 1;
+      color: rgba(255,249,237,0.04);
+      pointer-events: none;
+    }
+    .pillar-card:nth-child(1)::after { content: '01'; }
+    .pillar-card:nth-child(2)::after { content: '02'; }
+    .pillar-card:nth-child(3)::after { content: '03'; }
+    .pillar-card:nth-child(4)::after { content: '04'; }
+    .pillar-card:nth-child(5)::after { content: '05'; }
+    .pillar-card:nth-child(6)::after { content: '06'; }
 
-    /* ── Apply CTA ── */
+    .pillar-num {
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--yellow); font-weight: 700; margin-bottom: 18px;
+      font-family: var(--font-body);
+    }
+    .pillar-title {
+      font-family: var(--font-display); font-size: 24px; font-weight: 400;
+      margin-bottom: 14px; line-height: 1.2; color: var(--cream);
+    }
+    .pillar-body { font-size: 14px; line-height: 1.7; color: rgba(255,249,237,0.42); }
+
+    /* ══════════════════════════════════════
+       DIRECTOR — John Edgar
+    ══════════════════════════════════════ */
+    .nibi-director {
+      background: var(--black);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(255,249,237,0.06);
+    }
+    .nibi-director-inner { max-width: var(--max-w); margin: 0 auto; }
+    .nibi-director-label { margin-bottom: 32px; }
+    .nibi-director-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: start;
+    }
+    @media (max-width: 640px) { .nibi-director-grid { grid-template-columns: 1fr; } }
+
+    .nibi-director-photo {
+      width: 220px; height: 264px;
+      overflow: hidden; flex-shrink: 0;
+      border: 1px solid rgba(255,249,237,0.08);
+    }
+    .nibi-director-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      display: block; filter: grayscale(20%);
+    }
+    /* Placeholder if no photo */
+    .nibi-director-photo:not(:has(img)) {
+      background: rgba(255,249,237,0.04);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 48px; font-style: italic;
+      color: rgba(255,249,237,0.12);
+    }
+    .nibi-director-name {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400; letter-spacing: -0.02em; line-height: 1;
+      color: var(--cream); margin-bottom: 8px;
+    }
+    .nibi-director-role {
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; color: var(--yellow);
+      margin-bottom: 28px; font-family: var(--font-body);
+    }
+    .nibi-director-body {
+      font-size: clamp(14px, 1.5vw, 16px); line-height: 1.8;
+      color: rgba(255,249,237,0.45); max-width: 580px;
+    }
+    .nibi-director-body + .nibi-director-body { margin-top: 16px; }
+    .nibi-director-tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px;
+    }
+    .nibi-dtag {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(255,249,237,0.35);
+      border: 1px solid rgba(255,249,237,0.12);
+      padding: 6px 14px; font-family: var(--font-body);
+    }
+
+    /* ══════════════════════════════════════
+       APPLY CTA — pixel-grid watermark
+    ══════════════════════════════════════ */
     .nibi-apply {
       background: var(--black);
       padding: clamp(80px, 11vh, 140px) var(--pad);
       text-align: center;
+      position: relative; overflow: hidden;
+      border-top: 1px solid rgba(255,249,237,0.06);
     }
-    .nibi-apply-inner { max-width: 680px; margin: 0 auto; }
+    /* Large pixel-grid watermark in corner */
+    .nibi-apply-wm {
+      position: absolute; right: calc(var(--pad) - 20px); bottom: -40px;
+      opacity: 0.06; pointer-events: none;
+    }
+    .nibi-apply-status {
+      font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--yellow); font-weight: 700; margin-bottom: 32px;
+      font-family: var(--font-body);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .nibi-apply-status::before, .nibi-apply-status::after {
+      content: ''; display: block; width: 32px; height: 1px;
+      background: rgba(255,209,0,0.3);
+    }
+    .nibi-apply-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
     .nibi-apply h2 {
       font-family: var(--font-display);
       font-size: clamp(40px, 6vw, 88px);
@@ -94,16 +306,18 @@
       color: var(--cream); letter-spacing: -0.025em;
       margin-bottom: 32px;
     }
-    .nibi-apply h2 em { color: var(--yellow); font-style: italic; }
+    .nibi-apply h2 em {
+      color: var(--yellow); font-style: italic;
+      text-shadow: 0 0 48px rgba(255,209,0,0.25);
+    }
     .nibi-apply p {
       font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7;
-      color: rgba(255,249,237,0.45); margin-bottom: 48px;
+      color: rgba(255,249,237,0.42); margin-bottom: 48px;
     }
     .apply-btn {
-      display: inline-block;
-      padding: 18px 44px;
+      display: inline-block; padding: 18px 44px;
       background: var(--yellow); color: var(--black);
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       font-weight: 700; text-decoration: none;
       transition: background 0.25s, color 0.25s;
       border: 2px solid var(--yellow);
@@ -115,9 +329,27 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="/" class="nav-logo">Maple</a>
+  <a href="/nibi.html" class="nibi-logo-wrap">
+    <!-- 3×3 grid mark: diagonal = full yellow, off-diagonal = faint — Braun meets retro pixel -->
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
+      <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
+      <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
+    </svg>
+    <div class="nibi-logo-text">
+      <span class="nibi-logo-name">Nibi</span>
+      <span class="nibi-logo-sub">by Maple VC</span>
+    </div>
+  </a>
   <ul class="nav-links">
     <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
     <li><a href="/nibi.html" class="active">Nibi</a></li>
     <li><a href="/contact.html">Contact</a></li>
     <li><a href="/blog.html">Blog</a></li>
@@ -126,24 +358,79 @@
 
 <!-- HERO -->
 <section class="nibi-hero">
+  <!-- Retro lake scene — Nibi means "water" in Ojibwe -->
+  <img class="nibi-hero-scene" src="images/nibi-scene.svg" alt="" aria-hidden="true">
   <div class="nibi-hero-inner">
-    <p class="eyebrow reveal">A Maple VC Program &nbsp;·&nbsp; The Accelerator</p>
+    <!-- Hero mark — larger version of the nav grid logo -->
+    <svg width="44" height="44" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:36px;display:block;" aria-hidden="true">
+      <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
+      <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
+      <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+      <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
+    </svg>
+    <p class="eyebrow reveal">NIBI.001 &nbsp;·&nbsp; Maple VC Accelerator</p>
     <h1 class="reveal d1">
       Nibi.<br>
-      Before <em>Silicon Valley</em><br>
-      finds you.
+      Before you get<br>
+      to <em>the Valley.</em>
     </h1>
     <p class="sub reveal d2">
-      Nibi is Maple's accelerator for Canadian founders at the earliest stage —
-      before the pitch is polished, before the term sheet arrives,
+      Nibi is Maple's accelerator for founders at the earliest stage.
+      Before the pitch is polished, before the term sheet arrives,
       before anyone else is paying attention.
     </p>
+    <!-- Braun-style measurement rule -->
+    <div class="nibi-h-rule" aria-hidden="true">
+      <span class="nibi-tick nibi-tick-l"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-s"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-s"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-l"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-s"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-s"></span>
+      <span class="nibi-seg"></span>
+      <span class="nibi-tick nibi-tick-l"></span>
+      <span class="nibi-seg" style="flex:4"></span>
+      <span class="nibi-h-label">NIBI.001</span>
+    </div>
   </div>
 </section>
 
 <!-- WHAT IS NIBI -->
 <section class="nibi-what">
   <div class="nibi-what-inner">
+    <!-- Braun instrument-panel data strip -->
+    <div class="nibi-data-panel reveal">
+      <div class="nibi-data-item">
+        <span class="nibi-data-key">Cohort</span>
+        <span class="nibi-data-val">2025</span>
+      </div>
+      <div class="nibi-data-item">
+        <span class="nibi-data-key">Stage</span>
+        <span class="nibi-data-val">Pre-seed</span>
+      </div>
+      <div class="nibi-data-item">
+        <span class="nibi-data-key">Focus</span>
+        <span class="nibi-data-val">Canadian founders</span>
+      </div>
+      <div class="nibi-data-item">
+        <span class="nibi-data-key">Check Size</span>
+        <span class="nibi-data-val">$250k</span>
+      </div>
+      <div class="nibi-data-item">
+        <span class="nibi-data-key">Status</span>
+        <span class="nibi-data-val">Open</span>
+      </div>
+    </div>
     <h2 class="reveal">We believe the best founders<br>come with <em>Canadian roots.</em><br>We find them first.</h2>
     <p class="reveal d1">
       <em>Nibi</em> means "water" in Ojibwe — the language of the Indigenous people of the land
@@ -199,9 +486,55 @@
   </div>
 </section>
 
+<!-- JOHN EDGAR — Program Director -->
+<section class="nibi-director">
+  <div class="nibi-director-inner">
+    <div class="nibi-director-label reveal">
+      <span class="nibi-data-key">Program Director</span>
+    </div>
+    <div class="nibi-director-grid reveal d1">
+      <div class="nibi-director-photo">
+        <img src="images/john-edgar.jpg" alt="John Edgar">
+      </div>
+      <div class="nibi-director-content">
+        <div class="nibi-director-name">John Edgar</div>
+        <div class="nibi-director-role">Operator. Builder. Nibi Program Director.</div>
+        <p class="nibi-director-body">
+          John is the kind of person who has built things — real things, with his hands and his head.
+          An operator by nature, he thinks in systems, moves in structures, and executes with a
+          precision that most founders only develop years into their journey.
+        </p>
+        <p class="nibi-director-body">
+          But what makes John unusual is that he brings something beyond operational excellence to Nibi.
+          He has a distinct creative point of view — a belief that how you build is as important as what
+          you build. He will run Nibi with rigour and with taste.
+        </p>
+        <div class="nibi-director-tags">
+          <span class="nibi-dtag">Operator</span>
+          <span class="nibi-dtag">Systems Thinker</span>
+          <span class="nibi-dtag">Program Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- APPLY CTA -->
 <section class="nibi-apply">
+  <!-- Large pixel-grid watermark -->
+  <svg class="nibi-apply-wm" width="400" height="400" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
+    <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
+    <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
+    <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
+  </svg>
   <div class="nibi-apply-inner">
+    <div class="nibi-apply-status reveal">Accepting Applications</div>
     <h2 class="reveal">Ready to<br>build <em>first?</em></h2>
     <p class="reveal d1">
       If you're a Canadian founder at the earliest stage — or a builder with Canadian roots
@@ -245,6 +578,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
