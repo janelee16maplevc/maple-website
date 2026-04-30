@@ -59,11 +59,15 @@ button, input, textarea { font-family: inherit; }
   border-color: rgba(10,10,10,0.07);
 }
 .nav-logo {
-  font-family: var(--font-logo);
-  font-size: 20px; font-weight: 900;
-  text-decoration: none; color: var(--black);
-  letter-spacing: -0.01em;
+  text-decoration: none;
+  display: flex; align-items: center;
   line-height: 1;
+}
+.nav-logo img {
+  height: 32px !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block;
 }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {

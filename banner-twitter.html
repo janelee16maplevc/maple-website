@@ -20,18 +20,11 @@
       gap: 40px;
     }
 
-    /* Logo block — yellow background matching the real logo */
-    .logo-block {
-      background: #FFD100;
-      padding: 16px 32px;
-    }
-    .logo-block span {
-      font-family: 'Nunito', sans-serif;
-      font-weight: 900;
-      font-size: 64px;
-      color: #0A0A0A;
-      letter-spacing: -0.02em;
-      line-height: 1;
+    /* Logo block */
+    .logo-block { flex-shrink: 0; }
+    .logo-block img {
+      height: 90px;
+      width: auto;
       display: block;
     }
 
@@ -54,7 +47,7 @@
 <body>
 <div class="banner">
   <div class="logo-block">
-    <span>Maple</span>
+    <img src="images/logo.jpg" alt="Maple">
   </div>
   <div class="headline">We believe <em>first.</em></div>
 </div>
