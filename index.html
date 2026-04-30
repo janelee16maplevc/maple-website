@@ -14,6 +14,16 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    /* ── Hero sub-headline ── */
+    .hero-sub {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 76px);
+      font-weight: 400; line-height: 1.02;
+      letter-spacing: -0.025em; color: var(--black);
+      margin-top: 0.35em;
+    }
+    .hero-sub em { font-style: italic; color: #fff; }
+
     /* ── Hero: visual gap between "first." and second line ── */
     .hero-spacer { display: block; height: 0.45em; }
 
@@ -341,7 +351,7 @@
     }
     .networks-hp-intro h2 {
       font-family: var(--font-display);
-      font-size: clamp(38px, 5.5vw, 76px);
+      font-size: clamp(52px, 7.5vw, 110px);
       font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
       color: var(--cream);
     }
@@ -515,10 +525,6 @@
   <div class="hero-inner">
     <h1 class="reveal d1">
       We believe <em>first.</em>
-      <span class="hero-spacer"></span>
-      We invest in founders<br>
-      before they hit<br>
-      <em>the Valley.</em>
     </h1>
   </div>
 </section>
@@ -543,6 +549,14 @@
     </div>
 
     <div class="founder-card reveal d1">
+      <div class="founder-headshot">Aalo</div>
+      <div class="founder-name">Aalo</div>
+      <div class="founder-co">Aalo</div>
+      <div class="founder-tag">Building the next generation of nuclear energy for a clean future</div>
+      <div class="founder-uni"></div>
+    </div>
+
+    <div class="founder-card reveal d2">
       <div class="founder-headshot founder-headshot--photo">
         <img src="images/andrew-chau.jpg" alt="Andrew Chau">
       </div>
@@ -552,17 +566,15 @@
       <div class="founder-uni">From Saskatchewan</div>
     </div>
 
-    <div class="founder-card reveal d2">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/jessica-ko.jpg" alt="Jessica Ko">
-      </div>
-      <div class="founder-name">Jessica Ko</div>
-      <div class="founder-co">Playbook</div>
-      <div class="founder-tag">Making cloud storage beautiful for creative professionals</div>
-      <div class="founder-uni">From Waterloo</div>
+    <div class="founder-card reveal d3">
+      <div class="founder-headshot">BL</div>
+      <div class="founder-name">Blacklake</div>
+      <div class="founder-co">Blacklake</div>
+      <div class="founder-tag">Modernizing manufacturing and supply chain operations worldwide</div>
+      <div class="founder-uni"></div>
     </div>
 
-    <div class="founder-card reveal d3">
+    <div class="founder-card reveal d4">
       <div class="founder-headshot founder-headshot--photo">
         <img src="images/brennan-spellacy.jpg" alt="Brennan Spellacy">
       </div>
@@ -572,54 +584,22 @@
       <div class="founder-uni">From McGill</div>
     </div>
 
-    <div class="founder-card reveal d4">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/steve-lau.jpg" alt="Steve Lau">
-      </div>
-      <div class="founder-name">Steve Lau</div>
-      <div class="founder-co">AutoLeap</div>
-      <div class="founder-tag">Transforming the auto repair industry with modern SaaS</div>
-      <div class="founder-uni">From U of T</div>
-    </div>
-
     <div class="founder-card reveal d5">
       <div class="founder-headshot founder-headshot--photo">
-        <img src="images/jimoh-ovbiagele.jpg" alt="Jimoh Ovbiagelé">
+        <img src="images/first-check-finny.jpg" alt="Finny">
       </div>
-      <div class="founder-name">Jimoh Ovbiagelé</div>
-      <div class="founder-co">BenchIQ</div>
-      <div class="founder-tag">Reshaping the practice of law with intelligent tooling</div>
-      <div class="founder-uni">From U of T</div>
+      <div class="founder-name">Finny</div>
+      <div class="founder-co">Finny</div>
+      <div class="founder-tag">Reimagining personal finance for the next generation</div>
+      <div class="founder-uni"></div>
     </div>
 
     <div class="founder-card reveal">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/ken-chong.jpg" alt="Ken Chong">
-      </div>
-      <div class="founder-name">Ken Chong</div>
-      <div class="founder-co">All Day Kitchens</div>
-      <div class="founder-tag">Automating food infrastructure for the next generation</div>
-      <div class="founder-uni">From Waterloo</div>
-    </div>
-
-    <div class="founder-card reveal d1">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/kate-hiscox.jpg" alt="Kate Hiscox">
-      </div>
-      <div class="founder-name">Kate Hiscox</div>
-      <div class="founder-co">Sivo</div>
-      <div class="founder-tag">Creating the rails for financial inclusion globally</div>
-      <div class="founder-uni">From Whitestone</div>
-    </div>
-
-    <div class="founder-card reveal d2">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/ray-reddy.jpg" alt="Ray Reddy">
-      </div>
-      <div class="founder-name">Ray Reddy</div>
-      <div class="founder-co">Ritual</div>
-      <div class="founder-tag">Powering local commerce for the mobile generation</div>
-      <div class="founder-uni">From Waterloo</div>
+      <div class="founder-headshot">Ca</div>
+      <div class="founder-name">Calico</div>
+      <div class="founder-co">Calico</div>
+      <div class="founder-tag">Building AI companions that redefine how people connect and grow</div>
+      <div class="founder-uni"></div>
     </div>
 
   </div>
@@ -636,7 +616,7 @@
       <div>
         <div class="first-check-tag">First Check</div>
         <h2 class="first-check-title">
-          We were the first check into Clay.<br>Here's what we saw in 2017.
+          We were the first check in Clay at seed in 2017.
         </h2>
         <p class="first-check-desc">
           Before the $5B valuation. Before $100M ARR. Before Silicon Valley
@@ -661,10 +641,10 @@
 
     <!-- Intro -->
     <div class="networks-hp-intro">
-      <h2 class="reveal">We invest <em>globally.</em> Networks are how we see them first.</h2>
+      <h2 class="reveal">We invest <em>globally.</em></h2>
       <div class="networks-hp-right">
         <p class="networks-hp-body reveal d1">
-          We spent two decades building relationships across Canada, Silicon Valley, and Korea — this global network is our sourcing advantage.
+          We work within communities that lead us to the best opportunities. We invest globally and we invest in the future — from AI applications to nuclear to climate to supply chain to AI companions and much more to come. We identify with communities working on the most cutting-edge opportunities, across every sector and every geography.
         </p>
         <a href="/portfolio.html#networks" class="networks-hp-cta reveal d2">
           See our portfolio by network →
@@ -717,7 +697,10 @@
   <div class="find-founders-inner">
 
     <h2 class="find-founders-heading reveal">Why we wrote the <em>first check</em> — and why they said Yes.</h2>
-    <p class="find-founders-sub reveal">At Maple VC, we don't just invest early — we invest first.<br>When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.<br><br>Read our memos below.</p>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0;">
+      <p class="find-founders-sub reveal" style="margin:0;">At Maple VC, we don't just invest early — we invest first.<br>When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.<br><br>Read our memos below.</p>
+      <a href="https://www.maplevc.com/blog" class="first-check-bridge-link reveal d1" target="_blank" rel="noopener" style="flex-shrink:0;margin-bottom:4px;">See all posts →</a>
+    </div>
 
     <!-- First Check series -->
     <div class="first-check-bridge reveal">
@@ -739,7 +722,7 @@
 
         <a class="fc-card" href="https://www.maplevc.com/blog-posts/first-check-finny" target="_blank" rel="noopener">
           <div class="fc-card-img">
-            <span class="fc-card-img-placeholder">Finny</span>
+            <img src="images/first-check-finny.jpg" alt="Finny">
           </div>
           <div class="fc-card-body">
             <span class="fc-card-tag">First Check</span>
@@ -752,7 +735,7 @@
 
         <a class="fc-card" href="https://www.maplevc.com/blog-posts/firstcheckfey" target="_blank" rel="noopener">
           <div class="fc-card-img">
-            <span class="fc-card-img-placeholder">Fey</span>
+            <img src="images/first-check-fey.jpg" alt="Fey">
           </div>
           <div class="fc-card-body">
             <span class="fc-card-tag">First Check</span>
@@ -765,7 +748,7 @@
 
         <a class="fc-card" href="https://www.maplevc.com/blog-posts/firstcheckbenchiq" target="_blank" rel="noopener">
           <div class="fc-card-img">
-            <span class="fc-card-img-placeholder">BenchIQ</span>
+            <img src="images/first-check-benchiq.jpg" alt="BenchIQ">
           </div>
           <div class="fc-card-body">
             <span class="fc-card-tag">First Check</span>
@@ -778,9 +761,6 @@
 
       </div>
 
-      <div class="first-check-bridge-footer">
-        <a href="https://www.maplevc.com/blog" class="first-check-bridge-link" target="_blank" rel="noopener">See all posts →</a>
-      </div>
     </div>
 
   </div>
@@ -817,9 +797,9 @@
           <img src="images/john-edgar.jpg" alt="John Edgar">
         </div>
         <div class="team-hp-info">
-          <div class="team-hp-role">Venture Partner</div>
+          <div class="team-hp-role">Partner</div>
           <div class="team-hp-name">John Edgar</div>
-          <p class="team-hp-bio">DigitalOcean #15. Over a decade advising and investing in early-stage startups across Canada and Silicon Valley.</p>
+          <p class="team-hp-bio">DigitalOcean #15. Over a decade advising and investing in early-stage startups across Canada and Silicon Valley. Based in Montreal, Canada.</p>
         </div>
       </a>
 
@@ -828,7 +808,7 @@
           <img src="images/jane-lee.jpg" alt="Jane Lee">
         </div>
         <div class="team-hp-info">
-          <div class="team-hp-role">Marketing Partner</div>
+          <div class="team-hp-role">Partner</div>
           <div class="team-hp-name">Jane Lee</div>
           <p class="team-hp-bio">Early Shopify. 15+ years advising and investing in early-stage startups. Born in Canada, based in San Francisco.</p>
         </div>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nibi — The Maple Accelerator</title>
-  <meta name="description" content="Nibi is Maple VC's accelerator program for Canadian founders before they reach Silicon Valley.">
+  <title>Nibi — Coming Soon</title>
+  <meta name="description" content="Nibi is Maple VC's accelerator program. Coming soon.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,340 +13,130 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ══════════════════════════════════════
-       NIBI LOGO
-    ══════════════════════════════════════ */
-    .nibi-logo-wrap {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; line-height: 1;
-    }
-    .nibi-logo-text { display: flex; flex-direction: column; gap: 3px; }
-    .nibi-logo-name {
-      font-family: var(--font-body);
-      font-size: 18px; font-weight: 800; color: var(--black);
-      letter-spacing: -0.02em; line-height: 1;
-    }
-    .nibi-logo-sub {
-      font-size: 7.5px; font-weight: 600;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      color: rgba(10,10,10,0.38); line-height: 1;
-    }
+    body { background: var(--black); }
 
-    /* ══════════════════════════════════════
-       HERO — CRT scanline + neon glow
-    ══════════════════════════════════════ */
-    .nibi-hero {
-      background: var(--black);
-      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(80px, 12vh, 140px);
-      min-height: 90vh;
-      display: flex; align-items: flex-end;
-      margin-top: var(--nav-h);
-      position: relative; overflow: hidden;
-    }
-    /* SVG scene — retro lake illustration fills the hero background */
-    .nibi-hero-scene {
-      position: absolute; inset: 0; z-index: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center center;
-      opacity: 0.62;
-    }
-    /* Dark gradient overlay — keeps text legible, especially at the bottom */
-    .nibi-hero::after {
+    /* CRT scanlines overlay */
+    body::before {
       content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to bottom,
-        rgba(6,1,15,0.35) 0%,
-        rgba(6,1,15,0.12) 35%,
-        rgba(6,1,15,0.72) 100%
-      );
-      pointer-events: none;
-    }
-    /* Subtle CRT scanlines — the retro monitor texture */
-    .nibi-hero::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 2;
+      position: fixed; inset: 0; z-index: 0;
       background: repeating-linear-gradient(
         0deg,
         transparent 0px, transparent 3px,
-        rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px
+        rgba(255,255,255,0.015) 3px, rgba(255,255,255,0.015) 4px
       );
       pointer-events: none;
     }
-    .nibi-hero-inner { position: relative; z-index: 3; max-width: 1000px; }
-    .nibi-hero .eyebrow {
-      font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,209,0,0.5); font-weight: 700;
-      margin-bottom: 36px; font-family: var(--font-body);
-    }
-    .nibi-hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(52px, 8.5vw, 120px);
-      font-weight: 400; line-height: 0.97;
-      letter-spacing: -0.03em; color: var(--cream);
-    }
-    /* Neon glow on the yellow italic — synthwave touch */
-    .nibi-hero h1 em {
-      color: var(--yellow); font-style: italic;
-      text-shadow: 0 0 48px rgba(255,209,0,0.3), 0 0 120px rgba(255,209,0,0.1);
-    }
-    .nibi-hero .sub {
-      font-size: clamp(15px, 1.8vw, 20px);
-      color: rgba(255,249,237,0.45);
-      margin-top: 44px; max-width: 520px; line-height: 1.7;
-    }
 
-    /* Braun-style measurement rule at hero bottom */
-    .nibi-h-rule {
-      display: flex; align-items: flex-end; gap: 0;
-      margin-top: 56px; width: 100%; height: 20px;
-    }
-    .nibi-seg { flex: 1; height: 1px; background: rgba(255,249,237,0.1); align-self: center; }
-    .nibi-tick { width: 1px; flex-shrink: 0; background: rgba(255,249,237,0.22); }
-    .nibi-tick-s { height: 8px; align-self: flex-end; }
-    .nibi-tick-l { height: 18px; align-self: flex-end; }
-    .nibi-h-label {
-      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,249,237,0.18); font-weight: 700;
-      white-space: nowrap; margin-left: 14px; align-self: flex-end;
-      padding-bottom: 2px;
-    }
-
-    /* ══════════════════════════════════════
-       WHAT IS NIBI — grid texture + data panel
-    ══════════════════════════════════════ */
-    .nibi-what {
-      background: var(--yellow);
-      padding: clamp(80px, 11vh, 140px) var(--pad);
-      position: relative; overflow: hidden;
-    }
-    /* Braun/Dieter-Rams grid overlay on yellow */
-    .nibi-what::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        linear-gradient(rgba(10,10,10,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,10,10,0.045) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    .nibi-what-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
-
-    /* Braun instrument-panel data strip */
-    .nibi-data-panel {
-      display: flex; gap: 0;
-      border: 1.5px solid rgba(10,10,10,0.15);
-      margin-bottom: 52px; width: fit-content;
-    }
-    .nibi-data-item {
-      padding: 12px 22px;
-      border-right: 1.5px solid rgba(10,10,10,0.12);
-      display: flex; flex-direction: column; gap: 5px;
-    }
-    .nibi-data-item:last-child { border-right: none; }
-    .nibi-data-key {
-      font-size: 7.5px; letter-spacing: 0.22em; text-transform: uppercase;
-      font-weight: 700; color: rgba(10,10,10,0.35); font-family: var(--font-body);
-    }
-    .nibi-data-val {
-      font-size: 13px; font-weight: 700; color: var(--black);
-      letter-spacing: 0.01em; font-family: var(--font-body);
-    }
-
-    .nibi-what h2 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 72px);
-      font-weight: 400; line-height: 1.05; letter-spacing: -0.02em;
-      max-width: 820px; margin-bottom: 48px;
-    }
-    .nibi-what p {
-      font-size: clamp(16px, 1.8vw, 20px);
-      line-height: 1.75; color: rgba(10,10,10,0.65);
-      max-width: 640px;
-    }
-    .nibi-what p + p { margin-top: 20px; }
-
-    /* ══════════════════════════════════════
-       PILLARS — Braun instrument-panel cards
-    ══════════════════════════════════════ */
-    .nibi-pillars {
-      background: var(--black);
-      padding: clamp(80px, 11vh, 140px) var(--pad);
-      border-top: none;
-    }
-    .nibi-pillars .section-label { color: rgba(255,249,237,0.28); }
-    .nibi-pillars .section-header { border-bottom: 1px solid rgba(255,249,237,0.07); padding-bottom: 24px; }
-    .nibi-pillars-inner { max-width: var(--max-w); margin: 0 auto; }
-    .pillar-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px; background: rgba(255,249,237,0.06);
-      margin-top: 48px;
-    }
-    .pillar-card {
-      background: var(--black); padding: 36px 28px;
-      position: relative; overflow: hidden;
-      border-top: 2px solid var(--yellow); /* Braun accent line */
-    }
-    /* Large faint italic number — Braun product reference aesthetic */
-    .pillar-card::after {
-      position: absolute; right: 10px; bottom: -8px;
-      font-family: var(--font-display); font-style: italic;
-      font-size: 96px; font-weight: 400; line-height: 1;
-      color: rgba(255,249,237,0.04);
-      pointer-events: none;
-    }
-    .pillar-card:nth-child(1)::after { content: '01'; }
-    .pillar-card:nth-child(2)::after { content: '02'; }
-    .pillar-card:nth-child(3)::after { content: '03'; }
-    .pillar-card:nth-child(4)::after { content: '04'; }
-    .pillar-card:nth-child(5)::after { content: '05'; }
-    .pillar-card:nth-child(6)::after { content: '06'; }
-
-    .pillar-num {
-      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--yellow); font-weight: 700; margin-bottom: 18px;
-      font-family: var(--font-body);
-    }
-    .pillar-title {
-      font-family: var(--font-display); font-size: 24px; font-weight: 400;
-      margin-bottom: 14px; line-height: 1.2; color: var(--cream);
-    }
-    .pillar-body { font-size: 14px; line-height: 1.7; color: rgba(255,249,237,0.42); }
-
-    /* ══════════════════════════════════════
-       DIRECTOR — John Edgar
-    ══════════════════════════════════════ */
-    .nibi-director {
-      background: var(--black);
-      padding: clamp(72px, 10vh, 120px) var(--pad);
-      border-top: 1px solid rgba(255,249,237,0.06);
-    }
-    .nibi-director-inner { max-width: var(--max-w); margin: 0 auto; }
-    .nibi-director-label { margin-bottom: 32px; }
-    .nibi-director-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: clamp(32px, 5vw, 72px);
-      align-items: start;
-    }
-    @media (max-width: 640px) { .nibi-director-grid { grid-template-columns: 1fr; } }
-
-    .nibi-director-photo {
-      width: 220px; height: 264px;
-      overflow: hidden; flex-shrink: 0;
-      border: 1px solid rgba(255,249,237,0.08);
-    }
-    .nibi-director-photo img {
-      width: 100%; height: 100%; object-fit: cover; object-position: top center;
-      display: block; filter: grayscale(20%);
-    }
-    /* Placeholder if no photo */
-    .nibi-director-photo:not(:has(img)) {
-      background: rgba(255,249,237,0.04);
+    .nibi-soon {
+      min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 48px; font-style: italic;
-      color: rgba(255,249,237,0.12);
-    }
-    .nibi-director-name {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1;
-      color: var(--cream); margin-bottom: 8px;
-    }
-    .nibi-director-role {
-      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 700; color: var(--yellow);
-      margin-bottom: 28px; font-family: var(--font-body);
-    }
-    .nibi-director-body {
-      font-size: clamp(14px, 1.5vw, 16px); line-height: 1.8;
-      color: rgba(255,249,237,0.45); max-width: 580px;
-    }
-    .nibi-director-body + .nibi-director-body { margin-top: 16px; }
-    .nibi-director-tags {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px;
-    }
-    .nibi-dtag {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      font-weight: 700; color: rgba(255,249,237,0.35);
-      border: 1px solid rgba(255,249,237,0.12);
-      padding: 6px 14px; font-family: var(--font-body);
+      padding: var(--pad);
+      position: relative; overflow: hidden;
     }
 
-    /* ══════════════════════════════════════
-       APPLY CTA — pixel-grid watermark
-    ══════════════════════════════════════ */
-    .nibi-apply {
-      background: var(--black);
-      padding: clamp(80px, 11vh, 140px) var(--pad);
-      text-align: center;
-      position: relative; overflow: hidden;
-      border-top: 1px solid rgba(255,249,237,0.06);
+    /* Faint radial glow */
+    .nibi-soon::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,209,0,0.07) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
-    /* Large pixel-grid watermark in corner */
-    .nibi-apply-wm {
-      position: absolute; right: calc(var(--pad) - 20px); bottom: -40px;
-      opacity: 0.06; pointer-events: none;
+
+    .nibi-soon-inner {
+      position: relative; z-index: 1;
+      text-align: center; max-width: 680px;
     }
-    .nibi-apply-status {
-      font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--yellow); font-weight: 700; margin-bottom: 32px;
+
+    /* Nibi pixel grid mark */
+    .nibi-soon-mark { margin-bottom: 48px; display: inline-block; }
+
+    .nibi-soon-eyebrow {
+      font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 700;
+      margin-bottom: 40px; display: block;
       font-family: var(--font-body);
-      display: flex; align-items: center; justify-content: center; gap: 10px;
     }
-    .nibi-apply-status::before, .nibi-apply-status::after {
-      content: ''; display: block; width: 32px; height: 1px;
-      background: rgba(255,209,0,0.3);
+    .nibi-soon-eyebrow::before,
+    .nibi-soon-eyebrow::after {
+      content: '—';
+      margin: 0 12px;
+      opacity: 0.3;
     }
-    .nibi-apply-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
-    .nibi-apply h2 {
+
+    .nibi-soon h1 {
       font-family: var(--font-display);
-      font-size: clamp(40px, 6vw, 88px);
-      font-weight: 400; line-height: 0.97;
-      color: var(--cream); letter-spacing: -0.025em;
-      margin-bottom: 32px;
+      font-size: clamp(64px, 10vw, 140px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 0;
     }
-    .nibi-apply h2 em {
+    .nibi-soon h1 em {
       color: var(--yellow); font-style: italic;
-      text-shadow: 0 0 48px rgba(255,209,0,0.25);
+      text-shadow: 0 0 60px rgba(255,209,0,0.25), 0 0 120px rgba(255,209,0,0.08);
+      display: block;
     }
-    .nibi-apply p {
-      font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7;
-      color: rgba(255,249,237,0.42); margin-bottom: 48px;
+
+    /* Braun measurement rule */
+    .nibi-rule {
+      display: flex; align-items: flex-end; gap: 0;
+      margin: 52px auto 52px;
+      width: 100%; max-width: 360px; height: 20px;
     }
-    .apply-btn {
-      display: inline-block; padding: 18px 44px;
-      background: var(--yellow); color: var(--black);
-      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-      font-weight: 700; text-decoration: none;
-      transition: background 0.25s, color 0.25s;
-      border: 2px solid var(--yellow);
+    .nibi-seg { flex: 1; height: 1px; background: rgba(255,249,237,0.08); align-self: center; }
+    .nibi-tick { width: 1px; flex-shrink: 0; background: rgba(255,249,237,0.18); }
+    .nibi-tick-s { height: 7px; align-self: flex-end; }
+    .nibi-tick-l { height: 16px; align-self: flex-end; }
+
+    .nibi-soon-sub {
+      font-size: clamp(14px, 1.5vw, 17px);
+      color: rgba(255,249,237,0.32);
+      line-height: 1.8; margin-bottom: 56px;
+      font-family: var(--font-body);
     }
-    .apply-btn:hover { background: transparent; color: var(--yellow); }
+
+    /* Data strip */
+    .nibi-soon-data {
+      display: inline-flex; gap: 0;
+      border: 1px solid rgba(255,249,237,0.08);
+      margin-bottom: 56px;
+    }
+    .nibi-soon-data-item {
+      padding: 10px 22px;
+      border-right: 1px solid rgba(255,249,237,0.08);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .nibi-soon-data-item:last-child { border-right: none; }
+    .nibi-soon-data-key {
+      font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; color: rgba(255,249,237,0.2);
+    }
+    .nibi-soon-data-val {
+      font-size: 12px; font-weight: 600; color: rgba(255,249,237,0.55);
+      letter-spacing: 0.02em;
+    }
+
+    .nibi-soon-link {
+      display: inline-block;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: var(--yellow);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,209,0,0.25);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+    }
+    .nibi-soon-link:hover { border-color: var(--yellow); }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="/nibi.html" class="nibi-logo-wrap">
-    <!-- 3×3 grid mark: diagonal = full yellow, off-diagonal = faint — Braun meets retro pixel -->
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
-      <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
-      <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
-    </svg>
-    <div class="nibi-logo-text">
-      <span class="nibi-logo-name">Nibi</span>
-      <span class="nibi-logo-sub">by Maple VC</span>
-    </div>
-  </a>
+  <a href="/" class="nav-logo">Maple</a>
   <ul class="nav-links">
     <li><a href="/portfolio.html">Portfolio</a></li>
     <li><a href="/team.html">Team</a></li>
@@ -356,36 +146,33 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="nibi-hero">
-  <!-- Retro lake scene — Nibi means "water" in Ojibwe -->
-  <img class="nibi-hero-scene" src="images/nibi-scene.svg" alt="" aria-hidden="true">
-  <div class="nibi-hero-inner">
-    <!-- Hero mark — larger version of the nav grid logo -->
-    <svg width="44" height="44" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:36px;display:block;" aria-hidden="true">
-      <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
-      <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
-      <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-      <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
-    </svg>
-    <p class="eyebrow reveal">NIBI.001 &nbsp;·&nbsp; Maple VC Accelerator</p>
-    <h1 class="reveal d1">
-      Nibi.<br>
-      Before you get<br>
-      to <em>the Valley.</em>
+<!-- COMING SOON -->
+<section class="nibi-soon">
+  <div class="nibi-soon-inner">
+
+    <!-- Pixel grid mark -->
+    <div class="nibi-soon-mark">
+      <svg width="36" height="36" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
+        <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
+        <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.25"/>
+        <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
+      </svg>
+    </div>
+
+    <span class="nibi-soon-eyebrow">Nibi by Maple VC</span>
+
+    <h1>
+      Coming
+      <em>soon.</em>
     </h1>
-    <p class="sub reveal d2">
-      Nibi is Maple's accelerator for founders at the earliest stage.
-      Before the pitch is polished, before the term sheet arrives,
-      before anyone else is paying attention.
-    </p>
-    <!-- Braun-style measurement rule -->
-    <div class="nibi-h-rule" aria-hidden="true">
+
+    <div class="nibi-rule" aria-hidden="true">
       <span class="nibi-tick nibi-tick-l"></span>
       <span class="nibi-seg"></span>
       <span class="nibi-tick nibi-tick-s"></span>
@@ -399,184 +186,31 @@
       <span class="nibi-tick nibi-tick-s"></span>
       <span class="nibi-seg"></span>
       <span class="nibi-tick nibi-tick-l"></span>
-      <span class="nibi-seg" style="flex:4"></span>
-      <span class="nibi-h-label">NIBI.001</span>
     </div>
-  </div>
-</section>
 
-<!-- WHAT IS NIBI -->
-<section class="nibi-what">
-  <div class="nibi-what-inner">
-    <!-- Braun instrument-panel data strip -->
-    <div class="nibi-data-panel reveal">
-      <div class="nibi-data-item">
-        <span class="nibi-data-key">Cohort</span>
-        <span class="nibi-data-val">2025</span>
+    <div class="nibi-soon-data">
+      <div class="nibi-soon-data-item">
+        <span class="nibi-soon-data-key">Cohort</span>
+        <span class="nibi-soon-data-val">2025</span>
       </div>
-      <div class="nibi-data-item">
-        <span class="nibi-data-key">Stage</span>
-        <span class="nibi-data-val">Pre-seed</span>
+      <div class="nibi-soon-data-item">
+        <span class="nibi-soon-data-key">Stage</span>
+        <span class="nibi-soon-data-val">Pre-seed</span>
       </div>
-      <div class="nibi-data-item">
-        <span class="nibi-data-key">Focus</span>
-        <span class="nibi-data-val">Canadian founders</span>
-      </div>
-      <div class="nibi-data-item">
-        <span class="nibi-data-key">Check Size</span>
-        <span class="nibi-data-val">$250k</span>
-      </div>
-      <div class="nibi-data-item">
-        <span class="nibi-data-key">Status</span>
-        <span class="nibi-data-val">Open</span>
+      <div class="nibi-soon-data-item">
+        <span class="nibi-soon-data-key">Status</span>
+        <span class="nibi-soon-data-val">Coming soon</span>
       </div>
     </div>
-    <h2 class="reveal">We believe the best founders<br>come with <em>Canadian roots.</em><br>We find them first.</h2>
-    <p class="reveal d1">
-      <em>Nibi</em> means "water" in Ojibwe — the language of the Indigenous people of the land
-      we call Canada. Like water, the best founders find their own path, carving channels
-      others don't see yet. Nibi is where that journey begins.
+
+    <p class="nibi-soon-sub">
+      Nibi is Maple's accelerator for Canadian founders<br>at the earliest stage. Details coming soon.
     </p>
-    <p class="reveal d2">
-      Our network runs deep across Waterloo, McGill, U of T, UBC, Queen's, and beyond.
-      We meet founders in their dorm rooms, co-working spaces, and garages —
-      long before Sand Hill Road comes calling.
-    </p>
+
+    <a href="mailto:andre@maplevc.com" class="nibi-soon-link">Get notified →</a>
+
   </div>
 </section>
-
-<!-- PILLARS -->
-<section class="nibi-pillars">
-  <div class="nibi-pillars-inner">
-    <div class="section-header reveal">
-      <span class="section-label">What Nibi Offers</span>
-    </div>
-    <div class="pillar-grid">
-      <div class="pillar-card reveal">
-        <div class="pillar-num">01</div>
-        <div class="pillar-title">First Check</div>
-        <div class="pillar-body">Pre-seed capital from Maple before anyone else has conviction. We write the first check so you can build with confidence.</div>
-      </div>
-      <div class="pillar-card reveal d1">
-        <div class="pillar-num">02</div>
-        <div class="pillar-title">The Maple Network</div>
-        <div class="pillar-body">Access to employee #1–25 at DoorDash, Flexport, Dropbox, Stripe, Figma, and more — people who built the companies you admire.</div>
-      </div>
-      <div class="pillar-card reveal d2">
-        <div class="pillar-num">03</div>
-        <div class="pillar-title">Silicon Valley Bridge</div>
-        <div class="pillar-body">We help you make the jump. Introductions to top US investors, customers, and talent when the time is right.</div>
-      </div>
-      <div class="pillar-card reveal d3">
-        <div class="pillar-num">04</div>
-        <div class="pillar-title">Founder Thesis Support</div>
-        <div class="pillar-body">We work through the 7 pillars of our investment thesis with you: Team, Tech, Timing, Monopoly, Distribution, Defensibility, Secret.</div>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">05</div>
-        <div class="pillar-title">Canadian Community</div>
-        <div class="pillar-body">Join a cohort of Canadian founders building at the frontier. Shared learnings, introductions, and a network that compounds over time.</div>
-      </div>
-      <div class="pillar-card reveal d1">
-        <div class="pillar-num">06</div>
-        <div class="pillar-title">Long-Term Partnership</div>
-        <div class="pillar-body">We're not a 3-month program. Maple backs founders from pre-seed through IPO — we're in it for the full journey.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- JOHN EDGAR — Program Director -->
-<section class="nibi-director">
-  <div class="nibi-director-inner">
-    <div class="nibi-director-label reveal">
-      <span class="nibi-data-key">Program Director</span>
-    </div>
-    <div class="nibi-director-grid reveal d1">
-      <div class="nibi-director-photo">
-        <img src="images/john-edgar.jpg" alt="John Edgar">
-      </div>
-      <div class="nibi-director-content">
-        <div class="nibi-director-name">John Edgar</div>
-        <div class="nibi-director-role">Operator. Builder. Nibi Program Director.</div>
-        <p class="nibi-director-body">
-          John is the kind of person who has built things — real things, with his hands and his head.
-          An operator by nature, he thinks in systems, moves in structures, and executes with a
-          precision that most founders only develop years into their journey.
-        </p>
-        <p class="nibi-director-body">
-          But what makes John unusual is that he brings something beyond operational excellence to Nibi.
-          He has a distinct creative point of view — a belief that how you build is as important as what
-          you build. He will run Nibi with rigour and with taste.
-        </p>
-        <div class="nibi-director-tags">
-          <span class="nibi-dtag">Operator</span>
-          <span class="nibi-dtag">Systems Thinker</span>
-          <span class="nibi-dtag">Program Design</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- APPLY CTA -->
-<section class="nibi-apply">
-  <!-- Large pixel-grid watermark -->
-  <svg class="nibi-apply-wm" width="400" height="400" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="0"  y="0"  width="6" height="6" fill="#FFD100"/>
-    <rect x="8"  y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="16" y="0"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="0"  y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="8"  y="8"  width="6" height="6" fill="#FFD100"/>
-    <rect x="16" y="8"  width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="0"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="8"  y="16" width="6" height="6" fill="#FFD100" opacity="0.28"/>
-    <rect x="16" y="16" width="6" height="6" fill="#FFD100"/>
-  </svg>
-  <div class="nibi-apply-inner">
-    <div class="nibi-apply-status reveal">Accepting Applications</div>
-    <h2 class="reveal">Ready to<br>build <em>first?</em></h2>
-    <p class="reveal d1">
-      If you're a Canadian founder at the earliest stage — or a builder with Canadian roots
-      anywhere in the world — we want to hear from you.
-    </p>
-    <a href="/contact.html" class="apply-btn reveal d2">Apply to Nibi →</a>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <div class="newsletter-inner">
-    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
-    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="newsletter">
-      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
-      <button class="nl-btn" type="submit">Subscribe</button>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <a href="/" class="footer-logo">Maple</a>
-    <address class="footer-address" style="font-style:normal">
-      168 South Park St.<br>
-      San Francisco, CA 94107<br>
-      andre@maplevc.com
-    </address>
-    <div class="footer-links">
-      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://twitter.com/maplevc" target="_blank" rel="noopener">Twitter / X</a>
-      <a href="/portfolio.html">Portfolio</a>
-      <a href="/contact.html">Contact</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
-    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
-  </div>
-</footer>
 
 <script src="main.js"></script>
 </body>

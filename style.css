@@ -119,6 +119,14 @@ button, input, textarea { font-family: inherit; }
   letter-spacing: -0.025em; color: var(--black);
 }
 .hero h1 em { font-style: italic; }
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 76px);
+  font-weight: 400; line-height: 1.02;
+  letter-spacing: -0.025em; color: var(--black);
+  margin-top: 0.35em;
+}
+.hero-sub em { font-style: italic; color: #fff; }
 .hero-meta {
   margin-top: 52px;
   display: flex; align-items: center; gap: 28px;

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Maple VC</title>
+  <meta name="description" content="First check memos, portfolio news, and perspectives from Maple VC.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Blog Hero ── */
+    .blog-hero {
+      background: var(--black);
+      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(80px, 12vh, 140px);
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      margin-top: var(--nav-h);
+    }
+    .blog-hero-inner { max-width: 1000px; }
+    .blog-hero .eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 600; margin-bottom: 36px;
+      display: block;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7vw, 100px);
+      font-weight: 400; line-height: 0.97; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0;
+    }
+    .blog-hero h1 em { color: var(--yellow); font-style: italic; }
+
+    /* ── Featured news banner ── */
+    .blog-banner {
+      background: var(--yellow);
+      padding: 20px var(--pad);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .blog-banner-tag {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.45); flex-shrink: 0;
+    }
+    .blog-banner-text {
+      font-family: var(--font-display);
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 400; letter-spacing: -0.01em;
+      color: var(--black);
+    }
+    .blog-banner-link {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; text-decoration: none; color: var(--black);
+      border-bottom: 1px solid rgba(10,10,10,0.35); padding-bottom: 1px;
+      white-space: nowrap; flex-shrink: 0; margin-left: auto;
+      transition: border-color 0.2s;
+    }
+    .blog-banner-link:hover { border-color: var(--black); }
+
+    /* ── Section wrapper ── */
+    .blog-section {
+      background: var(--cream);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .blog-section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .blog-section-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 48px; gap: 24px;
+    }
+    .blog-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400; letter-spacing: -0.02em; line-height: 1.05;
+      color: var(--black); margin: 0;
+    }
+    .blog-section-title em { font-style: italic; color: rgba(10,10,10,0.35); }
+
+    /* ── First Check grid ── */
+    .first-check-posts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: rgba(10,10,10,0.1);
+    }
+    @media (max-width: 700px) { .first-check-posts { grid-template-columns: 1fr; } }
+
+    .fc-post {
+      background: var(--cream);
+      text-decoration: none; color: var(--black);
+      display: flex; flex-direction: column;
+      transition: background 0.2s;
+    }
+    .fc-post:hover { background: var(--yellow); }
+    .fc-post-img {
+      width: 100%; aspect-ratio: 16/9;
+      overflow: hidden; background: rgba(10,10,10,0.06);
+      flex-shrink: 0;
+    }
+    .fc-post-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      filter: grayscale(100%);
+      transition: transform 0.4s ease, filter 0.3s;
+    }
+    .fc-post:hover .fc-post-img img { transform: scale(1.03); filter: grayscale(0%); }
+    .fc-post-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .fc-post-tag {
+      font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35);
+    }
+    .fc-post-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 400; letter-spacing: -0.015em; line-height: 1.1;
+      color: var(--black);
+    }
+    .fc-post-desc {
+      font-size: 14px; line-height: 1.7; color: rgba(10,10,10,0.5);
+      flex: 1;
+    }
+    .fc-post-arrow {
+      font-size: 13px; opacity: 0.25; margin-top: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .fc-post:hover .fc-post-arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ── News section (dark) ── */
+    .news-section {
+      background: var(--black);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(255,249,237,0.05);
+    }
+    .news-section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .news-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 400; letter-spacing: -0.02em; line-height: 1.05;
+      color: var(--cream); margin: 0 0 48px;
+    }
+    .news-section-title em { font-style: italic; color: var(--yellow); }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,249,237,0.06);
+    }
+    @media (max-width: 800px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .news-grid { grid-template-columns: 1fr; } }
+
+    .news-card {
+      background: var(--black);
+      padding: 28px 24px 32px;
+      display: flex; flex-direction: column; gap: 10px;
+      text-decoration: none; color: var(--cream);
+      transition: background 0.2s;
+    }
+    .news-card:hover { background: #111; }
+    .news-card-source {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(255,209,0,0.5);
+    }
+    .news-card-title {
+      font-size: clamp(13px, 1.4vw, 15px);
+      line-height: 1.55; color: rgba(255,249,237,0.85);
+      flex: 1;
+    }
+    .news-card-arrow {
+      font-size: 12px; opacity: 0.2; margin-top: 4px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .news-card:hover .news-card-arrow { opacity: 0.7; transform: translateX(3px); }
+
+    /* ── Podcasts section ── */
+    .podcasts-section {
+      background: var(--cream);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .podcasts-section-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .podcasts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(10,10,10,0.08);
+      margin-top: 48px;
+    }
+    @media (max-width: 800px) { .podcasts-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .podcasts-grid { grid-template-columns: 1fr; } }
+
+    .podcast-card {
+      background: var(--cream);
+      padding: 32px 28px 36px;
+      display: flex; flex-direction: column; gap: 12px;
+      text-decoration: none; color: var(--black);
+      transition: background 0.2s;
+    }
+    .podcast-card:hover { background: var(--yellow); }
+    .podcast-card-platform {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35);
+    }
+    .podcast-card-icon {
+      width: 36px; height: 36px;
+      background: rgba(10,10,10,0.06); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .podcast-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.8vw, 21px);
+      font-weight: 400; letter-spacing: -0.01em; line-height: 1.2;
+      color: var(--black); flex: 1;
+    }
+    .podcast-card-guest {
+      font-size: 12px; color: rgba(10,10,10,0.4); line-height: 1.4;
+    }
+    .podcast-card-arrow {
+      font-size: 12px; opacity: 0.2; margin-top: 4px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .podcast-card:hover .podcast-card-arrow { opacity: 1; transform: translateX(3px); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<nav class="nav">
+  <a href="/" class="nav-logo">Maple</a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <span class="eyebrow">Blog</span>
+    <h1>Why we said yes <em>first</em> —<br>and what came next.</h1>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NEWS BANNER ═══════════════════════ -->
+<div class="blog-banner">
+  <span class="blog-banner-tag">News</span>
+  <span class="blog-banner-text">Clay crosses $100M ARR. Maple was the first check in 2017.</span>
+  <a href="https://www.maplevc.com/blog-posts/first-check-clay" class="blog-banner-link" target="_blank" rel="noopener">Read more →</a>
+</div>
+
+<!-- ═══════════════════════ FIRST CHECK ═══════════════════════ -->
+<section class="blog-section">
+  <div class="blog-section-inner">
+    <div class="blog-section-header">
+      <h2 class="blog-section-title">First <em>Check</em></h2>
+      <a href="/portfolio.html" class="link-arrow">See all companies →</a>
+    </div>
+
+    <div class="first-check-posts">
+
+      <a class="fc-post" href="https://www.maplevc.com/blog-posts/first-check-finny" target="_blank" rel="noopener">
+        <div class="fc-post-img">
+          <img src="images/first-check-finny.jpg" alt="Finny">
+        </div>
+        <div class="fc-post-body">
+          <span class="fc-post-tag">First Check</span>
+          <div class="fc-post-title">First Check: Finny</div>
+          <p class="fc-post-desc">FINNY has closed a landmark Series A with Venrock leading a $15M round at a $150M post-money valuation.</p>
+          <div class="fc-post-arrow">→</div>
+        </div>
+      </a>
+
+      <a class="fc-post" href="https://www.maplevc.com/blog-posts/first-check-clay" target="_blank" rel="noopener">
+        <div class="fc-post-img">
+          <img src="images/clay-blog.jpg" alt="Clay">
+        </div>
+        <div class="fc-post-body">
+          <span class="fc-post-tag">First Check</span>
+          <div class="fc-post-title">First Check: Clay</div>
+          <p class="fc-post-desc">Today we celebrate one of the biggest milestones in Maple's portfolio: Clay crossed $100M ARR, just two years after passing $1M.</p>
+          <div class="fc-post-arrow">→</div>
+        </div>
+      </a>
+
+      <a class="fc-post" href="https://www.maplevc.com/blog-posts/firstcheckfey" target="_blank" rel="noopener">
+        <div class="fc-post-img">
+          <img src="images/first-check-fey.jpg" alt="Fey">
+        </div>
+        <div class="fc-post-body">
+          <span class="fc-post-tag">First Check</span>
+          <div class="fc-post-title">First Check: Fey</div>
+          <p class="fc-post-desc">We invested first in 2021. Today, Fey was acquired by Wealthsimple.</p>
+          <div class="fc-post-arrow">→</div>
+        </div>
+      </a>
+
+      <a class="fc-post" href="https://www.maplevc.com/blog-posts/firstcheckbenchiq" target="_blank" rel="noopener">
+        <div class="fc-post-img">
+          <img src="images/first-check-benchiq.jpg" alt="BenchIQ">
+        </div>
+        <div class="fc-post-body">
+          <span class="fc-post-tag">First Check</span>
+          <div class="fc-post-title">First Check: BenchIQ</div>
+          <p class="fc-post-desc">Bench IQ has announced a $5.3M funding round co-led by Battery Ventures and Inovia Capital.</p>
+          <div class="fc-post-arrow">→</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NEWS ═══════════════════════ -->
+<section class="news-section">
+  <div class="news-section-inner">
+    <h2 class="news-section-title reveal">Portfolio <em>News</em></h2>
+
+    <div class="news-grid">
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Wealthsimple acquires Fey</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Business Insider</span>
+        <div class="news-card-title">Bench IQ raises $5.8M</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Aalo Atomics</span>
+        <div class="news-card-title">Aalo Closes $100M Series B</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Clay secures a new round at a $3B valuation, sources say</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Bloomberg</span>
+        <div class="news-card-title">Uber promotes company veteran to COO, CEO says he's not going anywhere</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">The Harbus</span>
+        <div class="news-card-title">Founder Launch: A Push to Redefine Entrepreneurship at HBS</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Sequoia leads $1.5B tender offer for sales automation startup Clay</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Cointelegraph</span>
+        <div class="news-card-title">A16z doubles down on LayerZero with $55M investment</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Canadian-founded Clay achieves unicorn status with $57.5-million raise</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Forbes</span>
+        <div class="news-card-title">Clay AI growth software one billion valuation</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">YC-backed Finny is using AI to match financial advisors with prospects</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Neo Financial's $360-million Series D features big names, unanswered questions</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Knox Custody founders close $1.8 million CAD to launch borderless Bitcoin payments with Tmrw</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Forbes</span>
+        <div class="news-card-title">WeWork To DNK: A Quest To Innovate Real Estate Software In Asia</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Games Beat</span>
+        <div class="news-card-title">Blockus raises $4M pre-seed round for web3 gaming infrastructure</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Canadian-founded, New York-based AI startup Clay closes $63-million CAD Series B</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Bench IQ raises $2.8 million CAD in pre-seed funding with buy-in from Maple VC, Haystack</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Maple VC co-leads $4-million USD seed round for Canadian-led Inference.ai</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Maple VC backs Canadian-founded Dexa's $6-million seed round</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Inovia VC</span>
+        <div class="news-card-title">Inovia Emerging Managers Portrait Series: Meet Maple VC</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Espresso Capital</span>
+        <div class="news-card-title">Why Early Stage VCs Favor Canadian Founders</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">AutoLeap, now with $30M Series B, accelerates SaaS approach to auto repair operations</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Business Insider</span>
+        <div class="news-card-title">Patch, a carbon credit startup backed by both Andreessen Horowitz and Coatue, just raised $55 million in fresh funds</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Sports community platform Stadium Live raises $10M to expand its digital world for Gen Z</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">Beta Kit</span>
+        <div class="news-card-title">Mash raises $7.5 million CAD to help builders, developers, and creators monetize</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Parallelz brings a new approach to seamlessly convert native mobile apps to websites</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">ChargeLab's software layer to power ABB's EV chargers in North America</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Playbook, where 'Pinterest meets Dropbox' for designers, closes on $18M in funding</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Calico attracts Serena Williams to $2.1M seed to build fashion supply chain software</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+      <a class="news-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="news-card-source">TechCrunch</span>
+        <div class="news-card-title">Tiger Global backs Accrue Savings' 'save now, pay later' approach to consumer purchases</div>
+        <div class="news-card-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ PODCASTS ═══════════════════════ -->
+<section class="podcasts-section">
+  <div class="podcasts-section-inner">
+    <div class="blog-section-header">
+      <h2 class="blog-section-title reveal">Podcasts</h2>
+    </div>
+
+    <div class="podcasts-grid">
+
+      <a class="podcast-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">First Funders</span>
+        <div class="podcast-card-title">Before Clay Was a Unicorn: The First Check, the Thesis, and the Long Game</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d1" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">Unstacked Startups</span>
+        <div class="podcast-card-title">Founder DNA: From Scaling Uber to Winning with Canadian Talent</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d2" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">The Hard Part</span>
+        <div class="podcast-card-title">Andre Charoo from Maple VC</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">Tank Talks</span>
+        <div class="podcast-card-title">Expanding Canada's Global Presence</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d1" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">TTT Studios</span>
+        <div class="podcast-card-title">Andre Charoo — Venture Capitalist, Maple VC — Afternoon "T"</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d2" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">RBC Disruptors</span>
+        <div class="podcast-card-title">Views from the Valley: Is The Worst Over for Tech?</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">Need to Know</span>
+        <div class="podcast-card-title">Andre Charoo, GP at Maple VC, Ex Uber, Hired</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d1" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">Rep Matters</span>
+        <div class="podcast-card-title">Perspective: The Advantage of Being Black and Canadian in Tech</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+      <a class="podcast-card reveal d2" href="#" target="_blank" rel="noopener">
+        <span class="podcast-card-platform">Disruptors</span>
+        <div class="podcast-card-title">Accelerating the Growth of Canada's Tech Ecosystem</div>
+        <div class="podcast-card-guest">Andre Charoo</div>
+        <div class="podcast-card-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NEWSLETTER ═══════════════════════ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
+    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      168 South Park St.<br>
+      San Francisco, CA 94107<br>
+      andre@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/maplevc" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

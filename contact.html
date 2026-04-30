@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Maple VC</title>
+  <meta name="description" content="Share an investment opportunity with Maple VC.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Contact Hero ── */
+    .contact-hero {
+      background: var(--black);
+      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(80px, 12vh, 140px);
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      margin-top: var(--nav-h);
+    }
+    .contact-hero-inner { max-width: 900px; }
+    .contact-hero .eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 600; margin-bottom: 36px;
+      display: block;
+    }
+    .contact-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7.5vw, 104px);
+      font-weight: 400; line-height: 0.97; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 28px;
+    }
+    .contact-hero h1 em { color: var(--yellow); font-style: italic; }
+    .contact-hero-sub {
+      font-size: clamp(14px, 1.5vw, 17px);
+      line-height: 1.75; color: rgba(255,249,237,0.42);
+      max-width: 560px; margin: 0;
+    }
+
+    /* ── Form Section ── */
+    .contact-form-section {
+      background: var(--cream);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .contact-form-inner {
+      max-width: 760px; margin: 0 auto;
+    }
+
+    /* ── Form Blocks ── */
+    .form-block {
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+    .form-block:first-child { padding-top: 0; }
+    .form-block:last-child { border-bottom: none; }
+
+    .form-block-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .form-block-num {
+      font-family: var(--font-display);
+      font-size: 13px; font-style: italic;
+      color: rgba(10,10,10,0.22); letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+    .form-block-title {
+      font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.4);
+    }
+
+    .form-block-desc {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 400; line-height: 1.3; letter-spacing: -0.015em;
+      color: var(--black); margin-bottom: 24px;
+    }
+
+    /* Archetype options */
+    .archetype-list {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .archetype-option {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(10,10,10,0.1);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .archetype-option:hover { border-color: var(--black); background: rgba(10,10,10,0.02); }
+    .archetype-option input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: var(--black); }
+    .archetype-option label {
+      font-size: 14px; line-height: 1.55; color: rgba(10,10,10,0.7);
+      cursor: pointer;
+    }
+    .archetype-option label strong { color: var(--black); font-weight: 600; }
+
+    /* Text fields */
+    .form-field { margin-bottom: 20px; }
+    .form-field label {
+      display: block;
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.38); margin-bottom: 8px;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field textarea {
+      width: 100%; box-sizing: border-box;
+      background: transparent;
+      border: none; border-bottom: 1.5px solid rgba(10,10,10,0.15);
+      padding: 10px 0;
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--black); outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .form-field input[type="text"]:focus,
+    .form-field input[type="email"]:focus,
+    .form-field textarea:focus {
+      border-color: var(--black);
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(10,10,10,0.25);
+    }
+    .form-field-hint {
+      font-size: 11px; color: rgba(10,10,10,0.3);
+      margin-top: 6px;
+    }
+
+    /* Contact info grid */
+    .contact-info-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+    }
+    @media (max-width: 560px) { .contact-info-grid { grid-template-columns: 1fr; } }
+    .contact-info-grid .form-field:last-child { grid-column: 1 / -1; }
+
+    /* Submit */
+    .form-submit {
+      padding-top: 48px;
+    }
+    .form-submit-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--black); color: var(--cream);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; border: none; cursor: pointer;
+      padding: 16px 32px;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .form-submit-btn:hover { background: #1a1a1a; gap: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<nav class="nav">
+  <a href="/" class="nav-logo">Maple</a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="contact-hero">
+  <div class="contact-hero-inner">
+    <span class="eyebrow">Get in touch</span>
+    <h1>Interested in an <em>Investment?</em></h1>
+    <p class="contact-hero-sub">Please answer the following questions in one sentence if you would like to share an opportunity with us.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FORM ═══════════════════════ -->
+<section class="contact-form-section">
+  <div class="contact-form-inner">
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact">
+
+      <!-- 00 Contact Info -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">00</span>
+          <span class="form-block-title">Contact Info</span>
+        </div>
+        <div class="contact-info-grid">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your company name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- 01 Team -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">01</span>
+          <span class="form-block-title">Team</span>
+        </div>
+        <p class="form-block-desc">Our talent thesis helps us spot the best founders at the earliest stages. Which type of founder are you?</p>
+        <div class="archetype-list">
+          <div class="archetype-option">
+            <input type="radio" id="arch-0" name="archetype" value="0s">
+            <label for="arch-0"><strong>0s</strong> — superpower is technical and prototyping ideas for the future.</label>
+          </div>
+          <div class="archetype-option">
+            <input type="radio" id="arch-1" name="archetype" value="1s">
+            <label for="arch-1"><strong>1s</strong> — superpower is vision and ability to identify a unique starting point.</label>
+          </div>
+          <div class="archetype-option">
+            <input type="radio" id="arch-2" name="archetype" value="2s">
+            <label for="arch-2"><strong>2s</strong> — superpower is execution and operationalization of business growth.</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Tech -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">02</span>
+          <span class="form-block-title">Tech</span>
+        </div>
+        <p class="form-block-desc">What is your 10x solution to the alternative that is already in the market?</p>
+        <div class="form-field">
+          <label for="tech">Your answer</label>
+          <textarea id="tech" name="tech" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- 03 Timing -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">03</span>
+          <span class="form-block-title">Timing</span>
+        </div>
+        <div class="form-field">
+          <label for="timing-tech">What is your enabling technology that helps you build the solution today vs a few years ago?</label>
+          <textarea id="timing-tech" name="timing_tech" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+        <div class="form-field">
+          <label for="timing-econ">What is the economic impetus where customers are willing to pay now more than ever before?</label>
+          <textarea id="timing-econ" name="timing_economic" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+        <div class="form-field">
+          <label for="timing-culture">What is the cultural buy-in that makes your business acceptable today?</label>
+          <textarea id="timing-culture" name="timing_cultural" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- 04 Monopoly -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">04</span>
+          <span class="form-block-title">Monopoly</span>
+        </div>
+        <p class="form-block-desc">Can your business get a large % of a small market to start?</p>
+        <div class="form-field">
+          <label for="monopoly">Your answer</label>
+          <textarea id="monopoly" name="monopoly" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- 05 Distribution -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">05</span>
+          <span class="form-block-title">Distribution</span>
+        </div>
+        <p class="form-block-desc">What creative distribution channels will you use to sell the product / service?</p>
+        <div class="form-field">
+          <label for="distribution">Your answer</label>
+          <textarea id="distribution" name="distribution" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- 06 Defensibility -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">06</span>
+          <span class="form-block-title">Defensibility</span>
+        </div>
+        <p class="form-block-desc">What is your strategic asset that makes your company defensible in 5–10 years?</p>
+        <div class="form-field">
+          <label for="defensibility">Your answer</label>
+          <textarea id="defensibility" name="defensibility" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- 07 Secret -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">07</span>
+          <span class="form-block-title">Secret</span>
+        </div>
+        <p class="form-block-desc">What unique insight do you believe / envision that others do not?</p>
+        <div class="form-field">
+          <label for="secret">Your answer</label>
+          <textarea id="secret" name="secret" rows="2" maxlength="140" placeholder="One sentence…"></textarea>
+          <div class="form-field-hint">140 characters max</div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit">
+        <button type="submit" class="form-submit-btn">Send →</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NEWSLETTER ═══════════════════════ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
+    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      168 South Park St.<br>
+      San Francisco, CA 94107<br>
+      andre@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/maplevc" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
