@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maple VC — Twitter / X Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400&family=Nunito:wght@900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1500px; height: 500px; overflow: hidden; background: #0A0A0A; }
+
+    .banner {
+      width: 1500px;
+      height: 500px;
+      background: #0A0A0A;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 96px;
+      gap: 40px;
+    }
+
+    /* Logo block — yellow background matching the real logo */
+    .logo-block {
+      background: #FFD100;
+      padding: 16px 32px;
+    }
+    .logo-block span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      color: #0A0A0A;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      display: block;
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 130px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      color: #FFF9ED;
+    }
+    .headline em {
+      color: #FFD100;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="banner">
+  <div class="logo-block">
+    <span>Maple</span>
+  </div>
+  <div class="headline">We believe <em>first.</em></div>
+</div>
+</body>
+</html>

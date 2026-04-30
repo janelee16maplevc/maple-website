@@ -13,6 +13,7 @@
 
   --font-display: 'Newsreader', Georgia, serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-logo:    'Nunito', var(--font-body);
 
   --max-w: 1240px;
   --pad:   clamp(24px, 5.5vw, 88px);
@@ -58,10 +59,10 @@ button, input, textarea { font-family: inherit; }
   border-color: rgba(10,10,10,0.07);
 }
 .nav-logo {
-  font-family: var(--font-body);
-  font-size: 18px; font-weight: 800;
+  font-family: var(--font-logo);
+  font-size: 20px; font-weight: 900;
   text-decoration: none; color: var(--black);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   line-height: 1;
 }
 .nav-links { display: flex; gap: 32px; list-style: none; }
