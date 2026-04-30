@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio — Maple VC</title>
-  <meta name="description" content="Maple VC has backed 50+ founders since 2013 across Canadian expats, HBS founders, and Korean expats. $11B+ combined portfolio value.">
+  <meta name="description" content="Meet our portfolio companies where we invested at seed.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,378 +13,87 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ══════════════════════════════════════
-       PORTFOLIO HERO
-    ══════════════════════════════════════ */
+    /* ── Hero ── */
     .port-hero {
       background: var(--black);
       padding: clamp(100px, 14vh, 180px) var(--pad) clamp(72px, 10vh, 120px);
       margin-top: var(--nav-h);
     }
-    .port-hero-inner { max-width: var(--max-w); margin: 0 auto; width: 100%; }
+    .port-hero-inner { max-width: var(--max-w); margin: 0 auto; }
     .port-eyebrow {
       display: block;
       font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,209,0,0.5); font-weight: 600;
-      margin-bottom: 32px;
+      color: rgba(255,209,0,0.5); font-weight: 600; margin-bottom: 32px;
     }
     .port-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(60px, 9.5vw, 136px);
-      font-weight: 400; line-height: 0.95; letter-spacing: -0.03em;
-      color: var(--cream);
-      margin-bottom: 64px;
+      font-size: clamp(36px, 5.5vw, 76px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.025em;
+      color: var(--cream); margin: 0 0 28px; max-width: 820px;
     }
     .port-hero h1 em { color: var(--yellow); font-style: italic; }
-    .port-stats {
-      display: flex; gap: clamp(32px, 5vw, 80px);
-      border-top: 1px solid rgba(255,249,237,0.08);
-      padding-top: 36px;
-      flex-wrap: wrap;
-    }
-    .port-stat-num {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4.5vw, 58px);
-      font-weight: 400; letter-spacing: -0.03em; line-height: 1;
-      color: var(--yellow);
-    }
-    .port-stat-label {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,249,237,0.28); font-weight: 600;
-      margin-top: 8px;
+    .port-hero-sub {
+      font-size: clamp(13px, 1.4vw, 16px); line-height: 1.8;
+      color: rgba(255,249,237,0.35); max-width: 600px;
     }
 
-    /* ══════════════════════════════════════
-       STICKY FILTER BAR
-    ══════════════════════════════════════ */
-    .port-filterbar {
+    /* ── Grid section ── */
+    .port-grid-section {
       background: var(--cream);
-      border-bottom: 1px solid rgba(10,10,10,0.08);
-      position: sticky; top: var(--nav-h); z-index: 100;
-      padding: 0 var(--pad);
+      padding: clamp(64px, 9vh, 112px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
     }
-    .port-filterbar-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: flex; align-items: center; gap: 24px;
-      padding: 16px 0;
-      flex-wrap: wrap;
-    }
-    .port-filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .port-filter-label {
-      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(10,10,10,0.35); font-weight: 700;
-      flex-shrink: 0; margin-right: 2px;
-    }
-    .port-divider { width: 1px; height: 22px; background: rgba(10,10,10,0.1); flex-shrink: 0; }
-    .port-pill {
-      font-family: var(--font-body);
-      font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
-      padding: 5px 13px; border-radius: 100px;
-      border: 1.5px solid rgba(10,10,10,0.12);
-      background: transparent; color: rgba(10,10,10,0.5);
-      cursor: pointer; transition: all 0.18s; white-space: nowrap;
-    }
-    .port-pill:hover { border-color: var(--black); color: var(--black); background: rgba(10,10,10,0.04); }
-    .port-pill.active { background: var(--black); border-color: var(--black); color: var(--cream); }
-    /* Network pills go yellow when active */
-    [data-network].port-pill.active { background: var(--yellow); border-color: var(--yellow); color: var(--black); }
-    .port-count {
-      margin-left: auto;
-      font-size: 11px; letter-spacing: 0.05em;
-      color: rgba(10,10,10,0.3); font-weight: 500;
-      flex-shrink: 0; white-space: nowrap;
-    }
-    .port-count strong { color: var(--black); font-weight: 700; }
+    .port-grid-section-inner { max-width: var(--max-w); margin: 0 auto; }
 
-    /* ══════════════════════════════════════
-       FEATURED BREAKOUTS
-    ══════════════════════════════════════ */
-    .port-featured {
-      background: var(--cream);
-      padding: clamp(56px, 7vh, 96px) var(--pad) 0;
-    }
-    .port-featured-inner { max-width: var(--max-w); margin: 0 auto; }
-    .port-section-label {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(10,10,10,0.3); font-weight: 700;
-      margin-bottom: 24px; display: block;
-    }
-    .port-featured-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-    }
-    @media (max-width: 860px) { .port-featured-grid { grid-template-columns: 1fr; } }
-
-    .port-featured-card {
-      background: var(--black);
-      padding: clamp(36px, 5vw, 56px);
-      text-decoration: none;
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      transition: background 0.22s; min-height: 280px;
-    }
-    .port-featured-card::before {
-      content: attr(data-initial);
-      position: absolute; top: -20px; right: 20px;
-      font-family: var(--font-display); font-style: italic;
-      font-size: 180px; line-height: 1;
-      color: rgba(255,249,237,0.04);
-      pointer-events: none; user-select: none; transition: color 0.22s;
-    }
-    .port-featured-card:hover { background: #111; }
-    .port-featured-card:hover::before { color: rgba(255,209,0,0.06); }
-    .port-featured-tag {
-      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 700; color: var(--yellow); opacity: 0.7; margin-bottom: 14px;
-    }
-    .port-featured-name {
-      font-family: var(--font-display);
-      font-size: clamp(34px, 4vw, 56px);
-      font-weight: 400; letter-spacing: -0.025em; line-height: 1.0;
-      color: var(--cream); margin-bottom: 16px;
-    }
-    .port-featured-desc {
-      font-size: 14px; line-height: 1.7;
-      color: rgba(255,249,237,0.4); max-width: 360px; margin-bottom: 28px;
-    }
-    .port-featured-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(255,249,237,0.07); padding-top: 20px;
-    }
-    .port-featured-stat {
-      font-family: var(--font-display);
-      font-size: 22px; font-weight: 400; color: var(--yellow); letter-spacing: -0.01em;
-    }
-    .port-featured-meta {
-      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,249,237,0.25); font-weight: 600;
-    }
-    .port-featured-arrow {
-      font-size: 18px; color: rgba(255,249,237,0.2);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .port-featured-card:hover .port-featured-arrow { color: var(--yellow); transform: translate(4px,-4px); }
-
-    /* ══════════════════════════════════════
-       NETWORK SECTIONS
-    ══════════════════════════════════════ */
-    .port-network-section { }
-    .port-network-section.hidden { display: none; }
-
-    /* Dark intro panel for each network */
-    .port-network-intro {
-      background: var(--black);
-      padding: clamp(72px, 10vh, 120px) var(--pad) clamp(64px, 9vh, 100px);
-      border-top: 1px solid rgba(255,249,237,0.04);
-    }
-    .port-network-intro-inner { max-width: var(--max-w); margin: 0 auto; }
-
-    /* Network title row */
-    .port-network-title-row {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 40px; margin-bottom: clamp(48px, 7vh, 80px);
-      flex-wrap: wrap;
-    }
-    .port-network-label-group { display: flex; flex-direction: column; }
-    .port-network-num-label {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,209,0,0.4); font-weight: 700; margin-bottom: 12px;
-    }
-    .port-network-title {
-      font-family: var(--font-display);
-      font-size: clamp(44px, 7vw, 100px);
-      font-weight: 400; letter-spacing: -0.035em; line-height: 0.95;
-      color: var(--cream);
-    }
-    .port-network-title em { color: var(--yellow); font-style: italic; }
-    .port-network-status {
-      display: inline-block;
-      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
-      border: 1px solid rgba(255,209,0,0.3); color: rgba(255,209,0,0.6);
-      padding: 4px 10px; border-radius: 100px;
-      align-self: flex-start; margin-top: 16px;
-    }
-
-    /* Stats strip */
-    .port-network-stats {
-      display: flex; gap: 2px; margin-bottom: clamp(56px, 8vh, 88px);
-      flex-wrap: wrap;
-    }
-    .port-network-stat {
-      background: rgba(255,249,237,0.04);
-      padding: 20px 28px; flex: 1; min-width: 140px;
-    }
-    .port-network-stat-num {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.8vw, 36px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1;
-      color: var(--yellow);
-    }
-    .port-network-stat-label {
-      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,249,237,0.25); font-weight: 600; margin-top: 6px;
-    }
-
-    /* Three pillars: Affinity / Insight / Arbitrage */
-    .port-network-pillars {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: rgba(255,249,237,0.05);
-      margin-bottom: clamp(48px, 7vh, 80px);
-    }
-    @media (max-width: 700px) { .port-network-pillars { grid-template-columns: 1fr; } }
-    .port-network-pillar {
-      background: var(--black); padding: 36px 32px;
-    }
-    .port-network-pillar-name {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 2.5vw, 34px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1.0;
-      color: var(--yellow); margin-bottom: 16px;
-    }
-    .port-network-pillar-body {
-      font-size: 14px; line-height: 1.8;
-      color: rgba(255,249,237,0.42);
-    }
-    .port-network-pillar-body strong { color: var(--cream); font-weight: 600; }
-
-    /* Proof companies — horizontal scrolling list */
-    .port-proof-wrap {
-      border-top: 1px solid rgba(255,249,237,0.07);
-      padding-top: 32px;
-    }
-    .port-proof-label {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,249,237,0.25); font-weight: 700;
-      margin-bottom: 20px; display: block;
-    }
-    .port-proof-list {
-      display: flex; gap: 2px; flex-wrap: wrap;
-    }
-    .port-proof-item {
-      background: rgba(255,249,237,0.04);
-      padding: 12px 16px;
-      display: flex; flex-direction: column; gap: 3px;
-    }
-    .port-proof-val {
-      font-family: var(--font-display);
-      font-size: clamp(14px, 1.6vw, 18px);
-      font-weight: 400; letter-spacing: -0.01em;
-      color: var(--cream);
-    }
-    .port-proof-co {
-      font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(255,249,237,0.28); font-weight: 600;
-    }
-    .port-proof-item:hover { background: rgba(255,249,237,0.07); }
-
-    /* ══════════════════════════════════════
-       COMPANY CARD GRID (per-network)
-    ══════════════════════════════════════ */
-    .port-companies {
-      background: var(--cream);
-      padding: clamp(40px, 5vh, 64px) var(--pad) clamp(48px, 6vh, 72px);
-    }
-    .port-companies-inner { max-width: var(--max-w); margin: 0 auto; }
-    .port-companies-label {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(10,10,10,0.28); font-weight: 700;
-      margin-bottom: 20px; display: block;
-    }
     .port-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(10,10,10,0.08);
     }
-    @media (max-width: 1100px) { .port-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 720px)  { .port-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px)  { .port-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .port-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .port-grid { grid-template-columns: 1fr; } }
 
     .port-card {
-      background: rgba(10,10,10,0.03);
-      padding: 28px; text-decoration: none; color: var(--black);
-      display: flex; flex-direction: column;
+      background: var(--cream);
+      padding: 28px 28px 32px;
+      display: flex; flex-direction: column; gap: 6px;
+      text-decoration: none; color: var(--black);
+      transition: background 0.18s;
       position: relative; overflow: hidden;
-      transition: background 0.2s; min-height: 220px;
-      border: 1.5px solid transparent;
     }
     .port-card::before {
       content: attr(data-initial);
-      position: absolute; top: -14px; right: 12px;
+      position: absolute; bottom: -12px; right: 16px;
       font-family: var(--font-display); font-style: italic;
-      font-size: 110px; line-height: 1;
+      font-size: 100px; line-height: 1;
       color: rgba(10,10,10,0.04);
-      pointer-events: none; user-select: none; transition: color 0.2s;
+      pointer-events: none; user-select: none;
+      transition: color 0.2s;
     }
-    .port-card:hover { background: var(--yellow); border-color: var(--yellow); }
-    .port-card:hover::before { color: rgba(10,10,10,0.06); }
-    .port-card:hover .port-card-sector { background: rgba(10,10,10,0.1); color: var(--black); }
-    .port-card.hidden { display: none; }
+    .port-card:hover { background: var(--yellow); }
+    .port-card:hover::before { color: rgba(10,10,10,0.07); }
 
-    .port-card-sector {
-      display: inline-block;
-      font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
-      background: rgba(10,10,10,0.06); color: rgba(10,10,10,0.45);
-      padding: 4px 9px; border-radius: 100px;
-      margin-bottom: 20px; align-self: flex-start;
-      transition: background 0.2s, color 0.2s;
-    }
-    .port-card-name {
+    .port-card-company {
       font-family: var(--font-display);
-      font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1.05;
-      color: var(--black); margin-bottom: 10px; flex: 1;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 400; letter-spacing: -0.015em; line-height: 1.05;
+      color: var(--black);
     }
-    .port-card-desc {
-      font-size: 12.5px; line-height: 1.65; color: rgba(10,10,10,0.45);
-      margin-bottom: 20px;
-      display: -webkit-box; -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; overflow: hidden;
+    .port-card-tag {
+      font-size: 13px; line-height: 1.6; color: rgba(10,10,10,0.5);
+      margin-top: 2px; flex: 1;
     }
-    .port-card:hover .port-card-desc { color: rgba(10,10,10,0.55); }
-    .port-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
     .port-card-meta {
-      font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(10,10,10,0.3); font-weight: 600;
+      display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap;
     }
-    .port-card:hover .port-card-meta { color: rgba(10,10,10,0.4); }
-    .port-card-link {
-      font-size: 13px; color: rgba(10,10,10,0.25);
-      opacity: 0; transition: opacity 0.2s, color 0.2s;
+    .port-card-meta-item {
+      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.3);
     }
-    .port-card:hover .port-card-link { opacity: 1; color: var(--black); }
-
-    /* Empty state */
-    .port-empty {
-      display: none; grid-column: 1 / -1;
-      padding: 60px 0; text-align: center;
+    .port-card-founder {
+      font-size: 12px; font-weight: 600; color: rgba(10,10,10,0.55);
+      letter-spacing: 0.01em; margin-top: 2px;
     }
-    .port-empty.visible { display: block; }
-    .port-empty-title { font-family: var(--font-display); font-size: 24px; color: rgba(10,10,10,0.22); }
-
-    /* ══════════════════════════════════════
-       BOTTOM CTA
-    ══════════════════════════════════════ */
-    .port-cta {
-      background: var(--black);
-      padding: clamp(80px, 11vh, 140px) var(--pad); text-align: center;
-    }
-    .port-cta-inner { max-width: 720px; margin: 0 auto; }
-    .port-cta h2 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 6vw, 80px);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--cream); margin-bottom: 24px;
-    }
-    .port-cta h2 em { color: var(--yellow); font-style: italic; }
-    .port-cta p {
-      font-size: clamp(14px, 1.5vw, 17px); line-height: 1.8;
-      color: rgba(255,249,237,0.38); margin-bottom: 44px;
-    }
-    .port-cta-link {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none;
-      color: var(--black); background: var(--yellow);
-      padding: 16px 32px; transition: gap 0.2s, opacity 0.2s;
-    }
-    .port-cta-link:hover { gap: 18px; opacity: 0.92; }
   </style>
 </head>
 <body>
@@ -393,7 +102,7 @@
 <nav class="nav">
   <a href="/" class="nav-logo">Maple</a>
   <ul class="nav-links">
-    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/portfolio.html" class="active">Portfolio</a></li>
     <li><a href="/team.html">Team</a></li>
     <li><a href="/nibi.html">Nibi</a></li>
     <li><a href="/contact.html">Contact</a></li>
@@ -404,76 +113,424 @@
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section class="port-hero">
   <div class="port-hero-inner">
-    <span class="port-eyebrow">Portfolio</span>
-    <h1>Built to<br><em>last.</em></h1>
+    <span class="port-eyebrow reveal">Portfolio</span>
+    <h1 class="reveal">Meet our portfolio companies where we <em>invested at seed.</em></h1>
+    <p class="port-hero-sub reveal d1">Our founders are proud alumni from Waterloo, Queen's, McGill, U of T, UBC, and other Canadian universities.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════ FILTER BAR ═══════════════════════ -->
-<div class="port-filterbar" id="port-filterbar">
-  <div class="port-filterbar-inner">
+<!-- ═══════════════════════ COMPANY GRID ═══════════════════════ -->
+<section class="port-grid-section">
+  <div class="port-grid-section-inner">
+    <div class="port-grid">
 
-    <div class="port-filter-group">
-      <span class="port-filter-label">Network</span>
-      <button class="port-pill active" data-network="all">All</button>
-      <button class="port-pill" data-network="canadian">🍁 Canadian</button>
-      <button class="port-pill" data-network="hbs">HBS</button>
-      <button class="port-pill" data-network="korean">Korean</button>
-    </div>
-
-
-    <span class="port-count"><strong id="visible-count">11</strong> companies</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════ FEATURED ═══════════════════════ -->
-<section class="port-featured" id="featured-section">
-  <div class="port-featured-inner">
-    <span class="port-section-label reveal">Breakout companies</span>
-    <div class="port-featured-grid">
-
-      <a class="port-featured-card reveal"
-         href="https://clay.com" target="_blank" rel="noopener"
-         data-initial="C" data-sector="ai" data-stage="seed" data-network="hbs">
-        <div class="port-featured-tag">AI · Seed · 2017</div>
-        <div class="port-featured-name">Clay</div>
-        <div class="port-featured-desc">GTM platform helping modern go-to-market teams enrich data and automate personalized outreach at scale.</div>
-        <div class="port-featured-footer">
-          <div>
-            <div class="port-featured-stat">$5B</div>
-            <div class="port-featured-meta">Valuation today</div>
-          </div>
-          <div class="port-featured-arrow">↗</div>
+      <a class="port-card reveal" href="https://ritual.co" target="_blank" rel="noopener" data-initial="R">
+        <div class="port-card-company">Ritual</div>
+        <div class="port-card-founder">Ray Reddy</div>
+        <div class="port-card-tag">Powering local commerce</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
         </div>
       </a>
 
-      <a class="port-featured-card reveal d1"
-         href="https://www.neofinancial.com" target="_blank" rel="noopener"
-         data-initial="N" data-sector="fintech" data-stage="seed" data-network="canadian">
-        <div class="port-featured-tag">Fintech · Seed · 2019</div>
-        <div class="port-featured-name">Neo Financial</div>
-        <div class="port-featured-desc">Canada's next generation bank — reimagining everyday banking for the mobile-first generation.</div>
-        <div class="port-featured-footer">
-          <div>
-            <div class="port-featured-stat">Series C</div>
-            <div class="port-featured-meta">Current stage</div>
-          </div>
-          <div class="port-featured-arrow">↗</div>
+      <a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener" data-initial="C">
+        <div class="port-card-company">Clay</div>
+        <div class="port-card-founder">Kareem Amin</div>
+        <div class="port-card-tag">Helping businesses grow</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From McGill</span>
+          <span class="port-card-meta-item">HQ Brooklyn</span>
         </div>
       </a>
 
-      <a class="port-featured-card reveal d2"
-         href="https://autoleap.com" target="_blank" rel="noopener"
-         data-initial="A" data-sector="saas" data-stage="series-a" data-network="hbs">
-        <div class="port-featured-tag">SaaS · Series A · 2020</div>
-        <div class="port-featured-name">AutoLeap</div>
-        <div class="port-featured-desc">Modern SaaS platform powering auto repair shops — scheduling, estimates, and payments in one place.</div>
-        <div class="port-featured-footer">
-          <div>
-            <div class="port-featured-stat">$30M</div>
-            <div class="port-featured-meta">Series B raised</div>
-          </div>
-          <div class="port-featured-arrow">↗</div>
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="I">
+        <div class="port-card-company">I Have Vision</div>
+        <div class="port-card-founder">Justin Lee</div>
+        <div class="port-card-tag">Diabetes co-pilot</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Queen's</span>
+          <span class="port-card-meta-item">HQ Vancouver</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="T">
+        <div class="port-card-company">Tap</div>
+        <div class="port-card-founder">Sam Rosen</div>
+        <div class="port-card-tag">Eliminating single-use plastic water bottles</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Virginia</span>
+          <span class="port-card-meta-item">HQ Israel</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">All Day Kitchens</div>
+        <div class="port-card-founder">Ken Chong</div>
+        <div class="port-card-tag">Automating food infrastructure</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://aalto.com" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">Aalto</div>
+        <div class="port-card-founder">Nick Narodny</div>
+        <div class="port-card-tag">Reimagining the home selling experience</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Boston</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="S">
+        <div class="port-card-company">Setter / Thumbtack</div>
+        <div class="port-card-founder">David Steckel</div>
+        <div class="port-card-tag">Making home maintenance invisible</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Toronto</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener" data-initial="B">
+        <div class="port-card-company">Beatdapp</div>
+        <div class="port-card-founder">Andrew Batey</div>
+        <div class="port-card-tag">Tracking the streaming economy</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Trinity</span>
+          <span class="port-card-meta-item">HQ Santa Cruz</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://resq.com" target="_blank" rel="noopener" data-initial="R">
+        <div class="port-card-company">ResQ</div>
+        <div class="port-card-founder">Kuljeev Singh</div>
+        <div class="port-card-tag">Elevating restaurant maintenance</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://playbook.com" target="_blank" rel="noopener" data-initial="P">
+        <div class="port-card-company">Playbook</div>
+        <div class="port-card-founder">Jessica Ko</div>
+        <div class="port-card-tag">Making cloud storage beautiful</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://neofinancial.com" target="_blank" rel="noopener" data-initial="N">
+        <div class="port-card-company">Neo Financial</div>
+        <div class="port-card-founder">Andrew Chau</div>
+        <div class="port-card-tag">Building Canada's next bank</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Saskatchewan</span>
+          <span class="port-card-meta-item">HQ Calgary</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="S">
+        <div class="port-card-company">Stadium</div>
+        <div class="port-card-founder">Kevin Kim</div>
+        <div class="port-card-tag">Creating ESPN for Gen-Z</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://autoleap.com" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">AutoLeap</div>
+        <div class="port-card-founder">Steve Lau</div>
+        <div class="port-card-tag">Transforming the auto repair industry</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From U of T</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://patch.io" target="_blank" rel="noopener" data-initial="P">
+        <div class="port-card-company">Patch</div>
+        <div class="port-card-founder">Brennan Spellacy</div>
+        <div class="port-card-tag">Making carbon removal easy</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From McGill</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://chargelab.co" target="_blank" rel="noopener" data-initial="C">
+        <div class="port-card-company">ChargeLab</div>
+        <div class="port-card-founder">Zak Lefevre</div>
+        <div class="port-card-tag">Connecting EV charging everywhere</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From McGill</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="S">
+        <div class="port-card-company">Sivo</div>
+        <div class="port-card-founder">Kate Hiscox</div>
+        <div class="port-card-tag">Creating financial inclusion infrastructure</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Whitestone</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="F">
+        <div class="port-card-company">Fey</div>
+        <div class="port-card-founder">Thomas Russell</div>
+        <div class="port-card-tag">Empowering retail investors</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From UK</span>
+          <span class="port-card-meta-item">HQ Montreal</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="C">
+        <div class="port-card-company">Calico</div>
+        <div class="port-card-founder">Kathleen Chan</div>
+        <div class="port-card-tag">Making supply chains transparent</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From U of T</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="P">
+        <div class="port-card-company">Parallelz</div>
+        <div class="port-card-founder">Albert Lai</div>
+        <div class="port-card-tag">Enabling mobile app distribution</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">Dropped Out</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="N">
+        <div class="port-card-company">Naya</div>
+        <div class="port-card-founder">Saad Rajan</div>
+        <div class="port-card-tag">Co-creating the physical world</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Western</span>
+          <span class="port-card-meta-item">HQ Boston</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://accruesavings.com" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">Accrue</div>
+        <div class="port-card-founder">Michael Hershfield</div>
+        <div class="port-card-tag">Helping Americans with saving</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From UBC</span>
+          <span class="port-card-meta-item">HQ New York</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="P">
+        <div class="port-card-company">Pivot</div>
+        <div class="port-card-founder">Josh Simair</div>
+        <div class="port-card-tag">Building circular consumer logistics</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Saskatchewan</span>
+          <span class="port-card-meta-item">HQ Saskatchewan</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="I">
+        <div class="port-card-company">Integral</div>
+        <div class="port-card-founder">Gui Laliberté</div>
+        <div class="port-card-tag">Making Web3 treasury easy</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Sherbrooke</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="M">
+        <div class="port-card-company">Mash</div>
+        <div class="port-card-founder">Jared Nusinoff</div>
+        <div class="port-card-tag">Streaming payments for the open internet</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Western</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://layerzero.network" target="_blank" rel="noopener" data-initial="L">
+        <div class="port-card-company">LayerZero</div>
+        <div class="port-card-founder">Bryan Pellegrino</div>
+        <div class="port-card-tag">Enabling cross-chain applications</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From New Hampshire</span>
+          <span class="port-card-meta-item">HQ Vancouver</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="B">
+        <div class="port-card-company">Blacklake</div>
+        <div class="port-card-founder">Robbie Deeks</div>
+        <div class="port-card-tag">Solving national security challenges</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Laurier</span>
+          <span class="port-card-meta-item">HQ Austin</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="https://blockus.gg" target="_blank" rel="noopener" data-initial="B">
+        <div class="port-card-company">Blockus</div>
+        <div class="port-card-founder">Jess Zhang</div>
+        <div class="port-card-tag">Interconnecting the virtual economy</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ New York</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="C">
+        <div class="port-card-company">Charlie Labs</div>
+        <div class="port-card-founder">Riley T</div>
+        <div class="port-card-tag">Making engineering autonomous</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From UBC</span>
+          <span class="port-card-meta-item">HQ New York</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="B">
+        <div class="port-card-company">BenchIQ</div>
+        <div class="port-card-founder">Jimoh A. Ovbiagele</div>
+        <div class="port-card-tag">Reshaping the practice of law</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From U of T</span>
+          <span class="port-card-meta-item">HQ Toronto</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="T">
+        <div class="port-card-company">TMRW</div>
+        <div class="port-card-founder">Ari Ramdial</div>
+        <div class="port-card-tag">Building tomorrow's bank</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From McGill</span>
+          <span class="port-card-meta-item">HQ Montreal</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="I">
+        <div class="port-card-company">Inference</div>
+        <div class="port-card-founder">John Yue</div>
+        <div class="port-card-tag">Building VMware for the GPU cloud</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="F">
+        <div class="port-card-company">Forward Labs</div>
+        <div class="port-card-founder">Shan Wu</div>
+        <div class="port-card-tag">Making freight efficient</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From U of T</span>
+          <span class="port-card-meta-item">HQ Singapore</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="F">
+        <div class="port-card-company">Fabriq</div>
+        <div class="port-card-founder">Mesh Lakhani</div>
+        <div class="port-card-tag">Improving web discourse</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Virginia</span>
+          <span class="port-card-meta-item">HQ New York</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="W">
+        <div class="port-card-company">Way</div>
+        <div class="port-card-founder">Ben Zifkin</div>
+        <div class="port-card-tag">Accelerating alternative fuels</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Western</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="O">
+        <div class="port-card-company">OnePlusOne</div>
+        <div class="port-card-founder">Bruno Guerra Cunha</div>
+        <div class="port-card-tag">Unlocking partnership revenue</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Vancouver</span>
+          <span class="port-card-meta-item">HQ Vancouver</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">Alchemi</div>
+        <div class="port-card-founder">Tom Mulvey</div>
+        <div class="port-card-tag">Automating pharma R&amp;D</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Durham</span>
+          <span class="port-card-meta-item">HQ Boston</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="F">
+        <div class="port-card-company">Finny</div>
+        <div class="port-card-founder">Eden Ovadia</div>
+        <div class="port-card-tag">Helping financial advisors grow</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From McGill</span>
+          <span class="port-card-meta-item">HQ New York</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="M">
+        <div class="port-card-company">Mythril</div>
+        <div class="port-card-founder">Taemin Kim</div>
+        <div class="port-card-tag">Building timeless stories</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Waterloo</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">Argus</div>
+        <div class="port-card-founder">Lisa Yan</div>
+        <div class="port-card-tag">Infrastructure for physical AI</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From CMU</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="A">
+        <div class="port-card-company">Aalo</div>
+        <div class="port-card-founder">Matt Loszak</div>
+        <div class="port-card-tag">Powering the world</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Queen's</span>
+          <span class="port-card-meta-item">HQ Austin</span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-initial="I">
+        <div class="port-card-company">Internet Backyard</div>
+        <div class="port-card-founder">Mai Trinh</div>
+        <div class="port-card-tag">Financial backbone for the compute economy</div>
+        <div class="port-card-meta">
+          <span class="port-card-meta-item">From Simon Fraser</span>
+          <span class="port-card-meta-item">HQ San Francisco</span>
         </div>
       </a>
 
@@ -481,331 +538,15 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     NETWORKS — anchor target
-══════════════════════════════════════════════════════ -->
-<div id="networks"></div>
-
-<!-- ════════════════════════════════════════════
-     NETWORK 1: CANADIAN EXPATS
-════════════════════════════════════════════ -->
-<section class="port-network-section" id="section-canadian" data-section="canadian">
-
-  <!-- Dark intro -->
-  <div class="port-network-intro">
-    <div class="port-network-intro-inner">
-
-      <!-- Title row -->
-      <div class="port-network-title-row">
-        <div class="port-network-label-group">
-          <span class="port-network-num-label reveal">01 · Network</span>
-          <div class="port-network-title reveal">Canadian<br><em>expats</em></div>
-        </div>
-      </div>
-
-      <!-- Three pillars: Affinity / Insight / Arbitrage -->
-      <div class="port-network-pillars">
-        <div class="port-network-pillar reveal">
-          <div class="port-network-pillar-name">Affinity</div>
-          <div class="port-network-pillar-body">
-            Our founding GP was born and raised in Canada and understands the
-            strength of talent emerging from the country's top universities.
-            This isn't a thesis we adopted — it's where we come from.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d1">
-          <div class="port-network-pillar-name">Insight</div>
-          <div class="port-network-pillar-body">
-            Founders from Canadian schools have built category-defining companies
-            worth <strong>$2+ trillion</strong>. Tesla. OpenAI. SpaceX. Shopify.
-            The talent was always there — the market just wasn't watching.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d2">
-          <div class="port-network-pillar-name">Arbitrage</div>
-          <div class="port-network-pillar-body">
-            Canadian schools are Ivy League quality but globally underrated at
-            the earliest stages. We bet before others do — which means we get
-            the best founders at the best prices.
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-
-  <!-- Canadian portfolio companies -->
-  <div class="port-companies">
-    <div class="port-companies-inner">
-      <span class="port-companies-label">Our Canadian portfolio</span>
-      <div class="port-grid">
-
-        <a class="port-card reveal"
-           href="https://www.neofinancial.com" target="_blank" rel="noopener"
-           data-initial="N" data-sector="fintech" data-stage="seed" data-network="canadian">
-          <span class="port-card-sector">Fintech</span>
-          <div class="port-card-name">Neo Financial</div>
-          <div class="port-card-desc">Canada's next generation bank built for the mobile-first generation.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2019</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d1"
-           href="https://ritual.co" target="_blank" rel="noopener"
-           data-initial="R" data-sector="consumer" data-stage="seed" data-network="canadian">
-          <span class="port-card-sector">Consumer</span>
-          <div class="port-card-name">Ritual</div>
-          <div class="port-card-desc">Powering local commerce and pre-ordering for the mobile generation.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2015</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d2"
-           href="https://alldaykitchens.com" target="_blank" rel="noopener"
-           data-initial="A" data-sector="consumer" data-stage="seed" data-network="canadian">
-          <span class="port-card-sector">Consumer</span>
-          <div class="port-card-name">All Day Kitchens</div>
-          <div class="port-card-desc">Automating food infrastructure for restaurant brands of the next generation.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2020</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d3"
-           href="https://sivo.com" target="_blank" rel="noopener"
-           data-initial="S" data-sector="fintech" data-stage="seed" data-network="canadian">
-          <span class="port-card-sector">Fintech</span>
-          <div class="port-card-name">Sivo</div>
-          <div class="port-card-desc">Creating the financial infrastructure rails for global financial inclusion.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2020</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <div class="port-empty" id="empty-canadian">
-          <div class="port-empty-title">No matches found</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════
-     NETWORK 2: HBS FOUNDERS
-════════════════════════════════════════════ -->
-<section class="port-network-section" id="section-hbs" data-section="hbs">
-
-  <div class="port-network-intro">
-    <div class="port-network-intro-inner">
-
-      <div class="port-network-title-row">
-        <div class="port-network-label-group">
-          <span class="port-network-num-label reveal">02 · Network</span>
-          <div class="port-network-title reveal">HBS<br><em>founders</em></div>
-        </div>
-      </div>
-
-      <div class="port-network-pillars">
-        <div class="port-network-pillar reveal">
-          <div class="port-network-pillar-name">Affinity</div>
-          <div class="port-network-pillar-body">
-            Harvard Business School has produced more billion-dollar founders
-            per capita than almost any institution in the world. We've been
-            building relationships inside this community for over a decade.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d1">
-          <div class="port-network-pillar-name">Insight</div>
-          <div class="port-network-pillar-body">
-            HBS operators who become founders bring an unusual combination:
-            execution rigor, customer intuition, and fundraising fluency.
-            They build differently — and often more durably.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d2">
-          <div class="port-network-pillar-name">Arbitrage</div>
-          <div class="port-network-pillar-body">
-            Most VCs wait for HBS founders to come to them. We show up early —
-            to the dinners, the reunions, the group chats — before anyone has a
-            deck. That's how we see deals first.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="port-companies">
-    <div class="port-companies-inner">
-      <span class="port-companies-label">Our HBS portfolio</span>
-      <div class="port-grid">
-
-        <a class="port-card reveal"
-           href="https://clay.com" target="_blank" rel="noopener"
-           data-initial="C" data-sector="ai" data-stage="seed" data-network="hbs">
-          <span class="port-card-sector">AI</span>
-          <div class="port-card-name">Clay</div>
-          <div class="port-card-desc">GTM platform for modern go-to-market teams — data enrichment and outreach at scale.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2017</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d1"
-           href="https://autoleap.com" target="_blank" rel="noopener"
-           data-initial="A" data-sector="saas" data-stage="series-a" data-network="hbs">
-          <span class="port-card-sector">SaaS</span>
-          <div class="port-card-name">AutoLeap</div>
-          <div class="port-card-desc">Scheduling, estimates, and payments for auto repair shops — the OS for the trade.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Series A · 2020</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d2"
-           href="https://playbook.com" target="_blank" rel="noopener"
-           data-initial="P" data-sector="saas" data-stage="series-a" data-network="hbs">
-          <span class="port-card-sector">SaaS</span>
-          <div class="port-card-name">Playbook</div>
-          <div class="port-card-desc">The creative file manager — Pinterest meets Dropbox for design teams.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Series A · 2021</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d3"
-           href="https://benchiq.com" target="_blank" rel="noopener"
-           data-initial="B" data-sector="legaltech" data-stage="pre-seed" data-network="hbs">
-          <span class="port-card-sector">LegalTech</span>
-          <div class="port-card-name">BenchIQ</div>
-          <div class="port-card-desc">Intelligent benchmarking platform reshaping legal practice for modern law firms.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Pre-Seed · 2023</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <div class="port-empty" id="empty-hbs">
-          <div class="port-empty-title">No matches found</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════
-     NETWORK 3: KOREAN EXPATS
-════════════════════════════════════════════ -->
-<section class="port-network-section" id="section-korean" data-section="korean">
-
-  <div class="port-network-intro">
-    <div class="port-network-intro-inner">
-
-      <div class="port-network-title-row">
-        <div class="port-network-label-group">
-          <span class="port-network-num-label reveal">03 · Network</span>
-          <div class="port-network-title reveal">Korean<br><em>expats</em></div>
-        </div>
-      </div>
-
-      <div class="port-network-pillars">
-        <div class="port-network-pillar reveal">
-          <div class="port-network-pillar-name">Affinity</div>
-          <div class="port-network-pillar-body">
-            Korean founders building globally share a cultural commitment to
-            craft, relentlessness, and long-term thinking. We've been inside
-            this community for years — before the Valley noticed it.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d1">
-          <div class="port-network-pillar-name">Insight</div>
-          <div class="port-network-pillar-body">
-            Korean expat founders are among the most capital-efficient builders
-            in the world. They ship fast, they stay lean, and they build for
-            global scale from day one.
-          </div>
-        </div>
-        <div class="port-network-pillar reveal d2">
-          <div class="port-network-pillar-name">Arbitrage</div>
-          <div class="port-network-pillar-body">
-            This network is still underserved by institutional capital.
-            We were investing here before it became a trend —
-            and our relationships run deeper than any other fund.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="port-companies">
-    <div class="port-companies-inner">
-      <span class="port-companies-label">Our Korean portfolio</span>
-      <div class="port-grid">
-
-        <a class="port-card reveal"
-           href="https://dexa.ai" target="_blank" rel="noopener"
-           data-initial="D" data-sector="ai" data-stage="seed" data-network="korean">
-          <span class="port-card-sector">AI</span>
-          <div class="port-card-name">Dexa</div>
-          <div class="port-card-desc">AI-powered search engine for podcast listeners — discover and learn from audio.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2022</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d1"
-           href="https://inference.ai" target="_blank" rel="noopener"
-           data-initial="I" data-sector="ai" data-stage="seed" data-network="korean">
-          <span class="port-card-sector">AI</span>
-          <div class="port-card-name">Inference.AI</div>
-          <div class="port-card-desc">GPU compute marketplace for AI training and inference workloads at scale.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Seed · 2023</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <a class="port-card reveal d2"
-           href="https://blockus.gg" target="_blank" rel="noopener"
-           data-initial="B" data-sector="web3" data-stage="pre-seed" data-network="korean">
-          <span class="port-card-sector">Web3</span>
-          <div class="port-card-name">Blockus</div>
-          <div class="port-card-desc">Web3 gaming infrastructure — the tech stack for the next generation of games.</div>
-          <div class="port-card-footer">
-            <span class="port-card-meta">Pre-Seed · 2022</span>
-            <span class="port-card-link">↗</span>
-          </div>
-        </a>
-
-        <div class="port-empty" id="empty-korean">
-          <div class="port-empty-title">No matches found</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ BOTTOM CTA ═══════════════════════ -->
-<section class="port-cta">
-  <div class="port-cta-inner">
-    <h2>Think you're<br>a <em>builder?</em></h2>
-    <p>We invest in seed-stage founders before Silicon Valley is paying attention. If you're building something durable — we want to hear from you.</p>
-    <a href="/contact.html" class="port-cta-link">Reach out to Maple →</a>
+<!-- ═══════════════════════ NEWSLETTER ═══════════════════════ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
+    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
   </div>
 </section>
 
@@ -821,7 +562,7 @@
     <div class="footer-links">
       <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://twitter.com/maplevc" target="_blank" rel="noopener">Twitter / X</a>
-      <a href="/portfolio.html">Portfolio</a>
+      <a href="/team.html">Team</a>
       <a href="/contact.html">Contact</a>
     </div>
   </div>
@@ -832,114 +573,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script>
-/* ── Portfolio filtering ── */
-(function () {
-  const sections      = Array.from(document.querySelectorAll('.port-network-section'));
-  const allCards      = Array.from(document.querySelectorAll('.port-card'));
-  const featuredSec   = document.getElementById('featured-section');
-  const featuredCards = Array.from(document.querySelectorAll('.port-featured-card'));
-  const countEl       = document.getElementById('visible-count');
-
-  let activeNetwork = 'all';
-  let activeSector  = 'all';
-  let activeStage   = 'all';
-
-  function applyFilters() {
-    let total = 0;
-
-    sections.forEach(section => {
-      const net = section.dataset.section;
-      const networkMatch = activeNetwork === 'all' || activeNetwork === net;
-      section.style.display = networkMatch ? '' : 'none';
-
-      if (!networkMatch) return;
-
-      // Filter cards within this section
-      const cards = section.querySelectorAll('.port-card');
-      let sectionVisible = 0;
-      cards.forEach(card => {
-        const sectorMatch = activeSector === 'all' || card.dataset.sector === activeSector;
-        const stageMatch  = activeStage  === 'all' || card.dataset.stage  === activeStage;
-        const show = sectorMatch && stageMatch;
-        card.classList.toggle('hidden', !show);
-        if (show) { sectionVisible++; total++; }
-      });
-
-      // Show empty state per section
-      const emptyEl = section.querySelector('.port-empty');
-      if (emptyEl) emptyEl.classList.toggle('visible', sectionVisible === 0);
-    });
-
-    // Filter featured cards
-    const featuredVisible = featuredCards.filter(c => {
-      const nm = activeNetwork === 'all' || c.dataset.network === activeNetwork;
-      const sm = activeSector  === 'all' || c.dataset.sector  === activeSector;
-      const tm = activeStage   === 'all' || c.dataset.stage   === activeStage;
-      return nm && sm && tm;
-    }).length;
-    featuredSec.style.display = featuredVisible > 0 ? '' : 'none';
-
-    countEl.textContent = total;
-  }
-
-  // Network pills
-  document.querySelectorAll('[data-network].port-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-network].port-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeNetwork = btn.dataset.network;
-
-      // Scroll to the matching section
-      if (activeNetwork !== 'all') {
-        const target = document.getElementById('section-' + activeNetwork);
-        if (target) {
-          setTimeout(() => {
-            const barH = document.getElementById('port-filterbar').offsetHeight;
-            const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
-            const top  = target.getBoundingClientRect().top + window.scrollY - navH - barH - 8;
-            window.scrollTo({ top, behavior: 'smooth' });
-          }, 50);
-        }
-      }
-
-      applyFilters();
-    });
-  });
-
-  // Sector pills
-  document.querySelectorAll('[data-sector].port-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-sector].port-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeSector = btn.dataset.sector;
-      applyFilters();
-    });
-  });
-
-  // Stage pills
-  document.querySelectorAll('[data-stage].port-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-stage].port-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeStage = btn.dataset.stage;
-      applyFilters();
-    });
-  });
-
-  // If #networks in URL, scroll to it on load
-  if (window.location.hash === '#networks') {
-    setTimeout(() => {
-      const el = document.getElementById('networks');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 300);
-  }
-
-  // Auto-update copyright year
-  document.querySelectorAll('.copyright-year').forEach(el => {
-    el.textContent = new Date().getFullYear();
-  });
-})();
-</script>
 </body>
 </html>
