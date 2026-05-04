@@ -73,7 +73,7 @@
       );
       opacity: 0;
       transition: opacity 0.35s ease;
-      z-index: 0;
+      z-index: 2;
       pointer-events: none;
     }
     .port-card:hover::after { opacity: 1; }
@@ -83,7 +83,7 @@
       position: absolute; inset: 0;
       opacity: 0;
       transition: opacity 0.35s ease;
-      z-index: -1;
+      z-index: 1;
       pointer-events: none;
     }
     .port-card-photo img {
@@ -97,7 +97,7 @@
     .port-card-company,
     .port-card-founder,
     .port-card-tag,
-    .port-card-meta { position: relative; z-index: 1; }
+    .port-card-meta { position: relative; z-index: 3; }
 
     .port-card-company {
       font-family: var(--font-display);
