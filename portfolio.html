@@ -55,30 +55,45 @@
 
     .port-card {
       background: var(--cream);
-      padding: 28px 28px 32px;
-      display: flex; flex-direction: column; gap: 6px;
+      aspect-ratio: 1 / 1;
+      padding: 22px 24px 26px;
+      display: flex; flex-direction: column; justify-content: flex-end; gap: 5px;
       text-decoration: none; color: var(--black);
-      transition: background 0.18s;
       position: relative; overflow: hidden;
     }
-    .port-card:hover { background: var(--yellow); }
 
-    /* Founder photo hover */
-    .port-card-photo {
-      position: absolute;
-      inset: 0;
+    /* Yellow gradient that sweeps up from the bottom on hover */
+    .port-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top,
+        var(--yellow) 20%,
+        rgba(255,209,0,0.78) 50%,
+        transparent 82%
+      );
       opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
+      transition: opacity 0.35s ease;
       z-index: 0;
+      pointer-events: none;
+    }
+    .port-card:hover::after { opacity: 1; }
+
+    /* Founder photo fills the card behind the gradient */
+    .port-card-photo {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: -1;
+      pointer-events: none;
     }
     .port-card-photo img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: top center;
       filter: grayscale(100%);
-      mix-blend-mode: multiply;
     }
     .port-card:hover .port-card-photo { opacity: 1; }
+
+    /* Keep text above photo + gradient */
     .port-card-company,
     .port-card-founder,
     .port-card-tag,
