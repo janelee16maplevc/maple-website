@@ -52,11 +52,12 @@
       filter: grayscale(100%);
       transition: opacity 0.3s ease;
     }
-    .founder-card:hover .founder-headshot--photo img { opacity: 0; }
+    .founder-headshot:hover > img { opacity: 0; }
 
     /* ── Company logo overlay on hover ── */
     .founder-logo-overlay {
       position: absolute; inset: 0;
+      overflow: hidden;
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -64,8 +65,10 @@
     .founder-logo-overlay img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center center;
+      display: block;
     }
-    .founder-card:hover .founder-logo-overlay { opacity: 1; }
+    .founder-headshot:hover .founder-logo-overlay { opacity: 1; }
 
     /* ── Company logos (Simple Icons) ── */
     .co-logo {
