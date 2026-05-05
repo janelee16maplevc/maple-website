@@ -494,10 +494,10 @@
     }
     @media (max-width: 860px) {
       .first-check-card { grid-template-columns: 1fr auto; }
-      .first-check-image { display: none; }
     }
     @media (max-width: 640px) {
-      .first-check-card { grid-template-columns: 1fr; }
+      .first-check-card { display: flex; flex-direction: column; }
+      .first-check-image { display: block; order: -1; min-height: 200px; width: 100%; }
       .first-check-stat { display: none; }
     }
 
@@ -527,6 +527,7 @@
     <li><a href="/contact.html">Contact</a></li>
     <li><a href="/blog.html">Blog</a></li>
   </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ═══════════════════════ TICKER ═══════════════════════ -->

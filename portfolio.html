@@ -63,21 +63,8 @@
       position: relative; overflow: hidden;
     }
 
-    /* Yellow gradient sweeps up from bottom on hover */
-    .port-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to top,
-        var(--yellow) 20%,
-        rgba(255,209,0,0.78) 50%,
-        transparent 82%
-      );
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .port-card:hover::after { opacity: 1; }
+    /* No overlay on hover — photo reveals cleanly */
+    .port-card::after { display: none; }
 
     /* Company logo: centered, white, visible by default */
     .port-card-logo {
@@ -153,6 +140,7 @@
     <li><a href="/contact.html">Contact</a></li>
     <li><a href="/blog.html">Blog</a></li>
   </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ═══════════════════════ HERO ═══════════════════════ -->

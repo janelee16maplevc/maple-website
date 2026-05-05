@@ -31,7 +31,7 @@
     .nibi-soon {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      padding: var(--pad);
+      padding: calc(var(--nav-h) + var(--pad)) var(--pad) var(--pad);
       position: relative; overflow: hidden;
     }
 
@@ -145,6 +145,7 @@
     <li><a href="/contact.html">Contact</a></li>
     <li><a href="/blog.html">Blog</a></li>
   </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- COMING SOON -->

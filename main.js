@@ -54,3 +54,21 @@ if (nlForm) {
 // ── Auto-update copyright year ──
 const yearEl = document.querySelector('.copyright-year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ── Mobile hamburger menu ──
+const burger = document.querySelector('.nav-burger');
+const navLinks = document.querySelector('.nav-links');
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}

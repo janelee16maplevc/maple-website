@@ -79,6 +79,27 @@ button, input, textarea { font-family: inherit; }
 .nav-links a:hover,
 .nav-links a.active { opacity: 1; }
 
+/* ── Mobile hamburger button ── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  z-index: 201; flex-shrink: 0;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--black); border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ════════════════════════════════════════
    NEWS TICKER
 ════════════════════════════════════════ */
@@ -107,8 +128,8 @@ button, input, textarea { font-family: inherit; }
 ════════════════════════════════════════ */
 .hero {
   background: var(--yellow);
-  padding: clamp(80px, 12vh, 160px) var(--pad) clamp(72px, 10vh, 128px);
-  min-height: 88vh;
+  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(48px, 7vh, 88px);
+  min-height: 58vh;
   display: flex; align-items: flex-end;
 }
 .hero-inner { max-width: 1100px; }
@@ -363,5 +384,28 @@ footer {
   .nav-links { gap: 20px; }
 }
 @media (max-width: 520px) {
-  .nav-links li:not(:first-child) { display: none; }
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: var(--nav-h); left: 0; right: 0;
+    background: rgba(255,249,237,0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(10,10,10,0.08);
+    padding: 12px var(--pad) 24px;
+    flex-direction: column;
+    gap: 0;
+    z-index: 199;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { display: block !important; }
+  .nav-links a {
+    display: block;
+    font-size: 13px; padding: 12px 0;
+    border-bottom: 1px solid rgba(10,10,10,0.06);
+    opacity: 0.55;
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; }
 }
