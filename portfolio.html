@@ -126,6 +126,47 @@
     .port-card:hover .port-card-founder { color: var(--black); }
     .port-card:hover .port-card-tag { color: rgba(10,10,10,0.6); }
     .port-card:hover .port-card-meta .port-card-meta-item { color: rgba(10,10,10,0.38); }
+
+    /* ── Filters ── */
+    .port-filters {
+      margin-bottom: 40px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .port-filter-row {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .port-filter-label {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(255,249,237,0.25);
+      min-width: 64px; flex-shrink: 0;
+    }
+    .port-filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .port-pill {
+      font-family: var(--font-body);
+      font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 6px 14px;
+      border: 1px solid rgba(255,249,237,0.12); border-radius: 100px;
+      background: transparent; color: rgba(255,249,237,0.4);
+      cursor: pointer; transition: all 0.18s ease;
+    }
+    .port-pill:hover {
+      background: rgba(255,249,237,0.06);
+      color: rgba(255,249,237,0.75);
+      border-color: rgba(255,249,237,0.22);
+    }
+    .port-pill.active {
+      background: var(--yellow); color: var(--black);
+      border-color: var(--yellow);
+    }
+    .port-filter-row--stage { transition: opacity 0.2s; }
+    .port-filter-row--stage.dimmed { opacity: 0.3; pointer-events: none; }
+    .port-count {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; color: rgba(255,249,237,0.2);
+      margin-bottom: 24px;
+    }
+    /* hide cards filtered out */
+    .port-card.filtered-out { display: none; }
   </style>
 </head>
 <body>
@@ -155,9 +196,47 @@
 <!-- ═══════════════════════ COMPANY GRID ═══════════════════════ -->
 <section class="port-grid-section">
   <div class="port-grid-section-inner">
+
+    <!-- Filters -->
+    <div class="port-filters">
+      <div class="port-filter-row">
+        <span class="port-filter-label">View</span>
+        <div class="port-filter-pills">
+          <button class="port-pill active" data-filter="view" data-value="featured">Featured</button>
+          <button class="port-pill" data-filter="view" data-value="all">All</button>
+        </div>
+      </div>
+      <div class="port-filter-row">
+        <span class="port-filter-label">Category</span>
+        <div class="port-filter-pills">
+          <button class="port-pill active" data-filter="category" data-value="all">All</button>
+          <button class="port-pill" data-filter="category" data-value="ai">AI</button>
+          <button class="port-pill" data-filter="category" data-value="fintech">Fintech</button>
+          <button class="port-pill" data-filter="category" data-value="saas">SaaS</button>
+          <button class="port-pill" data-filter="category" data-value="consumer">Consumer</button>
+          <button class="port-pill" data-filter="category" data-value="climate">Climate</button>
+          <button class="port-pill" data-filter="category" data-value="crypto">Crypto</button>
+          <button class="port-pill" data-filter="category" data-value="media">Media</button>
+          <button class="port-pill" data-filter="category" data-value="defence">Defence</button>
+          <button class="port-pill" data-filter="category" data-value="health">Health</button>
+        </div>
+      </div>
+      <div class="port-filter-row port-filter-row--stage">
+        <span class="port-filter-label">Stage</span>
+        <div class="port-filter-pills">
+          <button class="port-pill active" data-filter="stage" data-value="all">All</button>
+          <button class="port-pill" data-filter="stage" data-value="seed">Seed</button>
+          <button class="port-pill" data-filter="stage" data-value="series-a">Series A</button>
+          <button class="port-pill" data-filter="stage" data-value="series-b">Series B+</button>
+          <button class="port-pill" data-filter="stage" data-value="acquired">Acquired</button>
+        </div>
+      </div>
+    </div>
+    <div class="port-count" id="port-count"></div>
+
     <div class="port-grid">
 
-      <a class="port-card reveal" href="https://ritual.co" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://ritual.co" target="_blank" rel="noopener" data-category="consumer" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-ritual.png" alt="Ritual"></div>
         <div class="port-card-photo"><img src="images/ray-reddy.jpg" alt="Ray Reddy"></div>
         <div class="port-card-founder">Ray Reddy</div>
@@ -168,7 +247,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener" data-category="ai" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-clay.png" alt="Clay"></div>
         <div class="port-card-photo"><img src="images/kareem-amin.jpg" alt="Kareem Amin"></div>
         <div class="port-card-founder">Kareem Amin</div>
@@ -179,7 +258,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="health" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-ihavevision.png" alt="I Have Vision"></div>
         <div class="port-card-founder">Justin Lee</div>
         <div class="port-card-tag">Diabetes co-pilot</div>
@@ -189,7 +268,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="climate" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-tap.png" alt="Tap"></div>
         <div class="port-card-founder">Sam Rosen</div>
         <div class="port-card-tag">Eliminating single-use plastic water bottles</div>
@@ -199,7 +278,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="consumer" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-allday.png" alt="All Day Kitchens"></div>
         <div class="port-card-photo"><img src="images/ken-chong.jpg" alt="Ken Chong"></div>
         <div class="port-card-founder">Ken Chong</div>
@@ -210,7 +289,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://aalto.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://aalto.com" target="_blank" rel="noopener" data-category="consumer" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-aalto.png" alt="Aalto"></div>
         <div class="port-card-founder">Nick Narodny</div>
         <div class="port-card-tag">Reimagining the home selling experience</div>
@@ -220,7 +299,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="acquired">
         <div class="port-card-logo"><img src="images/logo-setter.png" alt="Setter / Thumbtack"></div>
         <div class="port-card-founder">David Steckel</div>
         <div class="port-card-tag">Making home maintenance invisible</div>
@@ -230,7 +309,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener" data-category="media" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-beatdapp.png" alt="Beatdapp"></div>
         <div class="port-card-founder">Andrew Batey</div>
         <div class="port-card-tag">Tracking the streaming economy</div>
@@ -240,7 +319,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://resq.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://resq.com" target="_blank" rel="noopener" data-category="saas" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-resq.png" alt="ResQ"></div>
         <div class="port-card-founder">Kuljeev Singh</div>
         <div class="port-card-tag">Elevating restaurant maintenance</div>
@@ -250,7 +329,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://playbook.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://playbook.com" target="_blank" rel="noopener" data-category="consumer" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-playbook.png" alt="Playbook"></div>
         <div class="port-card-photo"><img src="images/jessica-ko.jpg" alt="Jessica Ko"></div>
         <div class="port-card-founder">Jessica Ko</div>
@@ -261,7 +340,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://neofinancial.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://neofinancial.com" target="_blank" rel="noopener" data-category="fintech" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-neo.png" alt="Neo Financial"></div>
         <div class="port-card-photo"><img src="images/andrew-chau.jpg" alt="Andrew Chau"></div>
         <div class="port-card-founder">Andrew Chau</div>
@@ -272,7 +351,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="consumer" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-stadium.png" alt="Stadium"></div>
         <div class="port-card-founder">Kevin Kim</div>
         <div class="port-card-tag">Creating ESPN for Gen-Z</div>
@@ -282,7 +361,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://autoleap.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://autoleap.com" target="_blank" rel="noopener" data-category="saas" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-autoleap.png" alt="AutoLeap"></div>
         <div class="port-card-photo"><img src="images/steve-lau.jpg" alt="Steve Lau"></div>
         <div class="port-card-founder">Steve Lau</div>
@@ -293,7 +372,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://patch.io" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://patch.io" target="_blank" rel="noopener" data-category="climate" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-patch.png" alt="Patch"></div>
         <div class="port-card-photo"><img src="images/brennan-spellacy.jpg" alt="Brennan Spellacy"></div>
         <div class="port-card-founder">Brennan Spellacy</div>
@@ -304,7 +383,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://chargelab.co" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://chargelab.co" target="_blank" rel="noopener" data-category="climate" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-chargelab.png" alt="ChargeLab"></div>
         <div class="port-card-founder">Zak Lefevre</div>
         <div class="port-card-tag">Connecting EV charging everywhere</div>
@@ -314,7 +393,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="fintech" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-sivo.png" alt="Sivo"></div>
         <div class="port-card-photo"><img src="images/kate-hiscox.jpg" alt="Kate Hiscox"></div>
         <div class="port-card-founder">Kate Hiscox</div>
@@ -325,7 +404,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="fintech" data-stage="acquired" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-fey.png" alt="Fey"></div>
         <div class="port-card-founder">Thomas Russell</div>
         <div class="port-card-tag">Empowering retail investors</div>
@@ -335,7 +414,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="seed" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-calico.png" alt="Calico"></div>
         <div class="port-card-photo"><img src="images/kathleen-chan.jpg" alt="Kathleen Chan"></div>
         <div class="port-card-founder">Kathleen Chan</div>
@@ -346,7 +425,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-parallelz.png" alt="Parallelz"></div>
         <div class="port-card-founder">Albert Lai</div>
         <div class="port-card-tag">Enabling mobile app distribution</div>
@@ -356,7 +435,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="consumer" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-naya.png" alt="Naya"></div>
         <div class="port-card-founder">Saad Rajan</div>
         <div class="port-card-tag">Co-creating the physical world</div>
@@ -366,7 +445,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://accruesavings.com" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://accruesavings.com" target="_blank" rel="noopener" data-category="fintech" data-stage="series-a" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-accrue.png" alt="Accrue"></div>
         <div class="port-card-founder">Michael Hershfield</div>
         <div class="port-card-tag">Helping Americans with saving</div>
@@ -376,7 +455,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="climate" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-pivot.png" alt="Pivot"></div>
         <div class="port-card-founder">Josh Simair</div>
         <div class="port-card-tag">Building circular consumer logistics</div>
@@ -386,7 +465,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="crypto" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-integral.png" alt="Integral"></div>
         <div class="port-card-founder">Gui Laliberté</div>
         <div class="port-card-tag">Making Web3 treasury easy</div>
@@ -396,7 +475,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="crypto" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-mash.png" alt="Mash"></div>
         <div class="port-card-founder">Jared Nusinoff</div>
         <div class="port-card-tag">Streaming payments for the open internet</div>
@@ -406,7 +485,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://layerzero.network" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://layerzero.network" target="_blank" rel="noopener" data-category="crypto" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-layerzero.png" alt="LayerZero"></div>
         <div class="port-card-founder">Bryan Pellegrino</div>
         <div class="port-card-tag">Enabling cross-chain applications</div>
@@ -416,7 +495,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="defence" data-stage="seed" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-blacklake.png" alt="Blacklake"></div>
         <div class="port-card-photo"><img src="images/robbie-deeks.jpg" alt="Robbie Deeks"></div>
         <div class="port-card-founder">Robbie Deeks</div>
@@ -427,7 +506,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://blockus.gg" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="https://blockus.gg" target="_blank" rel="noopener" data-category="crypto" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-blockus.png" alt="Blockus"></div>
         <div class="port-card-founder">Jess Zhang</div>
         <div class="port-card-tag">Interconnecting the virtual economy</div>
@@ -437,7 +516,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-charlielabs.png" alt="Charlie Labs"></div>
         <div class="port-card-founder">Riley T</div>
         <div class="port-card-tag">Making engineering autonomous</div>
@@ -447,7 +526,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-benchiq.png" alt="BenchIQ"></div>
         <div class="port-card-photo"><img src="images/jimoh-ovbiagele.jpg" alt="Jimoh Ovbiagele"></div>
         <div class="port-card-founder">Jimoh A. Ovbiagele</div>
@@ -458,7 +537,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="fintech" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-tmrw.png" alt="TMRW"></div>
         <div class="port-card-founder">Ari Ramdial</div>
         <div class="port-card-tag">Building tomorrow's bank</div>
@@ -468,7 +547,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-inference.png" alt="Inference"></div>
         <div class="port-card-founder">John Yue</div>
         <div class="port-card-tag">Building VMware for the GPU cloud</div>
@@ -478,7 +557,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-forwardlabs.png" alt="Forward Labs"></div>
         <div class="port-card-founder">Shan Wu</div>
         <div class="port-card-tag">Making freight efficient</div>
@@ -488,7 +567,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="consumer" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-fabriq.png" alt="Fabriq"></div>
         <div class="port-card-founder">Mesh Lakhani</div>
         <div class="port-card-tag">Improving web discourse</div>
@@ -498,7 +577,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="climate" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-way.png" alt="Way"></div>
         <div class="port-card-founder">Ben Zifkin</div>
         <div class="port-card-tag">Accelerating alternative fuels</div>
@@ -508,7 +587,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-oneplusone.png" alt="OnePlusOne"></div>
         <div class="port-card-founder">Bruno Guerra Cunha</div>
         <div class="port-card-tag">Unlocking partnership revenue</div>
@@ -518,7 +597,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-alchemi.png" alt="Alchemi"></div>
         <div class="port-card-founder">Tom Mulvey</div>
         <div class="port-card-tag">Automating pharma R&amp;D</div>
@@ -528,7 +607,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="fintech" data-stage="series-a" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-finny.png" alt="Finny"></div>
         <div class="port-card-photo"><img src="images/first-check-finny.jpg" alt="Eden Ovadia"></div>
         <div class="port-card-founder">Eden Ovadia</div>
@@ -539,7 +618,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="media" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-mythril.png" alt="Mythril"></div>
         <div class="port-card-founder">Taemin Kim</div>
         <div class="port-card-tag">Building timeless stories</div>
@@ -549,7 +628,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-argus.png" alt="Argus"></div>
         <div class="port-card-founder">Lisa Yan</div>
         <div class="port-card-tag">Infrastructure for physical AI</div>
@@ -559,7 +638,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="climate" data-stage="series-a" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-aalo.png" alt="Aalo"></div>
         <div class="port-card-photo"><img src="images/matt-loszak.jpg" alt="Matt Loszak"></div>
         <div class="port-card-founder">Matt Loszak</div>
@@ -570,7 +649,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-internetbackyard.png" alt="Internet Backyard"></div>
         <div class="port-card-founder">Mai Trinh</div>
         <div class="port-card-tag">Financial backbone for the compute economy</div>
@@ -619,5 +698,65 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+  // ── Portfolio filter ──
+  let activeView     = 'featured';
+  let activeCategory = 'all';
+  let activeStage    = 'all';
+
+  const cards      = document.querySelectorAll('.port-card');
+  const countEl    = document.getElementById('port-count');
+  const stageRow   = document.querySelector('.port-filter-row--stage');
+  const catRow     = document.querySelector('.port-filter-row:nth-child(2)');
+
+  function applyFilters() {
+    let visible = 0;
+
+    cards.forEach(card => {
+      let show = false;
+
+      if (activeView === 'featured') {
+        show = card.dataset.featured === 'true';
+      } else {
+        const catMatch   = activeCategory === 'all' || card.dataset.category === activeCategory;
+        const stageMatch = activeStage === 'all'    || card.dataset.stage    === activeStage;
+        show = catMatch && stageMatch;
+      }
+
+      card.classList.toggle('filtered-out', !show);
+      if (show) visible++;
+    });
+
+    // Show/hide secondary filters when in Featured view
+    const isFeatured = activeView === 'featured';
+    stageRow.classList.toggle('dimmed', isFeatured);
+    catRow.classList.toggle('dimmed', isFeatured);
+
+    countEl.textContent = visible === cards.length
+      ? `${visible} companies`
+      : `${visible} of ${cards.length} companies`;
+  }
+
+  document.querySelectorAll('.port-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filterType = pill.dataset.filter;
+      const value      = pill.dataset.value;
+
+      // Update active pill in this group
+      document.querySelectorAll(`.port-pill[data-filter="${filterType}"]`)
+        .forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      if (filterType === 'view')     activeView     = value;
+      if (filterType === 'category') activeCategory = value;
+      if (filterType === 'stage')    activeStage    = value;
+
+      applyFilters();
+    });
+  });
+
+  // Run on load
+  applyFilters();
+</script>
 </body>
 </html>
