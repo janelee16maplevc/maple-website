@@ -372,14 +372,17 @@
     }
     .networks-hp-cta:hover { border-color: var(--yellow); gap: 14px; }
 
-    /* Three network panels */
+    /* Four network panels */
     .networks-hp-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: rgba(255,249,237,0.06);
     }
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .networks-hp-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
       .networks-hp-grid { grid-template-columns: 1fr; }
     }
     .network-hp-cell {
@@ -550,15 +553,25 @@
 
     <div class="founder-card reveal d1">
       <div class="founder-headshot founder-headshot--photo">
+        <img src="images/kathleen-chan.jpg" alt="Kathleen Chan">
+      </div>
+      <div class="founder-name">Kathleen Chan</div>
+      <div class="founder-co">Calico</div>
+      <div class="founder-tag">Making supply chains transparent</div>
+      <div class="founder-uni">From U of T</div>
+    </div>
+
+    <div class="founder-card reveal d2">
+      <div class="founder-headshot founder-headshot--photo">
         <img src="images/matt-loszak.jpg" alt="Matt Loszak">
       </div>
       <div class="founder-name">Matt Loszak</div>
       <div class="founder-co">Aalo</div>
       <div class="founder-tag">Powering the world</div>
-      <div class="founder-uni"></div>
+      <div class="founder-uni">From Queen's</div>
     </div>
 
-    <div class="founder-card reveal d2">
+    <div class="founder-card reveal d3">
       <div class="founder-headshot founder-headshot--photo">
         <img src="images/andrew-chau.jpg" alt="Andrew Chau">
       </div>
@@ -568,17 +581,27 @@
       <div class="founder-uni">From Saskatchewan</div>
     </div>
 
-    <div class="founder-card reveal d3">
+    <div class="founder-card reveal d4">
+      <div class="founder-headshot founder-headshot--photo">
+        <img src="images/first-check-finny.jpg" alt="Eden Ovadia">
+      </div>
+      <div class="founder-name">Eden Ovadia</div>
+      <div class="founder-co">Finny</div>
+      <div class="founder-tag">Helping financial advisors grow</div>
+      <div class="founder-uni">From McGill</div>
+    </div>
+
+    <div class="founder-card reveal d5">
       <div class="founder-headshot founder-headshot--photo">
         <img src="images/robbie-deeks.jpg" alt="Robbie Deeks">
       </div>
       <div class="founder-name">Robbie Deeks</div>
       <div class="founder-co">Blacklake</div>
       <div class="founder-tag">Solving national security challenges</div>
-      <div class="founder-uni"></div>
+      <div class="founder-uni">From Laurier</div>
     </div>
 
-    <div class="founder-card reveal d4">
+    <div class="founder-card reveal">
       <div class="founder-headshot founder-headshot--photo">
         <img src="images/brennan-spellacy.jpg" alt="Brennan Spellacy">
       </div>
@@ -586,26 +609,6 @@
       <div class="founder-co">Patch</div>
       <div class="founder-tag">Making carbon removal easy for businesses around the world</div>
       <div class="founder-uni">From McGill</div>
-    </div>
-
-    <div class="founder-card reveal d5">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/first-check-finny.jpg" alt="Finny">
-      </div>
-      <div class="founder-name">Finny</div>
-      <div class="founder-co">Finny</div>
-      <div class="founder-tag">Reimagining personal finance for the next generation</div>
-      <div class="founder-uni"></div>
-    </div>
-
-    <div class="founder-card reveal">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/kathleen-chan.jpg" alt="Kathleen Chan">
-      </div>
-      <div class="founder-name">Kathleen Chan</div>
-      <div class="founder-co">Calico</div>
-      <div class="founder-tag">Making supply chains transparent</div>
-      <div class="founder-uni"></div>
     </div>
 
   </div>
@@ -658,34 +661,43 @@
       </div>
     </div>
 
-    <!-- Three panels -->
+    <!-- Four panels -->
     <div class="networks-hp-grid">
 
       <div class="network-hp-cell reveal">
         <span class="network-hp-num">01</span>
-        <div class="network-hp-name">Canadian<br><em>expats</em></div>
+        <div class="network-hp-name">San<br><em>Francisco</em></div>
         <div class="network-hp-body">
-          The best Canadian founders in Silicon Valley are building
-          billion-dollar companies — and they're chronically undervalued
-          by the market. We've been part of this community since before
-          we started a fund. We're still the first call they make.
+          We've been embedded in Silicon Valley since before we started a fund.
+          The best Canadian founders building billion-dollar companies here
+          are chronically undervalued — we're still the first call they make.
         </div>
       </div>
 
       <div class="network-hp-cell reveal d1">
         <span class="network-hp-num">02</span>
-        <div class="network-hp-name">HBS<br><em>founders</em></div>
+        <div class="network-hp-name"><em>Canada</em></div>
         <div class="network-hp-body">
-          Harvard Business School produces a disproportionate number of
-          exceptional operator-founders. Our relationships here run deep —
-          we see deals early, we back them early, and we show up
-          when it matters most.
+          Our roots run deep across Toronto, Montreal, and Vancouver.
+          We're the most connected seed fund in the Canadian ecosystem —
+          with relationships at every top university and accelerator
+          in the country.
         </div>
       </div>
 
       <div class="network-hp-cell reveal d2">
         <span class="network-hp-num">03</span>
-        <div class="network-hp-name">Korean<br><em>expats</em></div>
+        <div class="network-hp-name"><em>Cambridge</em></div>
+        <div class="network-hp-body">
+          Harvard and MIT produce a disproportionate number of exceptional
+          operator-founders. Our relationships here run deep — we see deals
+          early, back them early, and show up when it matters most.
+        </div>
+      </div>
+
+      <div class="network-hp-cell reveal d3">
+        <span class="network-hp-num">04</span>
+        <div class="network-hp-name"><em>Korea</em></div>
         <div class="network-hp-body">
           Korean founders building globally are some of the most
           capital-efficient builders in the world. We invested in this
@@ -702,10 +714,10 @@
 <section class="find-founders">
   <div class="find-founders-inner">
 
-    <h2 class="find-founders-heading reveal">Why we wrote the <em>first check</em> — and why they said Yes.</h2>
+    <h2 class="find-founders-heading reveal">Read our <em>investment memos.</em></h2>
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0;">
-      <p class="find-founders-sub reveal" style="margin:0;">At Maple VC, we don't just invest early — we invest first.<br>When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.<br><br>Read our memos below.</p>
-      <a href="https://www.maplevc.com/blog" class="first-check-bridge-link reveal d1" target="_blank" rel="noopener" style="flex-shrink:0;margin-bottom:4px;">See all posts →</a>
+      <p class="find-founders-sub reveal" style="margin:0;">Why we wrote the first check — and why they said Yes.<br><br>At Maple VC, we don't just invest early — we invest first. When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.</p>
+      <a href="/blog.html" class="first-check-bridge-link reveal d1" style="flex-shrink:0;margin-bottom:4px;">See all posts →</a>
     </div>
 
     <!-- First Check series -->
@@ -713,9 +725,9 @@
 
       <div class="first-check-grid">
 
-        <a class="fc-card" href="https://www.maplevc.com/blog-posts/first-check-clay" target="_blank" rel="noopener">
-          <div class="fc-card-img">
-            <img src="images/clay-blog.jpg" alt="Clay">
+        <a class="fc-card" href="/first-check-clay.html">
+          <div class="fc-card-img" style="background:var(--black);display:flex;align-items:center;justify-content:center;padding:28px;">
+            <img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a1c5b29d8a85612cdf1_Clay.png" alt="Clay" style="max-width:60%;max-height:70%;object-fit:contain;filter:brightness(0) invert(1);">
           </div>
           <div class="fc-card-body">
             <span class="fc-card-tag">First Check</span>
@@ -726,7 +738,7 @@
           </div>
         </a>
 
-        <a class="fc-card" href="https://www.maplevc.com/blog-posts/first-check-finny" target="_blank" rel="noopener">
+        <a class="fc-card" href="/first-check-finny.html">
           <div class="fc-card-img">
             <img src="images/first-check-finny.jpg" alt="Finny">
           </div>
@@ -739,7 +751,7 @@
           </div>
         </a>
 
-        <a class="fc-card" href="https://www.maplevc.com/blog-posts/firstcheckfey" target="_blank" rel="noopener">
+        <a class="fc-card" href="/first-check-fey.html">
           <div class="fc-card-img">
             <img src="images/first-check-fey.jpg" alt="Fey">
           </div>
@@ -752,7 +764,7 @@
           </div>
         </a>
 
-        <a class="fc-card" href="https://www.maplevc.com/blog-posts/firstcheckbenchiq" target="_blank" rel="noopener">
+        <a class="fc-card" href="/first-check-benchiq.html">
           <div class="fc-card-img">
             <img src="images/first-check-benchiq.jpg" alt="BenchIQ">
           </div>

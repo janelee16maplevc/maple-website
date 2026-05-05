@@ -39,30 +39,31 @@
 
     /* ── Grid section ── */
     .port-grid-section {
-      background: var(--cream);
+      background: var(--black);
       padding: clamp(64px, 9vh, 112px) var(--pad);
-      border-top: 1px solid rgba(10,10,10,0.07);
+      border-top: 1px solid rgba(255,249,237,0.06);
     }
     .port-grid-section-inner { max-width: var(--max-w); margin: 0 auto; }
 
     .port-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: rgba(10,10,10,0.08);
+      gap: 1px; background: rgba(255,249,237,0.06);
     }
     @media (max-width: 900px) { .port-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 540px) { .port-grid { grid-template-columns: 1fr; } }
 
+    /* ── Card: black bg by default, logo centered ── */
     .port-card {
-      background: var(--cream);
+      background: var(--black);
       aspect-ratio: 1 / 1;
       padding: 22px 24px 26px;
       display: flex; flex-direction: column; justify-content: flex-end; gap: 5px;
-      text-decoration: none; color: var(--black);
+      text-decoration: none; color: var(--cream);
       position: relative; overflow: hidden;
     }
 
-    /* Yellow gradient that sweeps up from the bottom on hover */
+    /* Yellow gradient sweeps up from bottom on hover */
     .port-card::after {
       content: '';
       position: absolute; inset: 0;
@@ -78,7 +79,24 @@
     }
     .port-card:hover::after { opacity: 1; }
 
-    /* Founder photo fills the card behind the gradient */
+    /* Company logo: centered, white, visible by default */
+    .port-card-logo {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px;
+      opacity: 1;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .port-card-logo img {
+      max-width: 62%; max-height: 62%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .port-card:hover .port-card-logo { opacity: 0; }
+
+    /* Founder photo fills card behind gradient on hover */
     .port-card-photo {
       position: absolute; inset: 0;
       opacity: 0;
@@ -93,20 +111,14 @@
     }
     .port-card:hover .port-card-photo { opacity: 1; }
 
-    /* Keep text above photo + gradient */
-    .port-card-company,
+    /* Text sits above photo + gradient */
     .port-card-founder,
     .port-card-tag,
     .port-card-meta { position: relative; z-index: 3; }
 
-    .port-card-company {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.2vw, 28px);
-      font-weight: 400; letter-spacing: -0.015em; line-height: 1.05;
-      color: var(--black);
-    }
     .port-card-tag {
-      font-size: 13px; line-height: 1.6; color: rgba(10,10,10,0.5);
+      font-size: 13px; line-height: 1.6;
+      color: rgba(255,249,237,0.28);
       margin-top: 2px; flex: 1;
     }
     .port-card-meta {
@@ -114,12 +126,18 @@
     }
     .port-card-meta-item {
       font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 700; color: rgba(10,10,10,0.3);
+      font-weight: 700; color: rgba(255,249,237,0.18);
     }
     .port-card-founder {
-      font-size: 12px; font-weight: 600; color: rgba(10,10,10,0.55);
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,249,237,0.45);
       letter-spacing: 0.01em; margin-top: 2px;
     }
+
+    /* On hover: text darkens to read over yellow gradient */
+    .port-card:hover .port-card-founder { color: var(--black); }
+    .port-card:hover .port-card-tag { color: rgba(10,10,10,0.6); }
+    .port-card:hover .port-card-meta .port-card-meta-item { color: rgba(10,10,10,0.38); }
   </style>
 </head>
 <body>
@@ -151,8 +169,8 @@
     <div class="port-grid">
 
       <a class="port-card reveal" href="https://ritual.co" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a356fe659a64e8b53a8_Ritual.png" alt="Ritual"></div>
         <div class="port-card-photo"><img src="images/ray-reddy.jpg" alt="Ray Reddy"></div>
-        <div class="port-card-company">Ritual</div>
         <div class="port-card-founder">Ray Reddy</div>
         <div class="port-card-tag">Powering local commerce</div>
         <div class="port-card-meta">
@@ -162,8 +180,8 @@
       </a>
 
       <a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a1c5b29d8a85612cdf1_Clay.png" alt="Clay"></div>
         <div class="port-card-photo"><img src="images/kareem-amin.jpg" alt="Kareem Amin"></div>
-        <div class="port-card-company">Clay</div>
         <div class="port-card-founder">Kareem Amin</div>
         <div class="port-card-tag">Helping businesses grow</div>
         <div class="port-card-meta">
@@ -173,7 +191,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">I Have Vision</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a06a2fcddaa4d76a7d1_Vision.png" alt="I Have Vision"></div>
         <div class="port-card-founder">Justin Lee</div>
         <div class="port-card-tag">Diabetes co-pilot</div>
         <div class="port-card-meta">
@@ -183,7 +201,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Tap</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069d46fe659a64e8b0f33_Tap.png" alt="Tap"></div>
         <div class="port-card-founder">Sam Rosen</div>
         <div class="port-card-tag">Eliminating single-use plastic water bottles</div>
         <div class="port-card-meta">
@@ -193,8 +211,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069f9b7d2deda852b10b5_AllDay.png" alt="All Day Kitchens"></div>
         <div class="port-card-photo"><img src="images/ken-chong.jpg" alt="Ken Chong"></div>
-        <div class="port-card-company">All Day Kitchens</div>
         <div class="port-card-founder">Ken Chong</div>
         <div class="port-card-tag">Automating food infrastructure</div>
         <div class="port-card-meta">
@@ -204,7 +222,7 @@
       </a>
 
       <a class="port-card reveal" href="https://aalto.com" target="_blank" rel="noopener">
-        <div class="port-card-company">Aalto</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069f342f863279e37b272_Aalto.png" alt="Aalto"></div>
         <div class="port-card-founder">Nick Narodny</div>
         <div class="port-card-tag">Reimagining the home selling experience</div>
         <div class="port-card-meta">
@@ -214,7 +232,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Setter / Thumbtack</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a004a594ebb328b7533_Setter.png" alt="Setter / Thumbtack"></div>
         <div class="port-card-founder">David Steckel</div>
         <div class="port-card-tag">Making home maintenance invisible</div>
         <div class="port-card-meta">
@@ -224,7 +242,7 @@
       </a>
 
       <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener">
-        <div class="port-card-company">Beatdapp</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069ed48e0b92f5aca0072_beatdapp.png" alt="Beatdapp"></div>
         <div class="port-card-founder">Andrew Batey</div>
         <div class="port-card-tag">Tracking the streaming economy</div>
         <div class="port-card-meta">
@@ -234,7 +252,7 @@
       </a>
 
       <a class="port-card reveal" href="https://resq.com" target="_blank" rel="noopener">
-        <div class="port-card-company">ResQ</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069e675f767e21d70505d_ResQ.png" alt="ResQ"></div>
         <div class="port-card-founder">Kuljeev Singh</div>
         <div class="port-card-tag">Elevating restaurant maintenance</div>
         <div class="port-card-meta">
@@ -244,8 +262,8 @@
       </a>
 
       <a class="port-card reveal" href="https://playbook.com" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a2cf4199d40616f030e_Playbook.png" alt="Playbook"></div>
         <div class="port-card-photo"><img src="images/jessica-ko.jpg" alt="Jessica Ko"></div>
-        <div class="port-card-company">Playbook</div>
         <div class="port-card-founder">Jessica Ko</div>
         <div class="port-card-tag">Making cloud storage beautiful</div>
         <div class="port-card-meta">
@@ -255,8 +273,8 @@
       </a>
 
       <a class="port-card reveal" href="https://neofinancial.com" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a3ee06bbf83987f9e38_Neo.png" alt="Neo Financial"></div>
         <div class="port-card-photo"><img src="images/andrew-chau.jpg" alt="Andrew Chau"></div>
-        <div class="port-card-company">Neo Financial</div>
         <div class="port-card-founder">Andrew Chau</div>
         <div class="port-card-tag">Building Canada's next bank</div>
         <div class="port-card-meta">
@@ -266,7 +284,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Stadium</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a0e4a594ebb328b82b3_stadiumlive.png" alt="Stadium"></div>
         <div class="port-card-founder">Kevin Kim</div>
         <div class="port-card-tag">Creating ESPN for Gen-Z</div>
         <div class="port-card-meta">
@@ -276,8 +294,8 @@
       </a>
 
       <a class="port-card reveal" href="https://autoleap.com" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069cb590748ce30c104e4_AutoLeap.png" alt="AutoLeap"></div>
         <div class="port-card-photo"><img src="images/steve-lau.jpg" alt="Steve Lau"></div>
-        <div class="port-card-company">AutoLeap</div>
         <div class="port-card-founder">Steve Lau</div>
         <div class="port-card-tag">Transforming the auto repair industry</div>
         <div class="port-card-meta">
@@ -287,8 +305,8 @@
       </a>
 
       <a class="port-card reveal" href="https://patch.io" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206a1624582494ca255be8_Patch.png" alt="Patch"></div>
         <div class="port-card-photo"><img src="images/brennan-spellacy.jpg" alt="Brennan Spellacy"></div>
-        <div class="port-card-company">Patch</div>
         <div class="port-card-founder">Brennan Spellacy</div>
         <div class="port-card-tag">Making carbon removal easy</div>
         <div class="port-card-meta">
@@ -298,7 +316,7 @@
       </a>
 
       <a class="port-card reveal" href="https://chargelab.co" target="_blank" rel="noopener">
-        <div class="port-card-company">ChargeLab</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069c3f4199d40616eb1fd_Chargelab.png" alt="ChargeLab"></div>
         <div class="port-card-founder">Zak Lefevre</div>
         <div class="port-card-tag">Connecting EV charging everywhere</div>
         <div class="port-card-meta">
@@ -308,8 +326,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069bc162f70a63194eb8d_Sivo.png" alt="Sivo"></div>
         <div class="port-card-photo"><img src="images/kate-hiscox.jpg" alt="Kate Hiscox"></div>
-        <div class="port-card-company">Sivo</div>
         <div class="port-card-founder">Kate Hiscox</div>
         <div class="port-card-tag">Creating financial inclusion infrastructure</div>
         <div class="port-card-meta">
@@ -319,7 +337,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Fey</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069abdf3843723aa5fb2d_fey.png" alt="Fey"></div>
         <div class="port-card-founder">Thomas Russell</div>
         <div class="port-card-tag">Empowering retail investors</div>
         <div class="port-card-meta">
@@ -329,8 +347,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069a2a2fcddaa4d765b09_Calico.png" alt="Calico"></div>
         <div class="port-card-photo"><img src="images/kathleen-chan.jpg" alt="Kathleen Chan"></div>
-        <div class="port-card-company">Calico</div>
         <div class="port-card-founder">Kathleen Chan</div>
         <div class="port-card-tag">Making supply chains transparent</div>
         <div class="port-card-meta">
@@ -340,7 +358,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Parallelz</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206990df3843723aa5ea4b_parallelz.png" alt="Parallelz"></div>
         <div class="port-card-founder">Albert Lai</div>
         <div class="port-card-tag">Enabling mobile app distribution</div>
         <div class="port-card-meta">
@@ -350,7 +368,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Naya</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069854748b8b145886e91_naya.png" alt="Naya"></div>
         <div class="port-card-founder">Saad Rajan</div>
         <div class="port-card-tag">Co-creating the physical world</div>
         <div class="port-card-meta">
@@ -360,7 +378,7 @@
       </a>
 
       <a class="port-card reveal" href="https://accruesavings.com" target="_blank" rel="noopener">
-        <div class="port-card-company">Accrue</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069727aa75f6a7dc10e41_accrue.png" alt="Accrue"></div>
         <div class="port-card-founder">Michael Hershfield</div>
         <div class="port-card-tag">Helping Americans with saving</div>
         <div class="port-card-meta">
@@ -370,7 +388,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Pivot</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/6620697d75f767e21d700081_pivot.png" alt="Pivot"></div>
         <div class="port-card-founder">Josh Simair</div>
         <div class="port-card-tag">Building circular consumer logistics</div>
         <div class="port-card-meta">
@@ -380,7 +398,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Integral</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662069387aa75f6a7dc0db24_integral.png" alt="Integral"></div>
         <div class="port-card-founder">Gui Laliberté</div>
         <div class="port-card-tag">Making Web3 treasury easy</div>
         <div class="port-card-meta">
@@ -390,7 +408,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Mash</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/6620696a6fe659a64e8ac191_mash.png" alt="Mash"></div>
         <div class="port-card-founder">Jared Nusinoff</div>
         <div class="port-card-tag">Streaming payments for the open internet</div>
         <div class="port-card-meta">
@@ -400,7 +418,7 @@
       </a>
 
       <a class="port-card reveal" href="https://layerzero.network" target="_blank" rel="noopener">
-        <div class="port-card-company">LayerZero</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/6620692a25e18d8c55c55b05_layerzero.png" alt="LayerZero"></div>
         <div class="port-card-founder">Bryan Pellegrino</div>
         <div class="port-card-tag">Enabling cross-chain applications</div>
         <div class="port-card-meta">
@@ -410,8 +428,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206999f9fb43094b588ea8_Blacklake.png" alt="Blacklake"></div>
         <div class="port-card-photo"><img src="images/robbie-deeks.jpg" alt="Robbie Deeks"></div>
-        <div class="port-card-company">Blacklake</div>
         <div class="port-card-founder">Robbie Deeks</div>
         <div class="port-card-tag">Solving national security challenges</div>
         <div class="port-card-meta">
@@ -421,7 +439,7 @@
       </a>
 
       <a class="port-card reveal" href="https://blockus.gg" target="_blank" rel="noopener">
-        <div class="port-card-company">Blockus</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/6620691b2efc5a7c8fea6432_blockus.png" alt="Blockus"></div>
         <div class="port-card-founder">Jess Zhang</div>
         <div class="port-card-tag">Interconnecting the virtual economy</div>
         <div class="port-card-meta">
@@ -431,7 +449,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Charlie Labs</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/68d5a44c534e79ac71154020_Untitled%20design%20(26).png" alt="Charlie Labs"></div>
         <div class="port-card-founder">Riley T</div>
         <div class="port-card-tag">Making engineering autonomous</div>
         <div class="port-card-meta">
@@ -441,8 +459,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/662068f4ce502461abcc6c1c_benchiq.png" alt="BenchIQ"></div>
         <div class="port-card-photo"><img src="images/jimoh-ovbiagele.jpg" alt="Jimoh Ovbiagele"></div>
-        <div class="port-card-company">BenchIQ</div>
         <div class="port-card-founder">Jimoh A. Ovbiagele</div>
         <div class="port-card-tag">Reshaping the practice of law</div>
         <div class="port-card-meta">
@@ -452,7 +470,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">TMRW</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/66206902c337fb4b21a61648_tmrw.png" alt="TMRW"></div>
         <div class="port-card-founder">Ari Ramdial</div>
         <div class="port-card-tag">Building tomorrow's bank</div>
         <div class="port-card-meta">
@@ -462,7 +480,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Inference</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/667d7fea0ab26bd5dff27477_1.png" alt="Inference"></div>
         <div class="port-card-founder">John Yue</div>
         <div class="port-card-tag">Building VMware for the GPU cloud</div>
         <div class="port-card-meta">
@@ -472,7 +490,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Forward Labs</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/667d7fdc52b11c7c6d528b29_5.png" alt="Forward Labs"></div>
         <div class="port-card-founder">Shan Wu</div>
         <div class="port-card-tag">Making freight efficient</div>
         <div class="port-card-meta">
@@ -482,7 +500,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Fabriq</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/667d7fd2d5f9742f898d2b22_2.png" alt="Fabriq"></div>
         <div class="port-card-founder">Mesh Lakhani</div>
         <div class="port-card-tag">Improving web discourse</div>
         <div class="port-card-meta">
@@ -492,7 +510,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Way</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/667d7fc9ca8e14487e83b8ad_3.png" alt="Way"></div>
         <div class="port-card-founder">Ben Zifkin</div>
         <div class="port-card-tag">Accelerating alternative fuels</div>
         <div class="port-card-meta">
@@ -502,7 +520,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">OnePlusOne</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/67192c8c49cb7c2202d182a3_2.png" alt="OnePlusOne"></div>
         <div class="port-card-founder">Bruno Guerra Cunha</div>
         <div class="port-card-tag">Unlocking partnership revenue</div>
         <div class="port-card-meta">
@@ -512,7 +530,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Alchemi</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/67192c827b7efb57f6855a9d_3.png" alt="Alchemi"></div>
         <div class="port-card-founder">Tom Mulvey</div>
         <div class="port-card-tag">Automating pharma R&amp;D</div>
         <div class="port-card-meta">
@@ -522,7 +540,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Finny</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/67192c731c1cbaf8356cdbd1_1.png" alt="Finny"></div>
+        <div class="port-card-photo"><img src="images/first-check-finny.jpg" alt="Eden Ovadia"></div>
         <div class="port-card-founder">Eden Ovadia</div>
         <div class="port-card-tag">Helping financial advisors grow</div>
         <div class="port-card-meta">
@@ -532,7 +551,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Mythril</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/68a5de30283871ccb3371fc7_3.png" alt="Mythril"></div>
         <div class="port-card-founder">Taemin Kim</div>
         <div class="port-card-tag">Building timeless stories</div>
         <div class="port-card-meta">
@@ -542,7 +561,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Argus</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/68a5de8eaa2ee770dd24be29_4.png" alt="Argus"></div>
         <div class="port-card-founder">Lisa Yan</div>
         <div class="port-card-tag">Infrastructure for physical AI</div>
         <div class="port-card-meta">
@@ -552,8 +571,8 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/68a5de87b99136df2eba5d34_2.png" alt="Aalo"></div>
         <div class="port-card-photo"><img src="images/matt-loszak.jpg" alt="Matt Loszak"></div>
-        <div class="port-card-company">Aalo</div>
         <div class="port-card-founder">Matt Loszak</div>
         <div class="port-card-tag">Powering the world</div>
         <div class="port-card-meta">
@@ -563,7 +582,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="port-card-company">Internet Backyard</div>
+        <div class="port-card-logo"><img src="https://cdn.prod.website-files.com/65f9771ce2678c20853f143c/6937a302e4e45706d603ff37_Untitled%20design%20(29).png" alt="Internet Backyard"></div>
         <div class="port-card-founder">Mai Trinh</div>
         <div class="port-card-tag">Financial backbone for the compute economy</div>
         <div class="port-card-meta">
