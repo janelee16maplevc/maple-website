@@ -14,7 +14,12 @@
 
   <style>
     body { background: var(--black); }
-    .nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 999 !important; }
+    .nav { position: fixed !important; top: 0; left: 0; right: 0; z-index: 999 !important;
+      background: rgba(255,249,237,0.94) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border-bottom: 1px solid rgba(10,10,10,0.07) !important;
+    }
 
     /* CRT scanlines overlay */
     body::before {
