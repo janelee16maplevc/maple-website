@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — Maple VC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: var(--black); }
+    .thanks-wrap {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--pad);
+      text-align: center;
+    }
+    .thanks-inner { max-width: 560px; }
+    .thanks-eyebrow {
+      font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 700;
+      margin-bottom: 32px; display: block;
+    }
+    .thanks-inner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 400; line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 24px;
+    }
+    .thanks-inner h1 em { color: var(--yellow); font-style: italic; }
+    .thanks-sub {
+      font-size: clamp(14px, 1.5vw, 16px);
+      color: rgba(255,249,237,0.35);
+      line-height: 1.75; margin-bottom: 48px;
+    }
+    .thanks-back {
+      display: inline-block;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: var(--yellow);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,209,0,0.25);
+      padding-bottom: 3px;
+      transition: border-color 0.2s;
+    }
+    .thanks-back:hover { border-color: var(--yellow); }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Maple" style="height:32px;width:auto;max-width:none;"></a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="thanks-wrap">
+  <div class="thanks-inner">
+    <span class="thanks-eyebrow">Received</span>
+    <h1>We'll be in <em>touch.</em></h1>
+    <p class="thanks-sub">Thanks for reaching out. We read every submission and will follow up if there's a fit.</p>
+    <a href="/" class="thanks-back">← Back to Maple</a>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
