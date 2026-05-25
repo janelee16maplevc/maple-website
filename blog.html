@@ -76,29 +76,39 @@
     .blog-cat-panel {
       background: var(--cream);
       padding: 28px 28px 32px;
-      text-align: left; cursor: pointer; border: none;
-      display: flex; flex-direction: column; gap: 10px;
-      transition: background 0.2s;
+      text-align: left; cursor: pointer;
+      border: 1.5px solid rgba(10,10,10,0.12);
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
     }
-    .blog-cat-panel:hover { background: rgba(255,209,0,0.18); }
-    .blog-cat-panel.active { background: var(--yellow); }
+    .blog-cat-panel:hover { background: rgba(255,209,0,0.18); border-color: rgba(10,10,10,0.28); }
+    .blog-cat-panel.active { background: var(--yellow); border-color: var(--black); }
 
     .blog-cat-name {
-      font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
-      font-weight: 700; color: var(--black);
-      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.4vw, 32px);
+      font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--black);
+      display: flex; align-items: baseline; gap: 10px;
     }
     .blog-cat-count {
-      font-size: 9px; letter-spacing: 0.06em;
-      color: rgba(10,10,10,0.3); font-weight: 600;
+      font-family: var(--font-body, Inter, sans-serif);
+      font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(10,10,10,0.35); font-weight: 600;
     }
+    .blog-cat-label {
+      font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.4);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .blog-cat-label::after { content: "→"; font-size: 13px; color: rgba(10,10,10,0.3); }
+    .blog-cat-panel.active .blog-cat-label::after { color: var(--black); }
     .blog-cat-blurb {
-      font-family: var(--font-display);
-      font-size: clamp(17px, 1.8vw, 22px);
-      font-weight: 400; letter-spacing: -0.01em; line-height: 1.25;
-      color: rgba(10,10,10,0.55); margin: 0;
+      font-size: 13px; line-height: 1.5;
+      color: rgba(10,10,10,0.5); margin: 0;
     }
-    .blog-cat-panel.active .blog-cat-blurb { color: rgba(10,10,10,0.7); }
+    .blog-cat-panel.active .blog-cat-blurb { color: rgba(10,10,10,0.65); }
 
     .blog-count {
       font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -345,18 +355,21 @@
       <div class="blog-cat-grid">
 
         <button class="blog-cat-panel" data-filter="first-check">
-          <span class="blog-cat-name">First Check <span class="blog-cat-count" id="count-fc"></span></span>
-          <p class="blog-cat-blurb">Investment memos from the moment we said yes — before the metrics, before the round, before the world caught up.</p>
+          <span class="blog-cat-label">First Check <span class="blog-cat-count" id="count-fc"></span></span>
+          <span class="blog-cat-name">Investment memos from the moment we said yes.</span>
+          <p class="blog-cat-blurb">Before the metrics, before the round, before the world caught up.</p>
         </button>
 
         <button class="blog-cat-panel" data-filter="operator-playbook">
-          <span class="blog-cat-name">Operator Playbook</span>
-          <p class="blog-cat-blurb">First 25 operators at Stripe, Figma, Slack, and more — sharing what they wish they'd had at the very beginning.</p>
+          <span class="blog-cat-label">Operator Playbook</span>
+          <span class="blog-cat-name">What the first 25 wish they'd had.</span>
+          <p class="blog-cat-blurb">Early operators at Stripe, Figma, Slack, and more — sharing what they wish they'd had at the very beginning.</p>
         </button>
 
         <button class="blog-cat-panel" data-filter="memos">
-          <span class="blog-cat-name">Memos <span class="blog-cat-count" id="count-memos"></span></span>
-          <p class="blog-cat-blurb">Perspectives from people in the arena — on conviction, building, and what it actually takes to go first.</p>
+          <span class="blog-cat-label">Memos <span class="blog-cat-count" id="count-memos"></span></span>
+          <span class="blog-cat-name">Perspectives from people in the arena.</span>
+          <p class="blog-cat-blurb">On conviction, building, and what it actually takes to go first.</p>
         </button>
 
       </div>
