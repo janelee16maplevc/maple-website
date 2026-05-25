@@ -188,38 +188,36 @@
     /* Playbook coming soon */
     .op-soon {
       display: none;
-      background: var(--black);
-      padding: clamp(72px, 10vh, 112px) var(--pad);
-      margin-top: 1px;
+      background: var(--cream);
+      padding: clamp(56px, 8vh, 96px) 0 0;
     }
-    .op-soon-inner { max-width: var(--max-w); margin: 0 auto; }
     .op-soon-label {
       font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 700; color: rgba(255,209,0,0.45);
-      display: block; margin-bottom: 28px;
+      font-weight: 700; color: rgba(10,10,10,0.3);
+      display: block; margin-bottom: 24px;
     }
     .op-soon-title {
       font-family: var(--font-display);
       font-size: clamp(36px, 5.5vw, 72px);
       font-weight: 400; line-height: 1.02; letter-spacing: -0.03em;
-      color: var(--cream); margin: 0 0 32px; max-width: 760px;
+      color: var(--black); margin: 0 0 28px; max-width: 760px;
     }
-    .op-soon-title em { color: var(--yellow); font-style: italic; }
+    .op-soon-title em { color: var(--black); font-style: italic; }
     .op-soon-body {
       font-size: clamp(15px, 1.5vw, 17px);
-      line-height: 1.85; color: rgba(255,249,237,0.38);
+      line-height: 1.85; color: rgba(10,10,10,0.5);
       max-width: 560px;
     }
     .op-soon-partners {
       display: flex; flex-wrap: wrap; gap: 10px;
-      margin-top: 48px; padding-top: 40px;
-      border-top: 1px solid rgba(255,249,237,0.07);
+      margin-top: 40px; padding-top: 32px;
+      border-top: 1px solid rgba(10,10,10,0.08);
     }
     .op-soon-tag {
       font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; padding: 5px 12px;
-      border: 1px solid rgba(255,249,237,0.1);
-      color: rgba(255,249,237,0.3);
+      border: 1px solid rgba(10,10,10,0.14);
+      color: rgba(10,10,10,0.4);
     }
 
     /* ── Portfolio News (dark) ── */
@@ -438,24 +436,22 @@
 
     <div class="blog-empty" id="blog-empty"></div>
 
-  </div>
-</section>
-
-<!-- OPERATOR PLAYBOOK COMING SOON -->
-<section class="op-soon" id="op-soon">
-  <div class="op-soon-inner">
-    <span class="op-soon-label">Coming Soon · Playbook</span>
-    <h2 class="op-soon-title">The playbook from<br><em>inside the room.</em></h2>
-    <p class="op-soon-body">Partners at Maple — alongside a bench of operators who were among the first 25 at companies like Stripe, Figma, and Slack — sharing the playbooks they wish they'd had at the earliest stages. Tactical, honest, and earned.</p>
-    <div class="op-soon-partners">
-      <span class="op-soon-tag">Stripe</span>
-      <span class="op-soon-tag">Figma</span>
-      <span class="op-soon-tag">Slack</span>
-      <span class="op-soon-tag">Shopify</span>
-      <span class="op-soon-tag">DigitalOcean</span>
-      <span class="op-soon-tag">Uber</span>
-      <span class="op-soon-tag">More</span>
+    <!-- PLAYBOOK COMING SOON -->
+    <div class="op-soon" id="op-soon">
+      <span class="op-soon-label">Coming Soon · Playbook</span>
+      <h2 class="op-soon-title">The playbook from<br><em>inside the room.</em></h2>
+      <p class="op-soon-body">Partners at Maple — alongside a bench of operators who were among the first 25 at companies like Stripe, Figma, and Slack — sharing the playbooks they wish they'd had at the earliest stages. Tactical, honest, and earned.</p>
+      <div class="op-soon-partners">
+        <span class="op-soon-tag">Stripe</span>
+        <span class="op-soon-tag">Figma</span>
+        <span class="op-soon-tag">Slack</span>
+        <span class="op-soon-tag">Shopify</span>
+        <span class="op-soon-tag">DigitalOcean</span>
+        <span class="op-soon-tag">Uber</span>
+        <span class="op-soon-tag">More</span>
+      </div>
     </div>
+
   </div>
 </section>
 
