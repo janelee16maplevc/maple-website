@@ -87,28 +87,25 @@
 
     .blog-cat-name {
       font-family: var(--font-display);
-      font-size: clamp(22px, 2.4vw, 32px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
-      color: var(--black);
-      display: flex; align-items: baseline; gap: 10px;
+      font-size: clamp(32px, 3.6vw, 52px);
+      font-weight: 400; letter-spacing: -0.03em; line-height: 1.0;
+      color: var(--black); margin: 0;
     }
     .blog-cat-count {
-      font-family: var(--font-body, Inter, sans-serif);
       font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase;
       color: rgba(10,10,10,0.35); font-weight: 600;
+      font-family: Inter, sans-serif;
     }
-    .blog-cat-label {
-      font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase;
-      font-weight: 700; color: rgba(10,10,10,0.4);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .blog-cat-label::after { content: "→"; font-size: 13px; color: rgba(10,10,10,0.3); }
-    .blog-cat-panel.active .blog-cat-label::after { color: var(--black); }
     .blog-cat-blurb {
       font-size: 13px; line-height: 1.5;
-      color: rgba(10,10,10,0.5); margin: 0;
+      color: rgba(10,10,10,0.45); margin: 0;
     }
     .blog-cat-panel.active .blog-cat-blurb { color: rgba(10,10,10,0.65); }
+    .blog-cat-arrow {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 600; color: rgba(10,10,10,0.25); margin-top: auto; padding-top: 16px;
+    }
+    .blog-cat-panel.active .blog-cat-arrow { color: rgba(10,10,10,0.5); }
 
     .blog-count {
       font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -355,21 +352,21 @@
       <div class="blog-cat-grid">
 
         <button class="blog-cat-panel" data-filter="first-check">
-          <span class="blog-cat-label">First Check <span class="blog-cat-count" id="count-fc"></span></span>
-          <span class="blog-cat-name">Investment memos from the moment we said yes.</span>
-          <p class="blog-cat-blurb">Before the metrics, before the round, before the world caught up.</p>
+          <p class="blog-cat-name">First Check <span class="blog-cat-count" id="count-fc"></span></p>
+          <p class="blog-cat-blurb">Why we said yes first — and why the founder said yes back.</p>
+          <span class="blog-cat-arrow">View posts →</span>
         </button>
 
         <button class="blog-cat-panel" data-filter="operator-playbook">
-          <span class="blog-cat-label">Operator Playbook</span>
-          <span class="blog-cat-name">What the first 25 wish they'd had.</span>
-          <p class="blog-cat-blurb">Early operators at Stripe, Figma, Slack, and more — sharing what they wish they'd had at the very beginning.</p>
+          <p class="blog-cat-name">Operator Playbook</p>
+          <p class="blog-cat-blurb">Lessons from builders, for builders.</p>
+          <span class="blog-cat-arrow">View posts →</span>
         </button>
 
         <button class="blog-cat-panel" data-filter="memos">
-          <span class="blog-cat-label">Memos <span class="blog-cat-count" id="count-memos"></span></span>
-          <span class="blog-cat-name">Perspectives from people in the arena.</span>
-          <p class="blog-cat-blurb">On conviction, building, and what it actually takes to go first.</p>
+          <p class="blog-cat-name">Memos <span class="blog-cat-count" id="count-memos"></span></p>
+          <p class="blog-cat-blurb">Thoughts from Maple VC.</p>
+          <span class="blog-cat-arrow">View posts →</span>
         </button>
 
       </div>
