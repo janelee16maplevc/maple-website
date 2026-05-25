@@ -175,6 +175,15 @@
     }
     /* hide cards filtered out */
     .port-card.filtered-out { display: none; }
+
+    /* Acquired badge */
+    .port-card-badge {
+      position: absolute; top: 10px; right: 10px;
+      z-index: 5;
+      background: var(--black); color: var(--cream);
+      font-size: 7px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 4px 8px;
+    }
   </style>
 </head>
 <body>
@@ -228,33 +237,12 @@
           <button class="port-pill" data-filter="category" data-value="health">Health</button>
         </div>
       </div>
-      <div class="port-filter-row port-filter-row--stage">
-        <span class="port-filter-label">Stage</span>
-        <div class="port-filter-pills">
-          <button class="port-pill active" data-filter="stage" data-value="all">All</button>
-          <button class="port-pill" data-filter="stage" data-value="seed">Seed</button>
-          <button class="port-pill" data-filter="stage" data-value="series-a">Series A</button>
-          <button class="port-pill" data-filter="stage" data-value="series-b">Series B+</button>
-          <button class="port-pill" data-filter="stage" data-value="acquired">Acquired</button>
-        </div>
-      </div>
     </div>
     <div class="port-count" id="port-count"></div>
 
     <div class="port-grid">
 
-      <a class="port-card reveal" href="https://ritual.co" target="_blank" rel="noopener" data-category="consumer" data-stage="series-b" data-featured="true">
-        <div class="port-card-logo"><img src="images/logo-ritual.png" alt="Ritual"></div>
-        <div class="port-card-photo"><img src="images/ray-reddy.jpg" alt="Ray Reddy"></div>
-        <div class="port-card-founder">Ray Reddy</div>
-        <div class="port-card-tag">Powering local commerce</div>
-        <div class="port-card-meta">
-          <span class="port-card-meta-item">From Waterloo</span>
-          <span class="port-card-meta-item">HQ Toronto</span>
-        </div>
-      </a>
-
-      <a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener" data-category="ai" data-stage="series-b" data-featured="true">
+<a class="port-card reveal" href="https://clay.com" target="_blank" rel="noopener" data-category="ai" data-stage="series-b" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-clay.png" alt="Clay"></div>
         <div class="port-card-photo"><img src="images/kareem-amin.jpg" alt="Kareem Amin"></div>
         <div class="port-card-founder">Kareem Amin</div>
@@ -316,7 +304,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener" data-category="media" data-stage="series-a">
+      <a class="port-card reveal" href="https://beatdapp.com" target="_blank" rel="noopener" data-category="saas" data-stage="series-a">
         <div class="port-card-logo"><img src="images/logo-beatdapp.png" alt="Beatdapp"></div>
         <div class="port-card-founder">Andrew Batey</div>
         <div class="port-card-tag">Tracking the streaming economy</div>
@@ -412,6 +400,7 @@
       </a>
 
       <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="fintech" data-stage="acquired" data-featured="true">
+        <span class="port-card-badge">Acquired</span>
         <div class="port-card-logo"><img src="images/logo-fey.png" alt="Fey"></div>
         <div class="port-card-founder">Thomas Russell</div>
         <div class="port-card-tag">Empowering retail investors</div>
@@ -421,7 +410,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="saas" data-stage="seed" data-featured="true">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed" data-featured="true">
         <div class="port-card-logo"><img src="images/logo-calico.png" alt="Calico"></div>
         <div class="port-card-photo"><img src="images/kathleen-chan.jpg" alt="Kathleen Chan"></div>
         <div class="port-card-founder">Kathleen Chan</div>
@@ -442,7 +431,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="consumer" data-stage="seed">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-naya.png" alt="Naya"></div>
         <div class="port-card-founder">Saad Rajan</div>
         <div class="port-card-tag">Co-creating the physical world</div>
@@ -625,7 +614,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="media" data-stage="seed">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-mythril.png" alt="Mythril"></div>
         <div class="port-card-founder">Taemin Kim</div>
         <div class="port-card-tag">Building timeless stories</div>
@@ -675,7 +664,7 @@
         </div>
       </a>
 
-      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="media" data-stage="seed">
+      <a class="port-card reveal" href="#" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-dn-korea.png" alt="DN Korea"></div>
         <div class="port-card-founder">Matthew Shampine</div>
         <div class="port-card-tag">Korean content for the world</div>
@@ -686,7 +675,7 @@
       </a>
 
 
-      <a class="port-card reveal" href="https://arternal.com" target="_blank" rel="noopener" data-category="saas" data-stage="seed">
+      <a class="port-card reveal" href="https://arternal.com" target="_blank" rel="noopener" data-category="ai" data-stage="seed">
         <div class="port-card-logo"><img src="images/logo-arternal.png" alt="Arternal"></div>
         <div class="port-card-founder">Sean Green</div>
         <div class="port-card-tag">Operating system for art galleries</div>
@@ -790,12 +779,10 @@
   // ── Portfolio filter ──
   let activeView     = 'featured';
   let activeCategory = 'all';
-  let activeStage    = 'all';
 
-  const cards      = document.querySelectorAll('.port-card');
-  const countEl    = document.getElementById('port-count');
-  const stageRow   = document.querySelector('.port-filter-row--stage');
-  const catRow     = document.querySelector('.port-filter-row:nth-child(2)');
+  const cards   = document.querySelectorAll('.port-card');
+  const countEl = document.getElementById('port-count');
+  const catRow  = document.querySelector('.port-filter-row:nth-child(2)');
 
   function applyFilters() {
     let visible = 0;
@@ -806,19 +793,14 @@
       if (activeView === 'featured') {
         show = card.dataset.featured === 'true';
       } else {
-        const catMatch   = activeCategory === 'all' || card.dataset.category === activeCategory;
-        const stageMatch = activeStage === 'all'    || card.dataset.stage    === activeStage;
-        show = catMatch && stageMatch;
+        show = activeCategory === 'all' || card.dataset.category === activeCategory;
       }
 
       card.classList.toggle('filtered-out', !show);
       if (show) visible++;
     });
 
-    // Show/hide secondary filters when in Featured view
-    const isFeatured = activeView === 'featured';
-    stageRow.classList.toggle('dimmed', isFeatured);
-    catRow.classList.toggle('dimmed', isFeatured);
+    catRow.classList.toggle('dimmed', activeView === 'featured');
 
     countEl.textContent = visible === cards.length
       ? `${visible} companies`
@@ -830,14 +812,12 @@
       const filterType = pill.dataset.filter;
       const value      = pill.dataset.value;
 
-      // Update active pill in this group
       document.querySelectorAll(`.port-pill[data-filter="${filterType}"]`)
         .forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
 
       if (filterType === 'view')     activeView     = value;
       if (filterType === 'category') activeCategory = value;
-      if (filterType === 'stage')    activeStage    = value;
 
       applyFilters();
     });
