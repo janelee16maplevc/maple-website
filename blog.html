@@ -185,7 +185,7 @@
       font-weight: 600;
     }
 
-    /* Operator Playbook coming soon */
+    /* Playbook coming soon */
     .op-soon {
       display: none;
       background: var(--black);
@@ -358,7 +358,7 @@
         </button>
 
         <button class="blog-cat-panel" data-filter="operator-playbook">
-          <p class="blog-cat-name">Operator Playbook</p>
+          <p class="blog-cat-name">Playbook</p>
           <p class="blog-cat-blurb">Lessons from builders, for builders.</p>
           <span class="blog-cat-arrow">View posts →</span>
         </button>
@@ -444,7 +444,7 @@
 <!-- OPERATOR PLAYBOOK COMING SOON -->
 <section class="op-soon" id="op-soon">
   <div class="op-soon-inner">
-    <span class="op-soon-label">Coming Soon · Operator Playbook</span>
+    <span class="op-soon-label">Coming Soon · Playbook</span>
     <h2 class="op-soon-title">The playbook from<br><em>inside the room.</em></h2>
     <p class="op-soon-body">Partners at Maple — alongside a bench of operators who were among the first 25 at companies like Stripe, Figma, and Slack — sharing the playbooks they wish they'd had at the earliest stages. Tactical, honest, and earned.</p>
     <div class="op-soon-partners">
@@ -750,7 +750,7 @@
     panels.forEach(p => p.classList.toggle('active', p.dataset.filter === filter));
     allBtn.classList.toggle('active', filter === 'all');
 
-    // Operator Playbook: swap grid for coming-soon section
+    // Playbook: swap grid for coming-soon section
     gridEl.style.display = isOP ? 'none' : '';
     opSoon.style.display = isOP ? 'block' : 'none';
 
