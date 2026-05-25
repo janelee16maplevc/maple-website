@@ -43,30 +43,6 @@
     }
     .blog-hero h1 em { color: var(--yellow); font-style: italic; }
 
-    /* ── News banner ── */
-    .blog-banner {
-      background: var(--yellow);
-      padding: 20px var(--pad);
-      display: flex; align-items: center; gap: 16px;
-    }
-    .blog-banner-tag {
-      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-      font-weight: 700; color: rgba(10,10,10,0.45); flex-shrink: 0;
-    }
-    .blog-banner-text {
-      font-family: var(--font-display);
-      font-size: clamp(15px, 1.8vw, 20px);
-      font-weight: 400; letter-spacing: -0.01em; color: var(--black);
-    }
-    .blog-banner-link {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none; color: var(--black);
-      border-bottom: 1px solid rgba(10,10,10,0.35); padding-bottom: 1px;
-      white-space: nowrap; flex-shrink: 0; margin-left: auto;
-      transition: border-color 0.2s;
-    }
-    .blog-banner-link:hover { border-color: var(--black); }
-
     /* ── Editorial feed ── */
     .blog-editorial {
       background: var(--cream);
@@ -356,13 +332,6 @@
     <h1>Memos from people<br>in <em>the arena.</em></h1>
   </div>
 </section>
-
-<!-- NEWS BANNER -->
-<div class="blog-banner">
-  <span class="blog-banner-tag">News</span>
-  <span class="blog-banner-text">Clay crosses $100M ARR. Maple was the first check in 2017.</span>
-  <a href="/first-check-clay.html" class="blog-banner-link">Read more →</a>
-</div>
 
 <!-- EDITORIAL FEED -->
 <section class="blog-editorial">
