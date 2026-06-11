@@ -372,6 +372,18 @@
 
     <div class="blog-grid" id="blog-grid">
 
+      <a class="blog-card reveal" href="/blog-john-edgar-vision.html" data-category="operator-playbook">
+        <div class="blog-card-img-placeholder">
+          <span>Vision</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Playbook</span>
+          <div class="blog-card-title">The Number One Thing Early Founders Get Wrong: Vision</div>
+          <p class="blog-card-desc">Founders confuse vision with dream. They're not the same thing — and confusing them is one of the major ways founders end up lost.</p>
+          <div class="blog-card-arrow">→</div>
+        </div>
+      </a>
+
       <a class="blog-card reveal" href="/memo-faith.html" data-category="memos">
         <div class="blog-card-img">
           <img src="images/andre-charoo.jpg" alt="Andre Charoo">
@@ -746,11 +758,8 @@
     panels.forEach(p => p.classList.toggle('active', p.dataset.filter === filter));
     allBtn.classList.toggle('active', filter === 'all');
 
-    // Playbook: swap grid for coming-soon section
-    gridEl.style.display = isOP ? 'none' : '';
-    opSoon.style.display = isOP ? 'block' : 'none';
-
-    if (isOP) { countEl.textContent = ''; emptyEl.textContent = ''; return; }
+    gridEl.style.display = '';
+    opSoon.style.display = 'none';
 
     let visible = 0;
     cards.forEach(card => {
