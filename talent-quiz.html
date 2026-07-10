@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ8F5Z98CX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RZ8F5Z98CX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Number Are You? — The Talent Framework Quiz — Maple VC</title>
+  <meta name="description" content="A 2-minute quiz based on Maple VC's Talent Framework. Find out if you're a 0 (Inventor), 1 (Builder), or 2 (Operator).">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&family=Nunito:wght@900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Hero ── */
+    .quiz-hero {
+      background: var(--black);
+      padding: clamp(90px, 12vh, 150px) var(--pad) clamp(56px, 8vh, 90px);
+      margin-top: var(--nav-h);
+    }
+    .quiz-hero-inner { max-width: 760px; }
+    .quiz-eyebrow {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 32px;
+    }
+    .quiz-cat { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--yellow); }
+    .quiz-cat-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,249,237,0.2); flex-shrink: 0; }
+    .quiz-author-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: rgba(255,249,237,0.3); }
+    .quiz-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 20px;
+    }
+    .quiz-hero h1 em { color: var(--yellow); font-style: italic; }
+    .quiz-hero-sub {
+      font-size: clamp(15px, 1.6vw, 17.5px);
+      color: rgba(255,249,237,0.5);
+      line-height: 1.65;
+      max-width: 54ch;
+      margin-bottom: 36px;
+    }
+    .quiz-legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+    .quiz-legend-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,249,237,0.14);
+      border-radius: 100px; padding: 8px 16px 8px 8px;
+    }
+    .quiz-legend-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--yellow); color: var(--black);
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .quiz-legend-label { font-size: 11.5px; color: rgba(255,249,237,0.6); letter-spacing: 0.02em; }
+
+    .quiz-btn-primary {
+      background: var(--yellow); color: var(--black);
+      border: 1.5px solid var(--yellow);
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 16px 30px; border-radius: 100px; cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.15s ease;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .quiz-btn-primary:hover { transform: translateY(-1px); background: #ffdb33; }
+    .quiz-meta-note { font-size: 11.5px; color: rgba(255,249,237,0.3); margin-left: 16px; letter-spacing: 0.03em; }
+
+    /* ── Body wrap ── */
+    .quiz-body {
+      background: var(--cream);
+      border-top: 1px solid rgba(10,10,10,0.07);
+      min-height: 60vh;
+    }
+    .quiz-body-inner {
+      max-width: 680px; margin: 0 auto;
+      padding: clamp(64px, 9vh, 96px) var(--pad);
+    }
+    .quiz-screen { display: none; }
+    .quiz-screen.active { display: block; animation: qFade .4s ease; }
+    @keyframes qFade { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:none;} }
+
+    /* progress */
+    .quiz-progress-track { height: 4px; background: rgba(10,10,10,0.08); border-radius: 4px; overflow: hidden; margin-bottom: 28px; }
+    .quiz-progress-fill { height: 100%; background: var(--black); width: 0%; transition: width .35s ease; }
+    .quiz-qcount {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35); margin-bottom: 14px;
+    }
+    .quiz-qtext {
+      font-family: var(--font-display);
+      font-size: clamp(23px, 3.4vw, 32px);
+      font-weight: 400; line-height: 1.2; letter-spacing: -0.02em;
+      color: var(--black); margin: 0 0 32px;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-opt {
+      text-align: left;
+      background: var(--cream);
+      border: 1.5px solid rgba(10,10,10,0.14);
+      color: var(--black);
+      padding: 18px 20px;
+      border-radius: 4px;
+      font-size: 15.5px; line-height: 1.5;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .quiz-opt:hover { background: rgba(255,209,0,0.16); border-color: rgba(10,10,10,0.3); }
+    .quiz-back {
+      margin-top: 24px; background: none; border: none;
+      color: rgba(10,10,10,0.35); font-size: 12px; letter-spacing: 0.04em;
+      cursor: pointer; font-family: 'Inter', sans-serif; padding: 0;
+    }
+    .quiz-back:hover { color: rgba(10,10,10,0.6); }
+
+    /* result */
+    .quiz-result-top { text-align: center; margin-bottom: 8px; }
+    .quiz-result-eyebrow {
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35); margin-bottom: 18px;
+    }
+    .quiz-result-number {
+      font-family: var(--font-display);
+      font-size: min(30vw, 160px);
+      font-weight: 400; line-height: 0.85; text-align: center; margin: 0;
+      letter-spacing: -0.02em;
+      color: var(--yellow);
+      -webkit-text-stroke: 2.5px var(--black);
+    }
+    .quiz-result-name {
+      text-align: center; font-family: var(--font-display); font-style: italic;
+      font-size: clamp(26px, 5vw, 40px); font-weight: 400;
+      margin: 4px 0 8px; letter-spacing: -0.02em; color: var(--black);
+    }
+    .quiz-result-tagline { text-align: center; color: rgba(10,10,10,0.45); font-size: 14.5px; margin-bottom: 32px; }
+
+    .quiz-result-card {
+      background: rgba(10,10,10,0.03);
+      border: 1px solid rgba(10,10,10,0.08);
+      border-radius: 6px;
+      padding: 26px 28px; margin-bottom: 20px;
+    }
+    .quiz-result-card p { font-size: 15.5px; line-height: 1.75; color: rgba(10,10,10,0.72); margin: 0; }
+
+    .quiz-split-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+    .quiz-split-card {
+      flex: 1; min-width: 220px;
+      background: var(--cream); border: 1px solid rgba(10,10,10,0.1);
+      border-radius: 6px; padding: 20px;
+    }
+    .quiz-split-card h4 {
+      margin: 0 0 12px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.35);
+    }
+    .quiz-chip-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .quiz-chip {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 6px 12px; border: 1.5px solid rgba(10,10,10,0.15); color: rgba(10,10,10,0.55);
+    }
+    .quiz-score-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12.5px; }
+    .quiz-score-num { font-family: var(--font-display); font-weight: 400; width: 14px; }
+    .quiz-score-track { flex: 1; height: 6px; background: rgba(10,10,10,0.08); border-radius: 4px; overflow: hidden; }
+    .quiz-score-fill { display: block; height: 100%; background: var(--black); }
+    .quiz-score-count { color: rgba(10,10,10,0.35); width: 18px; text-align: right; }
+
+    .quiz-pairing-card { margin-bottom: 20px; }
+    .quiz-pairing-note { font-size: 14px; color: rgba(10,10,10,0.6); line-height: 1.7; }
+    .quiz-pairing-note strong { color: var(--black); }
+
+    .quiz-share-row { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .quiz-share-btn {
+      flex: 1; min-width: 150px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; text-decoration: none; cursor: pointer;
+      padding: 13px 18px;
+      border: 1.5px solid rgba(10,10,10,0.15);
+      color: rgba(10,10,10,0.6);
+      background: transparent; font-family: 'Inter', sans-serif;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .quiz-share-btn:hover { background: var(--yellow); border-color: var(--black); color: var(--black); }
+
+    .quiz-retake {
+      display: block; margin: 26px auto 0; background: none; border: none;
+      color: rgba(10,10,10,0.4); font-size: 12.5px; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px; font-family: 'Inter', sans-serif;
+    }
+    .quiz-retake:hover { color: rgba(10,10,10,0.7); }
+
+    .quiz-article-link { text-align: center; margin-top: 14px; font-size: 13px; color: rgba(10,10,10,0.4); }
+    .quiz-article-link a { color: var(--black); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--yellow); }
+    .quiz-article-link a:hover { border-color: var(--black); }
+
+    @media (max-width: 480px) {
+      .quiz-legend { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Maple" style="height:32px;width:auto;max-width:none;"></a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html" class="active">Blog</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="quiz-hero">
+  <div class="quiz-hero-inner">
+    <div class="quiz-eyebrow">
+      <span class="quiz-cat">A Game</span>
+      <span class="quiz-cat-dot"></span>
+      <span class="quiz-author-label">Based on The Talent Arbitrage</span>
+    </div>
+    <h1>Which number<br>are <em>you?</em></h1>
+    <p class="quiz-hero-sub">We built a framework for evaluating early-stage teams around three archetypes: the Inventor, the Builder, and the Operator. Answer 13 questions about how you actually work — some of them uncomfortably honest — and we'll tell you your number.</p>
+    <div class="quiz-legend">
+      <span class="quiz-legend-chip"><span class="quiz-legend-num">0</span><span class="quiz-legend-label">Inventor — future risk</span></span>
+      <span class="quiz-legend-chip"><span class="quiz-legend-num">1</span><span class="quiz-legend-label">Builder — near-term motion</span></span>
+      <span class="quiz-legend-chip"><span class="quiz-legend-num">2</span><span class="quiz-legend-label">Operator — present risk</span></span>
+    </div>
+    <div>
+      <button class="quiz-btn-primary" onclick="startQuiz()">Find your number →</button>
+      <span class="quiz-meta-note">Takes about 3 minutes</span>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="quiz-body">
+  <div class="quiz-body-inner">
+
+    <!-- INTRO / entry note -->
+    <div class="quiz-screen active" id="screen-intro">
+      <p style="font-size:14px;color:rgba(10,10,10,0.4);text-align:center;">Ready? Hit the button above to begin — or <a href="/talent-arbitrage.html" style="color:var(--black);font-weight:600;">read the full essay first ↗</a></p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-screen" id="screen-quiz">
+      <div class="quiz-progress-track"><div class="quiz-progress-fill" id="progressFill"></div></div>
+      <div class="quiz-qcount" id="qCount">Question 1 / 8</div>
+      <div class="quiz-qtext" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <button class="quiz-back" id="backBtn" onclick="prevQuestion()">← Back</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="quiz-screen" id="screen-result">
+      <div class="quiz-result-top">
+        <div class="quiz-result-eyebrow">Your result</div>
+        <div class="quiz-result-number" id="resNumber">1</div>
+        <div class="quiz-result-name" id="resName">The Builder</div>
+        <div class="quiz-result-tagline" id="resTagline"></div>
+      </div>
+
+      <div class="quiz-result-card"><p id="resDesc"></p></div>
+
+      <div class="quiz-split-row">
+        <div class="quiz-split-card">
+          <h4>You're in good company</h4>
+          <div class="quiz-chip-list" id="resFamous"></div>
+        </div>
+        <div class="quiz-split-card">
+          <h4>Your score breakdown</h4>
+          <div id="resScores"></div>
+        </div>
+      </div>
+
+      <div class="quiz-split-card quiz-pairing-card">
+        <h4>Founder pairing note</h4>
+        <div class="quiz-pairing-note" id="resPairing"></div>
+      </div>
+
+      <div class="quiz-share-row">
+        <button class="quiz-share-btn" id="copyBtn" onclick="copyResult()">Copy my result</button>
+        <a class="quiz-share-btn" id="tweetBtn" href="#" target="_blank" rel="noopener">Share on X</a>
+      </div>
+
+      <button class="quiz-retake" onclick="restartQuiz()">Retake the quiz</button>
+      <div class="quiz-article-link">Based on our essay — <a href="/talent-arbitrage.html">Read The Talent Arbitrage ↗</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="reveal">Stay close to<br><em>Maple</em></h2>
+    <form id="nl-form" class="newsletter-form reveal d2" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required>
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      Maple VC<br>
+      Ferry Building, 1, Suite 201<br>
+      San Francisco, CA 94111<br>
+      hello@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/MapleVCFund" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+/* ---------------------------------------------------------
+   CONTENT — sourced from "The Talent Arbitrage" essay
+   --------------------------------------------------------- */
+const ARCHETYPES = {
+  inventor: {
+    num: 0,
+    name: "The Inventor",
+    tagline: "Future-facing. Idea-driven. Sees around corners.",
+    desc: "You manage future risk — the question in your head is always “will the market still care in five years?” You spot trends before anyone else, challenge conventional wisdom, and are usually the source of the breakthrough insight everyone else builds on top of.",
+    famous: ["Sergey Brin","Garrett Camp","Steve Wozniak","JB Straubel","Greg Brockman","Evan Wallace","Cameron Adams","Nicolae Rusan"]
+  },
+  builder: {
+    num: 1,
+    name: "The Builder",
+    tagline: "Product-first. Reality-oriented. Turns ideas into motion.",
+    desc: "You operate in the near-term future — already moving toward what's next instead of getting stuck theorizing or firefighting. You translate ideas into prototypes, learn faster than anyone in the room, and attract talent just by making the impossible feel inevitable.",
+    famous: ["Larry Page","Travis Kalanick","Steve Jobs","Elon Musk","Jeff Bezos","Mark Zuckerberg","Patrick Collison","Dylan Field","Kareem Amin","Melanie Perkins"]
+  },
+  operator: {
+    num: 2,
+    name: "The Operator",
+    tagline: "Structure-driven. Scale-minded. Turns motion into machinery.",
+    desc: "You manage present risk — process, cash flow, what's breaking right now. You bring order to complexity and build the systems, teams, and accountability that let a company grow beyond its founders.",
+    famous: ["Eric Schmidt","Dara Khosrowshahi","Tim Cook","Gwynne Shotwell","Andy Jassy","Dustin Moskovitz","John Collison","Praveer Melwani","Varun Anand","Cliff Obrecht"]
+  }
+};
+
+const QUESTIONS = [
+  { text: "You're stuck on a hard problem. What do you actually do?", options: [
+    { k:"inventor", t:"Zoom out — sketch where this could go in five years and chase the version nobody's building yet." },
+    { k:"builder", t:"Start prototyping something scrappy just to see if it's even possible." },
+    { k:"operator", t:"Break it into steps, find what's actually broken today, and fix that first." }
+  ]},
+  { text: "Your closest friends would describe you as the person who...", options: [
+    { k:"inventor", t:"Always has a wild idea before anyone else has caught up." },
+    { k:"builder", t:"Turns “someone should build this” into an actual thing, fast." },
+    { k:"operator", t:"Makes sure whatever exists actually works, on time, every time." }
+  ]},
+  { text: "It's 2am before a big deadline. Where's your head at?", options: [
+    { k:"inventor", t:"Reading something tangential that probably matters more than people realize." },
+    { k:"builder", t:"Still shipping — fixing the thing that's almost, almost working." },
+    { k:"operator", t:"Running the checklist so nothing breaks when it matters tomorrow." }
+  ]},
+  { text: "What actually keeps you up at night about a new venture?", options: [
+    { k:"inventor", t:"That the market won't exist, or won't care, five years from now." },
+    { k:"builder", t:"That momentum stalls before the idea becomes real." },
+    { k:"operator", t:"That the whole thing breaks under its own weight, right now." }
+  ]},
+  { text: "How would you describe your own background?", options: [
+    { k:"inventor", t:"Deep, sometimes obscure expertise in one specific domain." },
+    { k:"builder", t:"Nonlinear — it doesn't obviously qualify me for what I'm doing." },
+    { k:"operator", t:"A clean, logical narrative that maps directly to the job." }
+  ]},
+  { text: "Someone pokes a hole in your plan mid-meeting. Your instinct?", options: [
+    { k:"inventor", t:"Get energized — debating the idea out loud is how it gets sharper." },
+    { k:"builder", t:"“Let's just build it and find out” — arguing is slower than testing." },
+    { k:"operator", t:"Pressure-test it against the process and the numbers immediately." }
+  ]},
+  { text: "Why do people actually want to work with you?", options: [
+    { k:"inventor", t:"I see around corners before anyone else does." },
+    { k:"builder", t:"I make the impossible feel inevitable through sheer motion." },
+    { k:"operator", t:"I bring order and make the chaos survivable." }
+  ]},
+  { text: "In a company, where's your natural home?", options: [
+    { k:"inventor", t:"Imagining what's next, before there's language for it yet." },
+    { k:"builder", t:"Zero to one — creating something out of nothing." },
+    { k:"operator", t:"One to n — scaling what already works, without breaking it." }
+  ]},
+  { text: "A signed term sheet is sitting in your inbox. Ten minutes later, a customer emails saying the product breaks on their single most important use case. What actually happens first in your head?", options: [
+    { k:"inventor", t:"I wonder if we're even solving the right problem — maybe this is a sign to rethink the core idea." },
+    { k:"builder", t:"I'm already drafting a reply and sketching a fix before I've finished reading the email." },
+    { k:"operator", t:"I pull the data to see if this is one loud customer or an early signal of something systemic." }
+  ]},
+  { text: "You can only protect one of these for the rest of your career. Which one do you refuse to give up?", options: [
+    { k:"inventor", t:"The freedom to change your mind about what's true." },
+    { k:"builder", t:"The ability to just start, before anything is ready." },
+    { k:"operator", t:"A system you can trust to run without you watching it." }
+  ]},
+  { text: "Which uncomfortable truth is more likely to actually be about you?", options: [
+    { k:"inventor", t:"I get bored the moment an idea stops being uncertain, and it shows." },
+    { k:"builder", t:"I've shipped things I knew weren't ready because waiting felt worse." },
+    { k:"operator", t:"I've built process for problems that didn't exist yet, just to feel less anxious." }
+  ]},
+  { text: "A friend pitches you their new startup idea over coffee. Your honest first instinct is to...", options: [
+    { k:"inventor", t:"Question whether the core assumption is even true." },
+    { k:"builder", t:"Ask what's stopping them from having a working prototype by next week." },
+    { k:"operator", t:"Ask how they'd actually run this once they have 50 customers, not 5." }
+  ]},
+  { text: "Three years from now, which sentence would you rather have people say about you?", options: [
+    { k:"inventor", t:"“They called it before anyone else did — even if they weren't the one who built it.”" },
+    { k:"builder", t:"“They actually built the thing, even if a smarter version existed on paper.”" },
+    { k:"operator", t:"“Whatever they built didn't fall apart the moment they stopped watching it.”" }
+  ]}
+];
+
+/* ---------------------------------------------------------
+   STATE + LOGIC
+   --------------------------------------------------------- */
+let current = 0;
+let answers = [];
+let scores = { inventor:0, builder:0, operator:0 };
+
+function showScreen(id){
+  document.querySelectorAll('.quiz-screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector('.quiz-body').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function startQuiz(){
+  current = 0;
+  answers = [];
+  scores = { inventor:0, builder:0, operator:0 };
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById('qCount').textContent = `Question ${current+1} / ${QUESTIONS.length}`;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('progressFill').style.width = `${(current/QUESTIONS.length)*100}%`;
+  document.getElementById('backBtn').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  const optWrap = document.getElementById('qOptions');
+  optWrap.innerHTML = '';
+  q.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt.t;
+    btn.onclick = () => selectAnswer(opt.k);
+    optWrap.appendChild(btn);
+  });
+}
+
+function selectAnswer(key){
+  answers[current] = key;
+  scores[key]++;
+  if(current < QUESTIONS.length - 1){
+    current++;
+    renderQuestion();
+  } else {
+    document.getElementById('progressFill').style.width = `100%`;
+    setTimeout(showResult, 200);
+  }
+}
+
+function prevQuestion(){
+  if(current === 0) return;
+  if(answers[current] !== undefined){
+    scores[answers[current]]--;
+    answers[current] = undefined;
+  }
+  current--;
+  renderQuestion();
+}
+
+function restartQuiz(){ startQuiz(); }
+
+function showResult(){
+  const entries = Object.entries(scores);
+  const maxScore = Math.max(...entries.map(e=>e[1]));
+  const winners = entries.filter(e=>e[1]===maxScore).map(e=>e[0]);
+
+  let primaryKey, secondaryKey;
+  if(winners.length === 1){
+    primaryKey = winners[0];
+    const rest = entries.filter(e=>e[0]!==primaryKey).sort((a,b)=>b[1]-a[1]);
+    secondaryKey = rest[0][0];
+  } else {
+    if(winners.includes('builder')){
+      primaryKey = 'builder';
+      secondaryKey = winners.find(w=>w!=='builder');
+    } else {
+      primaryKey = winners[0];
+      secondaryKey = winners[1];
+    }
+  }
+
+  const primary = ARCHETYPES[primaryKey];
+  const secondary = ARCHETYPES[secondaryKey];
+  const isBlend = winners.length > 1;
+
+  document.getElementById('resNumber').textContent = isBlend ? `${ARCHETYPES[winners[0]].num}/${ARCHETYPES[winners[1]].num}` : primary.num;
+  document.getElementById('resName').textContent = isBlend ? `${ARCHETYPES[winners[0]].name} + ${ARCHETYPES[winners[1]].name}` : primary.name;
+  document.getElementById('resTagline').textContent = primary.tagline;
+  document.getElementById('resDesc').textContent = primary.desc + (isBlend ? ` You scored evenly with ${secondary.name.replace('The ','')} energy too — a real hybrid, and rarer than a clean single archetype.` : '');
+
+  const famousWrap = document.getElementById('resFamous');
+  famousWrap.innerHTML = '';
+  primary.famous.slice(0,6).forEach(name=>{
+    const c = document.createElement('span');
+    c.className = 'quiz-chip';
+    c.textContent = name;
+    famousWrap.appendChild(c);
+  });
+
+  const scoresWrap = document.getElementById('resScores');
+  scoresWrap.innerHTML = '';
+  [ARCHETYPES.inventor, ARCHETYPES.builder, ARCHETYPES.operator].forEach(a=>{
+    const key = Object.keys(ARCHETYPES).find(k=>ARCHETYPES[k]===a);
+    const row = document.createElement('div');
+    row.className = 'quiz-score-row';
+    row.innerHTML = `<span class="quiz-score-num">${a.num}</span>
+      <span class="quiz-score-track"><span class="quiz-score-fill" style="width:${(scores[key]/QUESTIONS.length)*100}%;"></span></span>
+      <span class="quiz-score-count">${scores[key]}</span>`;
+    scoresWrap.appendChild(row);
+  });
+
+  const pairingEl = document.getElementById('resPairing');
+  if(primaryKey === 'builder'){
+    pairingEl.innerHTML = `Per the framework, Builders come first — and pair best with either an <strong>Inventor (0)</strong> or an <strong>Operator (2)</strong>. Your scores lean toward <strong>${secondary.name}</strong>, so that's likely your natural complement.`;
+  } else if(primaryKey === 'inventor'){
+    pairingEl.innerHTML = `Inventors rarely go it alone — the framework says the Builder is almost always the catalyst that lets an Inventor's ideas take shape. Look for a <strong>Builder (1)</strong> to turn your insight into motion.`;
+  } else {
+    pairingEl.innerHTML = `Operators turn momentum into a durable company — but that momentum has to come from somewhere first. Look for a <strong>Builder (1)</strong> whose early traction needs your systems and structure.`;
+  }
+
+  const shareText = isBlend
+    ? `I'm a ${ARCHETYPES[winners[0]].num}/${ARCHETYPES[winners[1]].num} — ${ARCHETYPES[winners[0]].name} + ${ARCHETYPES[winners[1]].name} — on Maple VC's Talent Framework quiz.`
+    : `I'm a ${primary.num} — ${primary.name} — on Maple VC's Talent Framework quiz.`;
+  const shareUrl = window.location.href.split('?')[0];
+
+  document.getElementById('copyBtn').onclick = () => copyResult(shareText, shareUrl);
+  document.getElementById('tweetBtn').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+
+  showScreen('screen-result');
+}
+
+function copyResult(text, url){
+  const t = text || 'Take the Talent Framework quiz from Maple VC.';
+  const u = url || window.location.href;
+  navigator.clipboard.writeText(`${t} ${u}`).then(()=>{
+    const btn = document.getElementById('copyBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    setTimeout(()=>{ btn.textContent = original; }, 1800);
+  }).catch(()=>{
+    alert(`${t} ${u}`);
+  });
+}
+</script>
+</body>
+</html>
