@@ -45,33 +45,32 @@
 
     /* ── Featured ── */
     .blog-featured {
-      background: var(--black);
-      padding: 0 var(--pad) clamp(64px, 9vh, 100px);
+      background: var(--cream);
+      padding: clamp(56px, 8vh, 88px) var(--pad) clamp(16px, 3vh, 32px);
     }
     .blog-featured-inner { max-width: 1000px; margin: 0 auto; }
     .blog-featured-card {
       display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
-      text-decoration: none;
-      border: 1px solid rgba(255,249,237,0.1); border-radius: 10px;
-      padding: clamp(28px, 4vw, 48px);
-      transition: border-color 0.2s;
+      background: var(--yellow);
+      border-radius: 14px;
+      padding: clamp(28px, 4vw, 52px);
+      box-shadow: 0 20px 50px rgba(10,10,10,0.14);
     }
-    .blog-featured-card:hover { border-color: rgba(255,249,237,0.25); }
     @media (max-width: 800px) { .blog-featured-card { grid-template-columns: 1fr; gap: 28px; } }
 
     .blog-featured-eyebrow {
       font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
-      font-weight: 700; color: var(--yellow); margin-bottom: 20px; display: block;
+      font-weight: 700; color: rgba(10,10,10,0.55); margin-bottom: 20px; display: block;
     }
     .blog-featured-title {
       font-family: var(--font-display);
       font-size: clamp(28px, 3.6vw, 44px);
       font-weight: 400; line-height: 1.05; letter-spacing: -0.03em;
-      color: var(--cream); margin: 0 0 16px;
+      color: var(--black); margin: 0 0 16px;
     }
-    .blog-featured-title em { color: var(--yellow); font-style: italic; }
+    .blog-featured-title em { font-style: italic; }
     .blog-featured-desc {
-      font-size: 15px; line-height: 1.7; color: rgba(255,249,237,0.5); margin: 0 0 28px; max-width: 46ch;
+      font-size: 15px; line-height: 1.7; color: rgba(10,10,10,0.65); margin: 0 0 28px; max-width: 46ch;
     }
     .blog-featured-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .blog-featured-btn {
@@ -81,15 +80,14 @@
       transition: transform 0.15s ease;
     }
     .blog-featured-btn:hover { transform: translateY(-1px); }
-    .blog-featured-btn.primary { background: var(--yellow); color: var(--black); }
-    .blog-featured-btn.secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(255,249,237,0.22); }
-    .blog-featured-btn.secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+    .blog-featured-btn.primary { background: var(--black); color: var(--cream); }
+    .blog-featured-btn.secondary { background: transparent; color: var(--black); border: 1.5px solid rgba(10,10,10,0.3); }
+    .blog-featured-btn.secondary:hover { border-color: var(--black); }
 
     .blog-featured-visual {
-      aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
+      aspect-ratio: 4/3; border-radius: 10px; overflow: hidden;
       display: flex; align-items: center; justify-content: center; gap: 16px;
-      background: linear-gradient(135deg, rgba(255,209,0,0.1), rgba(255,209,0,0.02));
-      border: 1px solid rgba(255,249,237,0.08);
+      background: var(--black);
     }
     .blog-featured-num {
       font-family: var(--font-display); font-weight: 400; text-align: center;
@@ -455,6 +453,18 @@
     </div>
 
     <div class="blog-grid" id="blog-grid">
+
+      <a class="blog-card reveal" href="/talent-arbitrage.html" data-category="operator-playbook">
+        <div class="blog-card-img">
+          <img src="images/kareem-amin.jpg" alt="The Talent Arbitrage">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Playbook</span>
+          <div class="blog-card-title">The Talent Arbitrage</div>
+          <p class="blog-card-desc">The hidden pattern behind the best founding teams — and why the archetype most investors overlook is the one that matters most.</p>
+          <div class="blog-card-arrow">→</div>
+        </div>
+      </a>
 
       <a class="blog-card reveal" href="/talent-quiz.html" data-category="operator-playbook">
         <div class="blog-card-img-placeholder" style="background:var(--black);">
