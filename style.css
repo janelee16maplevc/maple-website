@@ -128,7 +128,7 @@ button, input, textarea { font-family: inherit; }
 ════════════════════════════════════════ */
 .hero {
   background: var(--yellow);
-  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(48px, 7vh, 88px);
+  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(100px, 16vh, 180px);
   min-height: 68vh;
   display: flex; align-items: flex-end;
 }
