@@ -43,6 +43,68 @@
     }
     .blog-hero h1 em { color: var(--yellow); font-style: italic; }
 
+    /* ── Featured ── */
+    .blog-featured {
+      background: var(--black);
+      padding: 0 var(--pad) clamp(64px, 9vh, 100px);
+    }
+    .blog-featured-inner { max-width: 1000px; margin: 0 auto; }
+    .blog-featured-card {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+      text-decoration: none;
+      border: 1px solid rgba(255,249,237,0.1); border-radius: 10px;
+      padding: clamp(28px, 4vw, 48px);
+      transition: border-color 0.2s;
+    }
+    .blog-featured-card:hover { border-color: rgba(255,249,237,0.25); }
+    @media (max-width: 800px) { .blog-featured-card { grid-template-columns: 1fr; gap: 28px; } }
+
+    .blog-featured-eyebrow {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 700; color: var(--yellow); margin-bottom: 20px; display: block;
+    }
+    .blog-featured-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.6vw, 44px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 16px;
+    }
+    .blog-featured-title em { color: var(--yellow); font-style: italic; }
+    .blog-featured-desc {
+      font-size: 15px; line-height: 1.7; color: rgba(255,249,237,0.5); margin: 0 0 28px; max-width: 46ch;
+    }
+    .blog-featured-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .blog-featured-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 700; text-decoration: none; padding: 14px 24px; border-radius: 100px;
+      transition: transform 0.15s ease;
+    }
+    .blog-featured-btn:hover { transform: translateY(-1px); }
+    .blog-featured-btn.primary { background: var(--yellow); color: var(--black); }
+    .blog-featured-btn.secondary { background: transparent; color: var(--cream); border: 1.5px solid rgba(255,249,237,0.22); }
+    .blog-featured-btn.secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .blog-featured-visual {
+      aspect-ratio: 4/3; border-radius: 8px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      background: linear-gradient(135deg, rgba(255,209,0,0.1), rgba(255,209,0,0.02));
+      border: 1px solid rgba(255,249,237,0.08);
+    }
+    .blog-featured-num {
+      font-family: var(--font-display); font-weight: 400; text-align: center;
+      color: rgba(255,249,237,0.18);
+      -webkit-text-stroke: 1px rgba(255,249,237,0.14);
+      font-size: clamp(38px, 5vw, 58px);
+    }
+    .blog-featured-num.lead {
+      color: var(--yellow);
+      -webkit-text-stroke: 1.5px rgba(10,10,10,0.9);
+      font-size: clamp(64px, 9vw, 104px);
+      transform: translateY(-6px);
+    }
+    @media (max-width: 800px) { .blog-featured-visual { aspect-ratio: 21/9; } }
+
     /* ── Editorial feed ── */
     .blog-editorial {
       background: var(--cream);
@@ -338,6 +400,28 @@
   </div>
 </section>
 
+<!-- FEATURED -->
+<section class="blog-featured">
+  <div class="blog-featured-inner">
+    <div class="blog-featured-card reveal">
+      <div class="blog-featured-copy">
+        <span class="blog-featured-eyebrow">Featured · Playbook</span>
+        <h2 class="blog-featured-title">The Talent <em>Arbitrage</em></h2>
+        <p class="blog-featured-desc">The hidden pattern behind the best founding teams — and why the archetype most investors overlook is the one that matters most.</p>
+        <div class="blog-featured-actions">
+          <a class="blog-featured-btn primary" href="/talent-arbitrage.html">Read the essay →</a>
+          <a class="blog-featured-btn secondary" href="/talent-quiz.html">Take the quiz →</a>
+        </div>
+      </div>
+      <div class="blog-featured-visual">
+        <span class="blog-featured-num">0</span>
+        <span class="blog-featured-num lead">1</span>
+        <span class="blog-featured-num">2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EDITORIAL FEED -->
 <section class="blog-editorial">
   <div class="blog-editorial-inner">
@@ -371,6 +455,18 @@
     </div>
 
     <div class="blog-grid" id="blog-grid">
+
+      <a class="blog-card reveal" href="/talent-quiz.html" data-category="operator-playbook">
+        <div class="blog-card-img-placeholder" style="background:var(--black);">
+          <span style="color:var(--yellow);-webkit-text-stroke:0;">0 · 1 · 2</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">Quiz</span>
+          <div class="blog-card-title">Which Number Are You?</div>
+          <p class="blog-card-desc">A 3-minute quiz based on our Talent Framework. Find out if you're an Inventor, a Builder, or an Operator.</p>
+          <div class="blog-card-arrow">→</div>
+        </div>
+      </a>
 
       <a class="blog-card reveal" href="/blog-john-edgar-vision.html" data-category="operator-playbook">
         <div class="blog-card-img">

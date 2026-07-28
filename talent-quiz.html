@@ -201,6 +201,25 @@
     .quiz-article-link a { color: var(--black); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--yellow); }
     .quiz-article-link a:hover { border-color: var(--black); }
 
+    /* ── Capture gate ── */
+    .quiz-capture-top { text-align: center; margin-bottom: 32px; }
+    .quiz-capture-top .quiz-qtext { text-align: center; margin-bottom: 8px; }
+    .quiz-capture-sub { font-size: 14.5px; color: rgba(10,10,10,0.5); }
+    .quiz-capture-form { display: flex; flex-direction: column; gap: 14px; max-width: 420px; margin: 0 auto; }
+    .quiz-capture-input {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px; color: var(--black);
+      background: rgba(10,10,10,0.03);
+      border: 1.5px solid rgba(10,10,10,0.14);
+      padding: 15px 16px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%; box-sizing: border-box;
+    }
+    .quiz-capture-input:focus { border-color: var(--black); background: #fff; }
+    .quiz-capture-input::placeholder { color: rgba(10,10,10,0.32); }
+    .quiz-capture-note { font-size: 11.5px; color: rgba(10,10,10,0.35); text-align: center; margin-top: 4px; }
+
     @media (max-width: 480px) {
       .quiz-legend { gap: 8px; }
     }
@@ -259,6 +278,25 @@
       <div class="quiz-qtext" id="qText"></div>
       <div class="quiz-options" id="qOptions"></div>
       <button class="quiz-back" id="backBtn" onclick="prevQuestion()">← Back</button>
+    </div>
+
+    <!-- CAPTURE -->
+    <div class="quiz-screen" id="screen-capture">
+      <div class="quiz-capture-top">
+        <div class="quiz-result-eyebrow">One last step</div>
+        <div class="quiz-qtext">Where should we send your result?</div>
+        <p class="quiz-capture-sub">Enter your details to reveal your number.</p>
+      </div>
+      <form class="quiz-capture-form" name="talent-quiz" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="captureForm">
+        <input type="hidden" name="form-name" value="talent-quiz">
+        <input type="hidden" name="result" id="captureResult">
+        <p style="display:none"><input name="bot-field"></p>
+        <input class="quiz-capture-input" type="text" name="name" placeholder="Your name" required>
+        <input class="quiz-capture-input" type="email" name="email" placeholder="Your email" required>
+        <input class="quiz-capture-input" type="text" name="company" placeholder="Company" required>
+        <button class="quiz-btn-primary" type="submit" style="justify-content:center;">See my result →</button>
+        <p class="quiz-capture-note">We'll only use this to send you your result and occasional Maple updates.</p>
+      </form>
     </div>
 
     <!-- RESULT -->
@@ -479,8 +517,19 @@ function selectAnswer(key){
     renderQuestion();
   } else {
     document.getElementById('progressFill').style.width = `100%`;
-    setTimeout(showResult, 200);
+    setTimeout(goToCapture, 200);
   }
+}
+
+let pendingResult = null;
+
+function goToCapture(){
+  pendingResult = computeResult();
+  const label = pendingResult.isBlend
+    ? `${ARCHETYPES[pendingResult.winners[0]].num}/${ARCHETYPES[pendingResult.winners[1]].num} — ${ARCHETYPES[pendingResult.winners[0]].name} + ${ARCHETYPES[pendingResult.winners[1]].name}`
+    : `${pendingResult.primary.num} — ${pendingResult.primary.name}`;
+  document.getElementById('captureResult').value = label;
+  showScreen('screen-capture');
 }
 
 function prevQuestion(){
@@ -495,7 +544,7 @@ function prevQuestion(){
 
 function restartQuiz(){ startQuiz(); }
 
-function showResult(){
+function computeResult(){
   const entries = Object.entries(scores);
   const maxScore = Math.max(...entries.map(e=>e[1]));
   const winners = entries.filter(e=>e[1]===maxScore).map(e=>e[0]);
@@ -518,6 +567,12 @@ function showResult(){
   const primary = ARCHETYPES[primaryKey];
   const secondary = ARCHETYPES[secondaryKey];
   const isBlend = winners.length > 1;
+
+  return { primaryKey, secondaryKey, primary, secondary, isBlend, winners };
+}
+
+function showResult(){
+  const { primaryKey, secondaryKey, primary, secondary, isBlend, winners } = pendingResult;
 
   document.getElementById('resNumber').textContent = isBlend ? `${ARCHETYPES[winners[0]].num}/${ARCHETYPES[winners[1]].num}` : primary.num;
   document.getElementById('resName').textContent = isBlend ? `${ARCHETYPES[winners[0]].name} + ${ARCHETYPES[winners[1]].name}` : primary.name;
@@ -577,6 +632,19 @@ function copyResult(text, url){
     alert(`${t} ${u}`);
   });
 }
+
+const captureForm = document.getElementById('captureForm');
+captureForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = captureForm.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  const data = new FormData(captureForm);
+  fetch('/', { method: 'POST', body: data })
+    .then(showResult)
+    .catch(showResult)
+    .finally(() => { btn.disabled = false; btn.textContent = 'See my result →'; });
+});
 </script>
 </body>
 </html>
