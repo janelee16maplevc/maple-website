@@ -38,48 +38,80 @@
     /* ── Hero: visual gap between "first." and second line ── */
     .hero-spacer { display: block; height: 0.45em; }
 
+    /* ── Stories (homepage blog feed) ── */
+    .stories-hp {
+      background: var(--cream);
+      padding: clamp(80px, 11vh, 130px) var(--pad);
+    }
+    .stories-hp-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .stories-hp-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 36px 28px;
+    }
+    @media (max-width: 900px) { .stories-hp-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .stories-hp-grid { grid-template-columns: 1fr; } }
+
+    .story-card { text-decoration: none; color: var(--black); display: block; }
+    .story-card-img {
+      position: relative; width: 100%; aspect-ratio: 4/5;
+      overflow: hidden; background: rgba(10,10,10,0.06);
+      border-radius: 6px;
+    }
+    .story-card-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      display: block;
+      filter: grayscale(100%) contrast(1.02);
+      transition: transform 0.6s ease, filter 0.5s ease;
+    }
+    .story-card:hover .story-card-img img { transform: scale(1.06); filter: grayscale(0%) contrast(1.02); }
+    .story-card-num {
+      position: absolute; bottom: 10px; right: 14px; z-index: 2;
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(48px, 6vw, 80px); line-height: 1;
+      color: rgba(255,255,255,0.5);
+      mix-blend-mode: difference;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .story-card:hover .story-card-num { opacity: 0; transform: translateY(6px); }
+    .story-card-img.dark { background: var(--black); }
+    .story-card-img.dark .story-card-quiz-text {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(22px, 2.6vw, 32px); color: var(--yellow);
+      letter-spacing: 0.02em;
+    }
+    .story-card-cat {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 700; color: #fff;
+      background: rgba(10,10,10,0.5); backdrop-filter: blur(4px);
+      padding: 6px 11px; border-radius: 100px;
+    }
+    .story-card-overlay {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      padding: 40px 18px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+    }
+    .story-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.7vw, 23px);
+      font-weight: 400; letter-spacing: -0.015em; line-height: 1.2;
+      margin: 0 0 6px; color: #fff;
+    }
+    .story-card-byline {
+      font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.75); margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .stories-hp-footer { margin-top: 48px; text-align: center; }
+
     /* ── Hero meta: "Networks" heading label ── */
     .hero-meta-label {
       font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
       color: rgba(10,10,10,0.65); font-weight: 700;
     }
 
-    /* ── Founder headshots — full-width photo bleed ── */
-    .founder-headshot {
-      width: calc(100% + 48px);
-      margin: -28px -24px 20px -24px;
-      height: 200px;
-      border-radius: 0;
-      background: rgba(10,10,10,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px; font-weight: 700; letter-spacing: 0.05em;
-      color: rgba(10,10,10,0.2);
-      flex-shrink: 0; overflow: hidden;
-      position: relative;
-    }
-    .founder-headshot--photo { background: rgba(10,10,10,0.08); }
-    .founder-headshot--photo img {
-      width: 100%; height: 100%; object-fit: cover; object-position: top center;
-      filter: grayscale(100%);
-      transition: opacity 0.3s ease;
-    }
-    .founder-headshot:hover > img { opacity: 0; }
-
-    /* ── Company logo overlay on hover ── */
-    .founder-logo-overlay {
-      position: absolute; inset: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-    .founder-logo-overlay img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-    }
-    .founder-headshot:hover .founder-logo-overlay { opacity: 1; }
 
     /* ── Company logos (Simple Icons) ── */
     .co-logo {
@@ -99,174 +131,6 @@
       display: block; margin-bottom: 24px;
     }
 
-    /* ── How We Find Our Founders ── */
-    .find-founders {
-      background: var(--yellow);
-      padding: clamp(72px, 10vh, 120px) var(--pad) 0;
-    }
-    .find-founders-inner { max-width: var(--max-w); margin: 0 auto; }
-
-    .find-founders-heading {
-      font-family: var(--font-display);
-      font-size: clamp(44px, 6vw, 88px);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.025em;
-      color: var(--black); margin-bottom: 64px; max-width: 900px;
-    }
-    .find-founders-heading em { font-style: italic; color: #fff; font-weight: 400; }
-    .find-founders-sub {
-      font-size: clamp(14px, 1.5vw, 18px);
-      line-height: 1.7; color: rgba(10,10,10,0.55);
-      max-width: 680px; margin: -32px 0 0;
-    }
-
-    .find-founders-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: rgba(10,10,10,0.12);
-    }
-    @media (max-width: 800px) { .find-founders-grid { grid-template-columns: 1fr; } }
-
-    .find-col { background: var(--yellow); padding: 40px 32px; }
-    .find-col-num {
-      display: block;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
-      color: var(--black); margin-bottom: 20px;
-    }
-    .find-col-title {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 2.8vw, 42px);
-      font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
-      color: var(--black); margin-bottom: 18px;
-    }
-    .find-col-title em { color: rgba(10,10,10,0.42); font-style: italic; }
-    .find-col-body { font-size: 15px; line-height: 1.75; color: rgba(10,10,10,0.6); }
-
-    /* ── First Check bridge + cards ── */
-    .first-check-bridge { padding: 32px 0 0; }
-    .first-check-bridge-intro {
-      display: flex; align-items: flex-end;
-      justify-content: flex-end; gap: 40px;
-      margin-bottom: 0; flex-wrap: wrap;
-      padding-bottom: 0;
-    }
-    .first-check-bridge-copy {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3.5vw, 52px);
-      font-style: italic; font-weight: 400;
-      color: var(--black); line-height: 1.1;
-      letter-spacing: -0.02em;
-      max-width: 640px;
-    }
-    .first-check-bridge-link {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none; color: var(--black);
-      border-bottom: 1px solid rgba(10,10,10,0.3); padding-bottom: 2px;
-      white-space: nowrap; flex-shrink: 0; opacity: 0.55; transition: opacity 0.2s;
-    }
-    .first-check-bridge-link:hover { opacity: 1; }
-
-    .first-check-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: rgba(10,10,10,0.12);
-    }
-    @media (max-width: 860px) { .first-check-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 500px)  { .first-check-grid { grid-template-columns: 1fr; } }
-
-    .fc-card {
-      background: var(--yellow); text-decoration: none; color: var(--black);
-      display: flex; flex-direction: column; transition: background 0.2s;
-    }
-    .fc-card:hover { background: rgba(10,10,10,0.05); }
-    .fc-card-img {
-      width: 100%; aspect-ratio: 4/3; background: rgba(10,10,10,0.08);
-      overflow: hidden; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .fc-card-img img {
-      width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%);
-      transition: transform 0.4s ease;
-    }
-    .fc-card:hover .fc-card-img img { transform: scale(1.03); }
-    .fc-card-img-placeholder {
-      font-family: var(--font-display); font-style: italic; font-weight: 400;
-      font-size: clamp(24px, 3.5vw, 40px); color: rgba(10,10,10,0.13); letter-spacing: -0.02em;
-    }
-    .fc-card-body { padding: 24px 22px 28px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
-    .fc-card-tag {
-      font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase;
-      font-weight: 700; color: rgba(10,10,10,0.35);
-    }
-    .fc-card-company {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.2vw, 28px); font-weight: 400; letter-spacing: -0.015em; line-height: 1.05;
-    }
-    .fc-card-desc { font-size: 13px; line-height: 1.65; color: rgba(10,10,10,0.5); margin-top: 4px; flex: 1; }
-    .fc-card-meta { font-size: 14px; line-height: 1.7; color: rgba(10,10,10,0.75); font-weight: 500; }
-    .fc-card-arrow { font-size: 13px; opacity: 0.25; margin-top: 12px; transition: opacity 0.2s, transform 0.2s; }
-    .fc-card:hover .fc-card-arrow { opacity: 1; transform: translateX(4px); }
-    .first-check-bridge-footer {
-      padding: 28px 0 0; display: flex; justify-content: flex-end;
-    }
-
-    /* ── Team (homepage) ── */
-    .team-hp {
-      background: var(--cream);
-      padding: clamp(80px, 11vh, 140px) var(--pad);
-      border-top: 1px solid rgba(10,10,10,0.07);
-    }
-    .team-hp-inner { max-width: var(--max-w); margin: 0 auto; }
-    .team-hp-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 48px; gap: 24px;
-    }
-    .team-hp-title {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 58px);
-      font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
-      margin: 0 0 10px;
-    }
-    .team-hp-subtitle {
-      font-size: clamp(14px, 1.4vw, 18px);
-      color: rgba(10,10,10,0.5); line-height: 1.6; margin: 0;
-    }
-    .team-hp-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: rgba(10,10,10,0.07);
-    }
-    @media (max-width: 720px) { .team-hp-grid { grid-template-columns: 1fr; } }
-
-    .team-hp-card {
-      background: var(--cream);
-      text-decoration: none; color: var(--black);
-      display: flex; flex-direction: column;
-      transition: background 0.2s;
-    }
-    .team-hp-card:hover { background: var(--yellow); }
-    .team-hp-photo {
-      width: 100%; aspect-ratio: 3/4;
-      overflow: hidden; background: rgba(10,10,10,0.06);
-      flex-shrink: 0;
-    }
-    .team-hp-photo img {
-      width: 100%; height: 100%; object-fit: cover; object-position: top center;
-      display: block; filter: grayscale(100%);
-      transition: transform 0.4s ease;
-    }
-    .team-hp-card:hover .team-hp-photo img { transform: scale(1.03); filter: grayscale(0%); }
-    .team-hp-info { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .team-hp-role {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; color: var(--muted);
-    }
-    .team-hp-name {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.5vw, 32px);
-      font-weight: 400; letter-spacing: -0.015em; line-height: 1.05;
-    }
-    .team-hp-bio {
-      font-size: 13px; line-height: 1.7; color: rgba(10,10,10,0.5);
-      margin-top: 6px;
-    }
-    }
 
     /* ── Thesis: single column ── */
     .thesis-inner {
@@ -356,174 +220,6 @@
     }
     .framework-blog-link:hover { color: var(--black); border-color: rgba(10,10,10,0.45); }
 
-    /* ══════════════════════════════════════
-       NETWORKS SECTION (homepage)
-    ══════════════════════════════════════ */
-    .networks-hp {
-      background: var(--black);
-      padding: clamp(80px, 11vh, 140px) var(--pad);
-      border-top: 1px solid rgba(255,249,237,0.05);
-    }
-    .networks-hp-inner { max-width: var(--max-w); margin: 0 auto; }
-
-    /* Top: intro copy */
-    .networks-hp-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 6vw, 100px);
-      align-items: end;
-      margin-bottom: clamp(56px, 8vh, 96px);
-      padding-bottom: clamp(48px, 7vh, 80px);
-      border-bottom: 1px solid rgba(255,249,237,0.07);
-    }
-    @media (max-width: 760px) {
-      .networks-hp-intro { grid-template-columns: 1fr; gap: 28px; }
-    }
-    .networks-hp-intro h2 {
-      font-family: var(--font-display);
-      font-size: clamp(52px, 7.5vw, 110px);
-      font-weight: 400; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--cream);
-    }
-    .networks-hp-intro h2 em { color: var(--yellow); font-style: italic; }
-    .networks-hp-right { display: flex; flex-direction: column; justify-content: flex-end; gap: 28px; }
-    .networks-hp-body {
-      font-size: clamp(14px, 1.5vw, 17px); line-height: 1.85;
-      color: rgba(255,249,237,0.4);
-    }
-    .networks-hp-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none;
-      color: var(--yellow);
-      border-bottom: 1px solid rgba(255,209,0,0.25); padding-bottom: 3px;
-      transition: border-color 0.2s, gap 0.2s;
-      align-self: flex-start;
-    }
-    .networks-hp-cta:hover { border-color: var(--yellow); gap: 14px; }
-
-    /* Four network panels */
-    .networks-hp-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: rgba(255,249,237,0.06);
-    }
-    @media (max-width: 900px) {
-      .networks-hp-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 540px) {
-      .networks-hp-grid { grid-template-columns: 1fr; }
-    }
-    .network-hp-cell {
-      background: var(--black);
-      padding: clamp(32px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
-      text-decoration: none;
-      display: block;
-      transition: background 0.22s;
-    }
-    .network-hp-cell:hover { background: #111; }
-    .network-hp-num {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 13px; letter-spacing: 0.04em;
-      color: rgba(255,209,0,0.35);
-      margin-bottom: 20px;
-      display: block;
-    }
-    .network-hp-name {
-      font-family: var(--font-display);
-      font-size: clamp(30px, 3.5vw, 52px);
-      font-weight: 400; letter-spacing: -0.025em; line-height: 1.0;
-      color: var(--cream);
-      margin-bottom: 20px;
-    }
-    .network-hp-name em { color: #fff; font-style: italic; }
-    .network-hp-body {
-      font-size: 13.5px; line-height: 1.8;
-      color: rgba(255,249,237,0.38);
-      border-top: 1px solid rgba(255,249,237,0.07);
-      padding-top: 20px;
-    }
-
-    /* ── First Check featured blog ── */
-    .first-check {
-      background: var(--black);
-      padding: clamp(64px, 9vh, 110px) var(--pad);
-      border-top: 1px solid rgba(255,249,237,0.05);
-    }
-    .first-check-inner { max-width: var(--max-w); margin: 0 auto; }
-    .first-check-eyebrow {
-      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,249,237,0.3); font-weight: 600; margin-bottom: 40px;
-    }
-    .first-check-card {
-      display: grid; grid-template-columns: 260px 1fr auto;
-      gap: clamp(32px, 5vw, 72px); align-items: start;
-      border-top: 1px solid rgba(255,249,237,0.08); padding-top: 40px;
-    }
-    .first-check-image {
-      align-self: stretch; min-height: 260px;
-      background: rgba(255,249,237,0.05);
-      overflow: hidden;
-    }
-    .first-check-image img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center;
-      display: block;
-    }
-    .first-check-tag {
-      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--yellow); font-weight: 700; margin-bottom: 18px;
-    }
-    .first-check-title {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 54px);
-      font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
-      color: var(--cream); max-width: 680px; margin-bottom: 20px;
-    }
-    .first-check-desc {
-      font-size: clamp(14px, 1.5vw, 16px); line-height: 1.8;
-      color: rgba(255,249,237,0.4); max-width: 540px; margin-bottom: 32px;
-    }
-    .first-check-cta {
-      font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none; color: var(--yellow);
-      border-bottom: 1px solid rgba(255,209,0,0.3); padding-bottom: 3px;
-      transition: border-color 0.2s;
-    }
-    .first-check-cta:hover { border-color: var(--yellow); }
-    .first-check-stat { text-align: right; align-self: end; }
-    .first-check-stat-num {
-      font-family: var(--font-display);
-      font-size: clamp(56px, 9vw, 108px);
-      font-weight: 400; line-height: 1; letter-spacing: -0.03em;
-      color: var(--yellow);
-    }
-    .first-check-stat-label {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,249,237,0.25); font-weight: 600; margin-top: 6px;
-    }
-    @media (max-width: 860px) {
-      .first-check-card { grid-template-columns: 1fr auto; }
-    }
-    @media (max-width: 640px) {
-      .first-check-card { display: flex; flex-direction: column; }
-      .first-check-image { display: block; order: -1; min-height: 200px; width: 100%; }
-      .first-check-stat { display: none; }
-    }
-
-    /* ── Press card thumbnail ── */
-    .press-img {
-      flex-shrink: 0;
-      height: 152px;
-      overflow: hidden;
-      margin: -32px -28px 0 -28px;
-      background: rgba(10,10,10,0.06);
-    }
-    .press-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: grayscale(100%);
-    }
   </style>
 </head>
 <body>
@@ -551,374 +247,110 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ FOUNDERS ═══════════════════════ -->
-<section class="founders">
-  <div class="section-header reveal">
-    <span class="section-label">Our Founders</span>
-    <a href="/portfolio.html" class="link-arrow">See all companies →</a>
-  </div>
 
-  <div class="founders-scroll">
+<!-- ═══════════════════════ STORIES ═══════════════════════ -->
+<section class="stories-hp">
+  <div class="stories-hp-inner">
+    <div class="stories-hp-grid">
 
-    <div class="founder-card reveal">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/kareem-amin.jpg" alt="Kareem Amin">
-        <div class="founder-logo-overlay"><img src="images/logo-clay.png" alt="Clay"></div>
-      </div>
-      <div class="founder-name">Kareem Amin</div>
-      <div class="founder-co">Clay</div>
-      <div class="founder-tag">Helping businesses grow with the most powerful data platform</div>
-      <div class="founder-uni">From McGill</div>
-    </div>
-
-    <div class="founder-card reveal d1">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/kathleen-chan.jpg" alt="Kathleen Chan">
-        <div class="founder-logo-overlay"><img src="images/logo-calico.png" alt="Calico"></div>
-      </div>
-      <div class="founder-name">Kathleen Chan</div>
-      <div class="founder-co">Calico</div>
-      <div class="founder-tag">Making supply chains transparent</div>
-      <div class="founder-uni">From U of T</div>
-    </div>
-
-    <div class="founder-card reveal d2">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/matt-loszak.jpg" alt="Matt Loszak">
-        <div class="founder-logo-overlay"><img src="images/logo-aalo.png" alt="Aalo"></div>
-      </div>
-      <div class="founder-name">Matt Loszak</div>
-      <div class="founder-co">Aalo</div>
-      <div class="founder-tag">Powering the world</div>
-      <div class="founder-uni">From Queen's</div>
-    </div>
-
-    <div class="founder-card reveal d3">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/andrew-chau.jpg" alt="Andrew Chau">
-        <div class="founder-logo-overlay"><img src="images/logo-neo.png" alt="Neo Financial"></div>
-      </div>
-      <div class="founder-name">Andrew Chau</div>
-      <div class="founder-co">Neo Financial</div>
-      <div class="founder-tag">Building Canada's next great bank from the ground up</div>
-      <div class="founder-uni">From Saskatchewan</div>
-    </div>
-
-    <div class="founder-card reveal d4">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/first-check-finny.jpg" alt="Eden Ovadia">
-        <div class="founder-logo-overlay"><img src="images/logo-finny.png" alt="Finny"></div>
-      </div>
-      <div class="founder-name">Eden Ovadia</div>
-      <div class="founder-co">Finny</div>
-      <div class="founder-tag">Helping financial advisors grow</div>
-      <div class="founder-uni">From McGill</div>
-    </div>
-
-    <div class="founder-card reveal d5">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/robbie-deeks.jpg" alt="Robbie Deeks">
-        <div class="founder-logo-overlay"><img src="images/logo-blacklake.png" alt="Blacklake"></div>
-      </div>
-      <div class="founder-name">Robbie Deeks</div>
-      <div class="founder-co">Blacklake</div>
-      <div class="founder-tag">Solving national security challenges</div>
-      <div class="founder-uni">From Laurier</div>
-    </div>
-
-    <div class="founder-card reveal">
-      <div class="founder-headshot founder-headshot--photo">
-        <img src="images/brennan-spellacy.jpg" alt="Brennan Spellacy">
-        <div class="founder-logo-overlay"><img src="images/logo-patch.png" alt="Patch"></div>
-      </div>
-      <div class="founder-name">Brennan Spellacy</div>
-      <div class="founder-co">Patch</div>
-      <div class="founder-tag">Making carbon removal easy for businesses around the world</div>
-      <div class="founder-uni">From McGill</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════ FIRST CHECK BLOG ═══════════════════════ -->
-<section class="first-check">
-  <div class="first-check-inner">
-    <p class="first-check-eyebrow reveal">From the Blog</p>
-    <div class="first-check-card reveal d1">
-      <div class="first-check-image">
-        <img src="images/logo-clay.png" alt="Clay" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-      </div>
-      <div>
-        <div class="first-check-tag">First Check</div>
-        <h2 class="first-check-title">
-          We were the first check in Clay at seed in 2017.
-        </h2>
-        <p class="first-check-desc">
-          Before the $5B valuation. Before $100M ARR. Before Silicon Valley
-          was paying attention — Kareem Amin walked in with a conviction and
-          we wrote the check. This is what it means to believe first.
-        </p>
-        <a href="/first-check-clay.html" class="first-check-cta">Read the post →</a>
-      </div>
-      <div class="first-check-stat">
-        <div class="first-check-stat-num">$5B</div>
-        <div class="first-check-stat-label">Clay valuation today</div>
-        <div class="first-check-stat-num" style="font-size:clamp(28px,4vw,48px);margin-top:24px;color:rgba(255,209,0,0.4)">2017</div>
-        <div class="first-check-stat-label">First check</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ NETWORKS ═══════════════════════ -->
-<section class="networks-hp">
-  <div class="networks-hp-inner">
-
-    <!-- Intro -->
-    <div class="networks-hp-intro">
-      <h2 class="reveal">We invest <em>globally.</em></h2>
-      <div class="networks-hp-right">
-        <p class="networks-hp-body reveal d1">
-          We work within communities that lead us to the best founders working on the most cutting-edge opportunities, across every sector and every geography.
-        </p>
-        <a href="/portfolio.html#networks" class="networks-hp-cta reveal d2">
-          See our portfolio by network →
-        </a>
-      </div>
-    </div>
-
-    <!-- Four panels -->
-    <div class="networks-hp-grid">
-
-      <div class="network-hp-cell reveal">
-        <span class="network-hp-num">01</span>
-        <div class="network-hp-name"><em>SF</em></div>
-        <div class="network-hp-body">
-          We're based in SF. We invest in founders in San Francisco because it's where talent, capital, and speed converge—and where the best ideas compound fastest.
-        </div>
-      </div>
-
-      <div class="network-hp-cell reveal d1">
-        <span class="network-hp-num">02</span>
-        <div class="network-hp-name"><em>Canada</em></div>
-        <div class="network-hp-body">
-          The gap is recognition — Canadian schools produce Ivy League quality talent but are globally underrated at the earliest stages.
-        </div>
-      </div>
-
-      <div class="network-hp-cell reveal d2">
-        <span class="network-hp-num">03</span>
-        <div class="network-hp-name"><em>Cambridge</em></div>
-        <div class="network-hp-body">
-          Harvard Business School produces a disproportionate number of exceptional
-          operator-founders. Our relationships here run deep — we see deals
-          early, back them early, and show up when it matters most.
-        </div>
-      </div>
-
-      <div class="network-hp-cell reveal d3">
-        <span class="network-hp-num">04</span>
-        <div class="network-hp-name"><em>Korea</em></div>
-        <div class="network-hp-body">
-          Korean founders building globally are some of the most
-          capital-efficient builders in the world. We invested in this
-          community before the Valley was paying attention —
-          and we're still the most connected fund in it.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ HOW WE FIND OUR FOUNDERS ═══════════════════════ -->
-<section class="find-founders">
-  <div class="find-founders-inner">
-
-    <h2 class="find-founders-heading reveal">Read our <em>investment memos.</em></h2>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0;">
-      <p class="find-founders-sub reveal" style="margin:0;">Why we wrote the first check — and why they said Yes.<br><br>At Maple VC, we don't just invest early — we invest first. When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.</p>
-      <a href="/blog.html" class="first-check-bridge-link reveal d1" style="flex-shrink:0;margin-bottom:4px;">See all posts →</a>
-    </div>
-
-    <!-- First Check series -->
-    <div class="first-check-bridge reveal">
-
-      <div class="first-check-grid">
-
-        <a class="fc-card" href="/first-check-clay.html">
-          <div class="fc-card-img">
-            <img src="images/clay-blog.jpg" alt="Clay">
+      <a class="story-card reveal" href="/talent-arbitrage.html">
+        <div class="story-card-img">
+          <img src="images/talent-arbitrage-banner.jpg" alt="The Talent Arbitrage">
+          <span class="story-card-cat">Playbook</span>
+          <span class="story-card-num">01</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">The Talent Arbitrage</h3>
+            <p class="story-card-byline">The hidden pattern behind the best founding teams — and why the archetype most investors overlook is the one that matters most.</p>
           </div>
-          <div class="fc-card-body">
-            <span class="fc-card-tag">First Check</span>
-            <div class="fc-card-company">Clay</div>
-            <div class="fc-card-meta">First Check: 2017</div>
-            <div class="fc-card-meta">Current Valuation: $5B</div>
-            <div class="fc-card-arrow">→</div>
-          </div>
-        </a>
-
-        <a class="fc-card" href="/first-check-finny.html">
-          <div class="fc-card-img">
-            <img src="images/first-check-finny.jpg" alt="Finny">
-          </div>
-          <div class="fc-card-body">
-            <span class="fc-card-tag">First Check</span>
-            <div class="fc-card-company">Finny</div>
-            <div class="fc-card-meta">First Check: 2024</div>
-            <div class="fc-card-meta">Current Valuation: $150M</div>
-            <div class="fc-card-arrow">→</div>
-          </div>
-        </a>
-
-        <a class="fc-card" href="/first-check-fey.html">
-          <div class="fc-card-img">
-            <img src="images/first-check-fey.jpg" alt="Fey">
-          </div>
-          <div class="fc-card-body">
-            <span class="fc-card-tag">First Check</span>
-            <div class="fc-card-company">Fey</div>
-            <div class="fc-card-meta">First Check: 2021</div>
-            <div class="fc-card-meta">Current Status: Acquired</div>
-            <div class="fc-card-arrow">→</div>
-          </div>
-        </a>
-
-        <a class="fc-card" href="/first-check-benchiq.html">
-          <div class="fc-card-img">
-            <img src="images/first-check-benchiq.jpg" alt="BenchIQ">
-          </div>
-          <div class="fc-card-body">
-            <span class="fc-card-tag">First Check</span>
-            <div class="fc-card-company">Bench IQ</div>
-            <div class="fc-card-meta">First Check: 2023</div>
-            <div class="fc-card-meta">Current Status: $5.3M Series A</div>
-            <div class="fc-card-arrow">→</div>
-          </div>
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ═══════════════════════ TEAM ═══════════════════════ -->
-<section class="team-hp">
-  <div class="team-hp-inner">
-
-    <div class="team-hp-header reveal">
-      <div>
-        <h2 class="team-hp-title">We know what great looks like.</h2>
-        <p class="team-hp-subtitle">Early operators at Uber, DigitalOcean, and Shopify – we've seen it before.</p>
-      </div>
-      <a href="/team.html" class="link-arrow">Full bios →</a>
-    </div>
-
-    <div class="team-hp-grid">
-
-      <a class="team-hp-card reveal" href="/team.html">
-        <div class="team-hp-photo">
-          <img src="images/andre-charoo.jpg" alt="Andre Charoo">
-        </div>
-        <div class="team-hp-info">
-          <div class="team-hp-role">Managing Partner</div>
-          <div class="team-hp-name">Andre Charoo</div>
-          <p class="team-hp-bio">Uber #25. Co-Chair of The C100. HBS Executive Fellow. Born in Canada, based in San Francisco.</p>
         </div>
       </a>
 
-      <a class="team-hp-card reveal d1" href="/team.html">
-        <div class="team-hp-photo">
+      <a class="story-card reveal d1" href="/talent-quiz.html">
+        <div class="story-card-img dark">
+          <span class="story-card-quiz-text">0 · 1 · 2</span>
+          <span class="story-card-cat">Quiz</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">Which Number Are You?</h3>
+            <p class="story-card-byline">A 3-minute quiz based on our Talent Framework. Find out if you're an Inventor, a Builder, or an Operator.</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card reveal d2" href="/blog-john-edgar-vision.html">
+        <div class="story-card-img">
           <img src="images/john-edgar.jpg" alt="John Edgar">
-        </div>
-        <div class="team-hp-info">
-          <div class="team-hp-role">Partner</div>
-          <div class="team-hp-name">John Edgar</div>
-          <p class="team-hp-bio">Digital Ocean founding team member. Born in Canada, lived in Korea for 5 years, based in Montreal.</p>
+          <span class="story-card-cat">Playbook</span>
+          <span class="story-card-num">03</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">The Fog of War</h3>
+            <p class="story-card-byline">Founders confuse vision with dream. They're not the same thing — and confusing them is one of the major ways founders end up lost.</p>
+          </div>
         </div>
       </a>
 
-      <a class="team-hp-card reveal d2" href="/team.html">
-        <div class="team-hp-photo">
-          <img src="images/jane-lee.jpg" alt="Jane Lee">
+      <a class="story-card reveal" href="/memo-faith.html">
+        <div class="story-card-img">
+          <img src="images/andre-charoo.jpg" alt="Andre Charoo">
+          <span class="story-card-cat">Memo</span>
+          <span class="story-card-num">04</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">This Business Has Always Been About Faith</h3>
+            <p class="story-card-byline">Not certainty. Conviction. On building Maple, and welcoming John Edgar and Jane Lee as Partners.</p>
+          </div>
         </div>
-        <div class="team-hp-info">
-          <div class="team-hp-role">Partner</div>
-          <div class="team-hp-name">Jane Lee</div>
-          <p class="team-hp-bio">Early Shopify. 15+ years advising and investing in early-stage startups. Born in Canada, 10 years in LA, based in San Francisco.</p>
+      </a>
+
+      <a class="story-card reveal d1" href="/first-check-finny.html">
+        <div class="story-card-img">
+          <img src="images/photo-eden-ovadia.jpg" alt="Eden Ovadia">
+          <span class="story-card-cat">First Check</span>
+          <span class="story-card-num">05</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">First Check: Finny</h3>
+            <p class="story-card-byline">FINNY closed a landmark Series A with Venrock leading a $15M round at a $150M post-money valuation. We wrote the first check.</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card reveal d2" href="/first-check-clay.html">
+        <div class="story-card-img">
+          <img src="images/kareem-amin.jpg" alt="Kareem Amin">
+          <span class="story-card-cat">First Check</span>
+          <span class="story-card-num">06</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">First Check: Clay</h3>
+            <p class="story-card-byline">Clay crossed $100M ARR, just two years after passing $1M. Before the $5B valuation — Kareem walked in with a conviction and we wrote the check.</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card reveal" href="/first-check-fey.html">
+        <div class="story-card-img">
+          <img src="images/fey-2.jpg" alt="Fey founding team">
+          <span class="story-card-cat">First Check</span>
+          <span class="story-card-num">07</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">First Check: Fey</h3>
+            <p class="story-card-byline">We invested first in 2021. Today, Fey was acquired by Wealthsimple — a strong outcome for a team that built beautifully.</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="story-card reveal d1" href="/first-check-benchiq.html">
+        <div class="story-card-img">
+          <img src="images/jimoh-ovbiagele.jpg" alt="Jimoh Ovbiagele">
+          <span class="story-card-cat">First Check</span>
+          <span class="story-card-num">08</span>
+          <div class="story-card-overlay">
+            <h3 class="story-card-title">First Check: BenchIQ</h3>
+            <p class="story-card-byline">BenchIQ announced a $5.3M funding round co-led by Battery Ventures and Inovia Capital. Jimoh is reshaping the practice of law.</p>
+          </div>
         </div>
       </a>
 
     </div>
   </div>
 </section>
-
-<!-- ═══════════════════════ PRESS ═══════════════════════ -->
-<section class="press">
-  <div class="press-inner">
-    <div class="section-header reveal">
-      <span class="section-label">Press</span>
-      <a href="/blog.html" class="link-arrow">See all →</a>
-    </div>
-
-    <div class="press-grid">
-
-      <a class="press-card reveal" href="https://techcrunch.com/2022/04/19/playbook-where-pinterest-meets-dropbox-for-designers-closes-on-18m-in-funding/" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-playbook.jpg" alt="Playbook"></div>
-        <div class="press-tag">Portfolio News</div>
-        <div class="press-title">Playbook closes $18M Series A — "Pinterest meets Dropbox" for designers</div>
-        <div class="press-blurb">Round led by Bain Capital Ventures for the creative file manager redefining cloud storage.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-      <a class="press-card reveal d1" href="https://betakit.com/maple-vc-backs-canadian-founded-dexas-6-million-seed-round/" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-dexa.jpg" alt="Dexa"></div>
-        <div class="press-tag">Maple News</div>
-        <div class="press-title">Maple VC backs Canadian-founded Dexa's $6M seed round</div>
-        <div class="press-blurb">Dexa offers an AI-powered search engine for podcast listeners — a new way to discover audio.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-      <a class="press-card reveal d2" href="https://betakit.com/maple-vc-co-leads-4-million-seed-round-for-canadian-led-inference-ai/" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-inference.jpg" alt="Inference.AI"></div>
-        <div class="press-tag">Maple News</div>
-        <div class="press-title">Maple co-leads $4M seed for Canadian-founded Inference.AI</div>
-        <div class="press-blurb">The Palo Alto startup helps companies access GPUs for AI training and inference at scale.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-      <a class="press-card reveal d3" href="https://techcrunch.com/2023/04/11/autoleap-saas-auto-repair-operations/" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-autoleap.jpg" alt="AutoLeap"></div>
-        <div class="press-tag">Portfolio News</div>
-        <div class="press-title">AutoLeap closes $30M Series B, accelerating SaaS for auto repair</div>
-        <div class="press-blurb">With cars aging past 13 years on average, AutoLeap's moment has arrived.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-      <a class="press-card reveal" href="https://gamesbeat.com/blockus-web3-blockchain-gaming-infrastructure-4m-preseed/" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-blockus.jpg" alt="Blockus"></div>
-        <div class="press-tag">Portfolio News</div>
-        <div class="press-title">Blockus raises $4M pre-seed for Web3 gaming infrastructure</div>
-        <div class="press-blurb">Maple led the round alongside Altos Ventures to build the gaming tech stack of the future.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-      <a class="press-card reveal d1" href="https://www.businessinsider.com/bench-iq-ai-tells-lawyers-how-judges-think-2025-8" target="_blank" rel="noopener">
-        <div class="press-img"><img src="images/press-benchiq.jpg" alt="BenchIQ"></div>
-        <div class="press-tag">Portfolio News</div>
-        <div class="press-title">BenchIQ raises $2.8M CAD pre-seed with Maple and Haystack</div>
-        <div class="press-blurb">The Toronto company is reshaping legal practice with intelligent benchmarking tools.</div>
-        <div class="press-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════════════ NEWSLETTER ═══════════════════════ -->
 <section class="newsletter">
   <div class="newsletter-inner">
