@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ8F5Z98CX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RZ8F5Z98CX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LP Partner Survey — Maple VC</title>
+  <meta name="description" content="A short, anonymous check-in for Maple VC's limited partners.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&family=Nunito:wght@900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Hero ── */
+    .lp-hero {
+      background: var(--black);
+      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(72px, 10vh, 120px);
+      margin-top: var(--nav-h);
+    }
+    .lp-hero-inner { max-width: 820px; }
+    .lp-hero .eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 600; margin-bottom: 28px;
+      display: block;
+    }
+    .lp-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6.5vw, 88px);
+      font-weight: 400; line-height: 1.02; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 28px;
+    }
+    .lp-hero h1 em { color: var(--yellow); font-style: italic; }
+    .lp-hero-sub {
+      font-size: clamp(14px, 1.5vw, 17px);
+      line-height: 1.75; color: rgba(255,249,237,0.42);
+      max-width: 600px; margin: 0 0 12px;
+    }
+    .lp-hero-note {
+      font-size: 12px; line-height: 1.7; color: rgba(255,249,237,0.28);
+      max-width: 600px; margin: 0;
+    }
+
+    /* ── Form Section ── */
+    .lp-form-section {
+      background: var(--cream);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .lp-form-inner { max-width: 760px; margin: 0 auto; }
+
+    .form-block {
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+    .form-block:first-child { padding-top: 0; }
+    .form-block:last-child { border-bottom: none; }
+
+    .form-block-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .form-block-num {
+      font-family: var(--font-display);
+      font-size: 13px; font-style: italic;
+      color: rgba(10,10,10,0.22); letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+    .form-block-title {
+      font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.4);
+    }
+    .form-block-desc {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 400; line-height: 1.3; letter-spacing: -0.015em;
+      color: var(--black); margin-bottom: 24px;
+    }
+    .form-block-hint {
+      font-size: 12px; line-height: 1.6; color: rgba(10,10,10,0.35);
+      margin: -14px 0 24px;
+    }
+
+    /* Text fields */
+    .form-field { margin-bottom: 24px; }
+    .form-field:last-child { margin-bottom: 0; }
+    .form-field label {
+      display: block;
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.38); margin-bottom: 8px;
+    }
+    .form-field input[type="text"],
+    .form-field select,
+    .form-field textarea {
+      width: 100%; box-sizing: border-box;
+      background: transparent;
+      border: none; border-bottom: 1.5px solid rgba(10,10,10,0.15);
+      padding: 10px 0;
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--black); outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-field select { appearance: none; -webkit-appearance: none; border-radius: 0; background: transparent; }
+    .form-field input[type="text"]:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--black); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(10,10,10,0.25); }
+    .form-field-hint { font-size: 11px; color: rgba(10,10,10,0.3); margin-top: 6px; }
+
+    /* Checkbox / radio option lists (interests, fund vehicle) */
+    .option-list {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .option-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(10,10,10,0.1);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .option-row:hover { border-color: var(--black); background: rgba(10,10,10,0.02); }
+    .option-row input { margin-top: 2px; flex-shrink: 0; accent-color: var(--black); }
+    .option-row label {
+      font-size: 14px; line-height: 1.5; color: rgba(10,10,10,0.7);
+      cursor: pointer; text-transform: none; letter-spacing: normal; font-weight: 400;
+      margin: 0;
+    }
+
+    /* NPS 0–10 scale */
+    .nps-scale {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .nps-opt { flex: 1 1 auto; min-width: 40px; }
+    .nps-opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .nps-opt label {
+      display: flex; align-items: center; justify-content: center;
+      height: 44px;
+      border: 1px solid rgba(10,10,10,0.15);
+      border-radius: 2px;
+      font-size: 13px; font-weight: 600; color: rgba(10,10,10,0.55);
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+    }
+    .nps-opt input:checked + label {
+      background: var(--black); border-color: var(--black); color: var(--cream);
+    }
+    .nps-opt label:hover { border-color: var(--black); }
+    .nps-labels {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: rgba(10,10,10,0.35);
+    }
+
+    /* Submit */
+    .form-submit { padding-top: 48px; }
+    .form-submit-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--black); color: var(--cream);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; border: none; cursor: pointer;
+      padding: 16px 32px;
+      transition: background 0.2s, gap 0.2s, opacity 0.2s;
+    }
+    .form-submit-btn:hover { background: #1a1a1a; gap: 16px; }
+    .form-submit-btn:disabled { opacity: 0.5; cursor: default; }
+    .form-submit-note {
+      font-size: 11px; color: rgba(10,10,10,0.3); margin-top: 14px;
+    }
+
+    /* Honeypot field — hidden from real users */
+    .hp-field { position: absolute; left: -9999px; top: -9999px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<!-- Intentionally not linked anywhere in site navigation — this page is only ever reached via a direct link shared with LPs. -->
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Maple" style="height:32px;width:auto;max-width:none;"></a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="lp-hero">
+  <div class="lp-hero-inner">
+    <span class="eyebrow">For our LPs — Anonymous</span>
+    <h1>Be brutally honest <em>with us.</em></h1>
+    <p class="lp-hero-sub">This survey is completely anonymous — we don't collect your name or email. We want your unfiltered read on where we stand, where we fall short, and what would make you back our next fund with even more conviction.</p>
+    <p class="lp-hero-note">Takes about 5 minutes. Nothing here is attributed to you.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FORM ═══════════════════════ -->
+<section class="lp-form-section">
+  <div class="lp-form-inner">
+    <form id="lp-survey-form" name="lp-survey" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="lp-survey">
+      <p class="hp-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+      <!-- 00 Context -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">00</span>
+          <span class="form-block-title">Context</span>
+        </div>
+        <p class="form-block-desc">Optional, and not identifying — just helps us read patterns across vintages.</p>
+        <div class="option-list">
+          <div class="option-row">
+            <input type="radio" id="fund-1" name="fund_vehicle" value="Fund I">
+            <label for="fund-1">Fund I</label>
+          </div>
+          <div class="option-row">
+            <input type="radio" id="fund-2" name="fund_vehicle" value="Fund II">
+            <label for="fund-2">Fund II</label>
+          </div>
+          <div class="option-row">
+            <input type="radio" id="fund-3" name="fund_vehicle" value="Fund III">
+            <label for="fund-3">Fund III</label>
+          </div>
+          <div class="option-row">
+            <input type="radio" id="fund-4" name="fund_vehicle" value="Multiple funds">
+            <label for="fund-4">Multiple funds</label>
+          </div>
+          <div class="option-row">
+            <input type="radio" id="fund-5" name="fund_vehicle" value="Prefer not to say">
+            <label for="fund-5">Prefer not to say</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 01 Where We Stand -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">01</span>
+          <span class="form-block-title">Where We Stand</span>
+        </div>
+        <p class="form-block-desc">The two most useful things you can tell us.</p>
+        <div class="form-field">
+          <label for="edge">What's one thing we do exceptionally well — better than other funds you're invested in?</label>
+          <textarea id="edge" name="edge" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="weakness">What's our biggest weakness compared to other managers you back?</label>
+          <textarea id="weakness" name="weakness" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- 02 Our New Partners -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">02</span>
+          <span class="form-block-title">Our New Partners</span>
+        </div>
+        <p class="form-block-desc">John and Jane recently joined as partners. We'd love direct, specific feedback on working with them so far.</p>
+        <div class="form-field">
+          <label for="feedback-john">Any feedback on working with John?</label>
+          <textarea id="feedback-john" name="feedback_john" rows="3" placeholder="Positive or constructive — both are useful."></textarea>
+        </div>
+        <div class="form-field">
+          <label for="feedback-jane">Any feedback on working with Jane?</label>
+          <textarea id="feedback-jane" name="feedback_jane" rows="3" placeholder="Positive or constructive — both are useful."></textarea>
+        </div>
+      </div>
+
+      <!-- 03 What You Want More Of -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">03</span>
+          <span class="form-block-title">What You Want More Of</span>
+        </div>
+        <p class="form-block-desc">What are you most interested in seeing or learning more about from us? Pick as many as apply.</p>
+        <div class="option-list">
+          <div class="option-row">
+            <input type="checkbox" id="int-1" name="interests" value="Portfolio company deep-dives">
+            <label for="int-1">Portfolio company deep-dives</label>
+          </div>
+          <div class="option-row">
+            <input type="checkbox" id="int-2" name="interests" value="Market / macro commentary">
+            <label for="int-2">Market / macro commentary</label>
+          </div>
+          <div class="option-row">
+            <input type="checkbox" id="int-3" name="interests" value="Founder access & events">
+            <label for="int-3">Founder access & events</label>
+          </div>
+          <div class="option-row">
+            <input type="checkbox" id="int-4" name="interests" value="Career / network introductions">
+            <label for="int-4">Career / network introductions</label>
+          </div>
+          <div class="option-row">
+            <input type="checkbox" id="int-5" name="interests" value="More detailed fund performance reporting">
+            <label for="int-5">More detailed fund performance reporting</label>
+          </div>
+          <div class="option-row">
+            <input type="checkbox" id="int-6" name="interests" value="Educational content on venture / startups">
+            <label for="int-6">Educational content on venture / startups</label>
+          </div>
+        </div>
+        <div class="form-field" style="margin-top:20px;">
+          <label for="int-other">Anything else you'd want to see, not listed above?</label>
+          <input type="text" id="int-other" name="interests_other" placeholder="Optional">
+        </div>
+      </div>
+
+      <!-- 04 Direct Investment Appetite -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">04</span>
+          <span class="form-block-title">Direct Investment Appetite</span>
+        </div>
+        <div class="form-field">
+          <label for="coinvest-interest">Are you interested in direct co-investment opportunities alongside Maple?</label>
+          <select id="coinvest-interest" name="coinvest_interest">
+            <option value="">Select one…</option>
+            <option value="Yes">Yes</option>
+            <option value="Maybe, depends on the deal">Maybe, depends on the deal</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="coinvest-detail">If yes — what sectors, stages, or check sizes are you interested in?</label>
+          <textarea id="coinvest-detail" name="coinvest_detail" rows="2" placeholder="e.g. Series A fintech, $250K–$1M checks…"></textarea>
+        </div>
+      </div>
+
+      <!-- 05 Looking Ahead -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">05</span>
+          <span class="form-block-title">Looking Ahead</span>
+        </div>
+        <div class="form-field">
+          <label for="comparison">How do we compare to the other fund managers you back — better, worse, different how?</label>
+          <textarea id="comparison" name="comparison" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="reup-drivers">What would increase your conviction — or check size — for our next fund?</label>
+          <textarea id="reup-drivers" name="reup_drivers" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label>How likely are you to invest in our next fund? (0 = not likely, 10 = extremely likely)</label>
+          <div class="nps-scale">
+            <div class="nps-opt"><input type="radio" id="reup-0" name="reup_likelihood" value="0"><label for="reup-0">0</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-1" name="reup_likelihood" value="1"><label for="reup-1">1</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-2" name="reup_likelihood" value="2"><label for="reup-2">2</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-3" name="reup_likelihood" value="3"><label for="reup-3">3</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-4" name="reup_likelihood" value="4"><label for="reup-4">4</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-5" name="reup_likelihood" value="5"><label for="reup-5">5</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-6" name="reup_likelihood" value="6"><label for="reup-6">6</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-7" name="reup_likelihood" value="7"><label for="reup-7">7</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-8" name="reup_likelihood" value="8"><label for="reup-8">8</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-9" name="reup_likelihood" value="9"><label for="reup-9">9</label></div>
+            <div class="nps-opt"><input type="radio" id="reup-10" name="reup_likelihood" value="10"><label for="reup-10">10</label></div>
+          </div>
+          <div class="nps-labels"><span>Not likely</span><span>Extremely likely</span></div>
+        </div>
+        <div class="form-field" style="margin-top:24px;">
+          <label>How likely are you to recommend Maple to another LP? (0 = not likely, 10 = extremely likely)</label>
+          <div class="nps-scale">
+            <div class="nps-opt"><input type="radio" id="nps-0" name="recommend_likelihood" value="0"><label for="nps-0">0</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-1" name="recommend_likelihood" value="1"><label for="nps-1">1</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-2" name="recommend_likelihood" value="2"><label for="nps-2">2</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-3" name="recommend_likelihood" value="3"><label for="nps-3">3</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-4" name="recommend_likelihood" value="4"><label for="nps-4">4</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-5" name="recommend_likelihood" value="5"><label for="nps-5">5</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-6" name="recommend_likelihood" value="6"><label for="nps-6">6</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-7" name="recommend_likelihood" value="7"><label for="nps-7">7</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-8" name="recommend_likelihood" value="8"><label for="nps-8">8</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-9" name="recommend_likelihood" value="9"><label for="nps-9">9</label></div>
+            <div class="nps-opt"><input type="radio" id="nps-10" name="recommend_likelihood" value="10"><label for="nps-10">10</label></div>
+          </div>
+          <div class="nps-labels"><span>Not likely</span><span>Extremely likely</span></div>
+        </div>
+      </div>
+
+      <!-- 06 Anything Else -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">06</span>
+          <span class="form-block-title">Anything Else</span>
+        </div>
+        <div class="form-field">
+          <label for="anything-else">Anything else on your mind — for us, about us, or otherwise?</label>
+          <textarea id="anything-else" name="anything_else" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit">
+        <button type="submit" class="form-submit-btn">Submit →</button>
+        <p class="form-submit-note">Submitted anonymously — this form doesn't collect your name or email.</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      Maple VC<br>Ferry Building, 1, Suite 201<br>San Francisco, CA 94111<br>hello@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/MapleVCFund" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // ── LP survey: submit to Netlify Forms (system of record) AND
+  // mirror each response into a Google Sheet via a Google Apps Script
+  // Web App webhook. See google-apps-script/lp-survey-to-sheet.gs for
+  // the script to deploy, and paste its Web App URL below.
+  (function () {
+    var SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    var form = document.getElementById('lp-survey-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var btn = form.querySelector('.form-submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      var formData = new FormData(form);
+
+      var sheetPromise = Promise.resolve();
+      if (SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR') === -1) {
+        sheetPromise = fetch(SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        }).catch(function () { /* non-blocking: Netlify submission is the source of truth */ });
+      }
+
+      var netlifyPromise = fetch('/lp-survey.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      Promise.all([sheetPromise, netlifyPromise])
+        .then(function () { window.location.href = '/thanks.html'; })
+        .catch(function () { window.location.href = '/thanks.html'; });
+    });
+  })();
+</script>
+</body>
+</html>
