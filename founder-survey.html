@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ8F5Z98CX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RZ8F5Z98CX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Founder Survey — Maple VC</title>
+  <meta name="description" content="A short, anonymous survey for Maple VC's portfolio founders.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700;800&family=Nunito:wght@900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Hero ── */
+    .fs-hero {
+      background: var(--black);
+      padding: clamp(100px, 14vh, 180px) var(--pad) clamp(72px, 10vh, 120px);
+      margin-top: var(--nav-h);
+    }
+    .fs-hero-inner { max-width: 820px; }
+    .fs-hero .eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,209,0,0.45); font-weight: 600; margin-bottom: 28px;
+      display: block;
+    }
+    .fs-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6.5vw, 88px);
+      font-weight: 400; line-height: 1.02; letter-spacing: -0.03em;
+      color: var(--cream); margin: 0 0 28px;
+    }
+    .fs-hero h1 em { color: var(--yellow); font-style: italic; }
+    .fs-hero-sub {
+      font-size: clamp(14px, 1.5vw, 17px);
+      line-height: 1.75; color: rgba(255,249,237,0.42);
+      max-width: 600px; margin: 0 0 12px;
+    }
+    .fs-hero-note {
+      font-size: 12px; line-height: 1.7; color: rgba(255,249,237,0.28);
+      max-width: 600px; margin: 0;
+    }
+
+    /* ── Form Section ── */
+    .fs-form-section {
+      background: var(--cream);
+      padding: clamp(72px, 10vh, 120px) var(--pad);
+      border-top: 1px solid rgba(10,10,10,0.07);
+    }
+    .fs-form-inner { max-width: 760px; margin: 0 auto; }
+
+    .form-block {
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+    .form-block:first-child { padding-top: 0; }
+    .form-block:last-child { border-bottom: none; }
+
+    .form-block-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .form-block-num {
+      font-family: var(--font-display);
+      font-size: 13px; font-style: italic;
+      color: rgba(10,10,10,0.22); letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+    .form-block-title {
+      font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.4);
+    }
+    .form-block-desc {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 400; line-height: 1.3; letter-spacing: -0.015em;
+      color: var(--black); margin-bottom: 24px;
+    }
+    .form-block-hint {
+      font-size: 12px; line-height: 1.6; color: rgba(10,10,10,0.35);
+      margin: -14px 0 24px;
+    }
+
+    /* Text fields */
+    .form-field { margin-bottom: 24px; }
+    .form-field:last-child { margin-bottom: 0; }
+    .form-field label {
+      display: block;
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: rgba(10,10,10,0.38); margin-bottom: 8px;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field select,
+    .form-field textarea {
+      width: 100%; box-sizing: border-box;
+      background: transparent;
+      border: none; border-bottom: 1.5px solid rgba(10,10,10,0.15);
+      padding: 10px 0;
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--black); outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-field select { appearance: none; -webkit-appearance: none; border-radius: 0; background: transparent; }
+    .form-field input[type="text"]:focus,
+    .form-field input[type="email"]:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--black); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(10,10,10,0.25); }
+    .form-field-hint { font-size: 11px; color: rgba(10,10,10,0.3); margin-top: 6px; }
+
+    /* 0–10 scale */
+    .nps-scale {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .nps-opt { flex: 1 1 auto; min-width: 40px; }
+    .nps-opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .nps-opt label {
+      display: flex; align-items: center; justify-content: center;
+      height: 44px;
+      border: 1px solid rgba(10,10,10,0.15);
+      border-radius: 2px;
+      font-size: 13px; font-weight: 600; color: rgba(10,10,10,0.55);
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+    }
+    .nps-opt input:checked + label {
+      background: var(--black); border-color: var(--black); color: var(--cream);
+    }
+    .nps-opt label:hover { border-color: var(--black); }
+    .nps-labels {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: rgba(10,10,10,0.35);
+    }
+
+    /* Submit */
+    .form-submit { padding-top: 48px; }
+    .form-submit-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--black); color: var(--cream);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; border: none; cursor: pointer;
+      padding: 16px 32px;
+      transition: background 0.2s, gap 0.2s, opacity 0.2s;
+    }
+    .form-submit-btn:hover { background: #1a1a1a; gap: 16px; }
+    .form-submit-btn:disabled { opacity: 0.5; cursor: default; }
+    .form-submit-note {
+      font-size: 11px; color: rgba(10,10,10,0.3); margin-top: 14px;
+    }
+
+    /* Honeypot field — hidden from real users */
+    .hp-field { position: absolute; left: -9999px; top: -9999px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<!-- Intentionally not linked anywhere in site navigation — this page is only ever reached via a direct link shared with portfolio founders. -->
+<nav class="nav">
+  <a href="/" class="nav-logo"><img src="images/logo.jpg" alt="Maple" style="height:32px;width:auto;max-width:none;"></a>
+  <ul class="nav-links">
+    <li><a href="/portfolio.html">Portfolio</a></li>
+    <li><a href="/team.html">Team</a></li>
+    <li><a href="/nibi.html">Nibi</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="fs-hero">
+  <div class="fs-hero-inner">
+    <span class="eyebrow">For Our Founders — Anonymous</span>
+    <h1>Help us actually <em>have your back.</em></h1>
+    <p class="fs-hero-sub">This survey is anonymous — no name or company required. We want the unfiltered version: what's working, what's not, and exactly what would move the needle for you right now, including your next raise. Specific answers beat polite ones.</p>
+    <p class="fs-hero-note">Takes about 7 minutes. Want us to follow up on something specific — an intro, credits, whatever? There's an optional spot to leave your email at the very end.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FORM ═══════════════════════ -->
+<section class="fs-form-section">
+  <div class="fs-form-inner">
+    <form id="founder-survey-form" name="founder-survey" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="founder-survey">
+      <p class="hp-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+
+      <!-- 00 Context -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">00</span>
+          <span class="form-block-title">Context</span>
+        </div>
+        <p class="form-block-desc">Optional, and not identifying — just helps us read patterns by stage.</p>
+        <div class="form-field">
+          <label for="fs-stage">Stage</label>
+          <select id="fs-stage" name="stage">
+            <option value="">Select one…</option>
+            <option value="Pre-seed">Pre-seed</option>
+            <option value="Seed">Seed</option>
+            <option value="Series A">Series A</option>
+            <option value="Series B">Series B</option>
+            <option value="Series C+">Series C+</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 01 Where We Stand -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">01</span>
+          <span class="form-block-title">Where We Stand</span>
+        </div>
+        <p class="form-block-desc">Be critical — this is the part we care about most.</p>
+        <div class="form-field">
+          <label for="edge">What's one thing we do exceptionally well — better than the other investors on your cap table?</label>
+          <textarea id="edge" name="edge" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="weakness">What's the single biggest way we've fallen short, or could be doing better?</label>
+          <textarea id="weakness" name="weakness" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="brutally-honest">If a friend was deciding whether to take our check, and you had to be brutally honest, what would you tell them?</label>
+          <textarea id="brutally-honest" name="brutally_honest" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label>How helpful has Maple been to you this year? (0 = not at all, 10 = exceptionally)</label>
+          <div class="nps-scale">
+            <div class="nps-opt"><input type="radio" id="help-0" name="helpfulness_score" value="0"><label for="help-0">0</label></div>
+            <div class="nps-opt"><input type="radio" id="help-1" name="helpfulness_score" value="1"><label for="help-1">1</label></div>
+            <div class="nps-opt"><input type="radio" id="help-2" name="helpfulness_score" value="2"><label for="help-2">2</label></div>
+            <div class="nps-opt"><input type="radio" id="help-3" name="helpfulness_score" value="3"><label for="help-3">3</label></div>
+            <div class="nps-opt"><input type="radio" id="help-4" name="helpfulness_score" value="4"><label for="help-4">4</label></div>
+            <div class="nps-opt"><input type="radio" id="help-5" name="helpfulness_score" value="5"><label for="help-5">5</label></div>
+            <div class="nps-opt"><input type="radio" id="help-6" name="helpfulness_score" value="6"><label for="help-6">6</label></div>
+            <div class="nps-opt"><input type="radio" id="help-7" name="helpfulness_score" value="7"><label for="help-7">7</label></div>
+            <div class="nps-opt"><input type="radio" id="help-8" name="helpfulness_score" value="8"><label for="help-8">8</label></div>
+            <div class="nps-opt"><input type="radio" id="help-9" name="helpfulness_score" value="9"><label for="help-9">9</label></div>
+            <div class="nps-opt"><input type="radio" id="help-10" name="helpfulness_score" value="10"><label for="help-10">10</label></div>
+          </div>
+          <div class="nps-labels"><span>Not at all</span><span>Exceptionally</span></div>
+        </div>
+      </div>
+
+      <!-- 02 Your Priorities Right Now -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">02</span>
+          <span class="form-block-title">Your Priorities Right Now</span>
+        </div>
+        <div class="form-field">
+          <label for="hurdle">What's your biggest hurdle over the next 6–12 months?</label>
+          <textarea id="hurdle" name="hurdle" rows="3"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="next-hire">What's your next hire, and are you struggling to find that person?</label>
+          <textarea id="next-hire" name="next_hire" rows="3"></textarea>
+        </div>
+        <p class="form-block-desc" style="font-size:18px;margin-top:32px;">Which kind of support would move the needle most for you right now? Choose your top 3, ranked.</p>
+        <div class="form-field">
+          <label for="sup-1">1st Priority (Most Important)</label>
+          <select id="sup-1" name="support_needed_1">
+            <option value="">Select one…</option>
+            <option value="Customer intros">Customer intros</option>
+            <option value="Investor intros for your next round">Investor intros for your next round</option>
+            <option value="Talent / hiring pipeline">Talent / hiring pipeline</option>
+            <option value="GTM / product strategy coaching">GTM / product strategy coaching</option>
+            <option value="PR & narrative support">PR & narrative support</option>
+            <option value="Personal / EA & logistics support">Personal / EA & logistics support</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="sup-2">2nd Priority</label>
+          <select id="sup-2" name="support_needed_2">
+            <option value="">Select one…</option>
+            <option value="Customer intros">Customer intros</option>
+            <option value="Investor intros for your next round">Investor intros for your next round</option>
+            <option value="Talent / hiring pipeline">Talent / hiring pipeline</option>
+            <option value="GTM / product strategy coaching">GTM / product strategy coaching</option>
+            <option value="PR & narrative support">PR & narrative support</option>
+            <option value="Personal / EA & logistics support">Personal / EA & logistics support</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="sup-3">3rd Priority</label>
+          <select id="sup-3" name="support_needed_3">
+            <option value="">Select one…</option>
+            <option value="Customer intros">Customer intros</option>
+            <option value="Investor intros for your next round">Investor intros for your next round</option>
+            <option value="Talent / hiring pipeline">Talent / hiring pipeline</option>
+            <option value="GTM / product strategy coaching">GTM / product strategy coaching</option>
+            <option value="PR & narrative support">PR & narrative support</option>
+            <option value="Personal / EA & logistics support">Personal / EA & logistics support</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-top:20px;">
+          <label for="support-other">Anything else, not listed above?</label>
+          <input type="text" id="support-other" name="support_other" placeholder="Optional">
+        </div>
+      </div>
+
+      <!-- 03 Your Next Round -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">03</span>
+          <span class="form-block-title">Your Next Round</span>
+        </div>
+        <p class="form-block-desc">This is where we want to be genuinely useful — the more specific you are, the more we can actually do.</p>
+        <div class="form-field">
+          <label for="raising-status">Are you planning to raise in the next 6–12 months?</label>
+          <select id="raising-status" name="raising_status">
+            <option value="">Select one…</option>
+            <option value="Already raising">Already raising</option>
+            <option value="Planning to raise">Planning to raise</option>
+            <option value="Not anytime soon">Not anytime soon</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="raise-stage">What round/stage will that be?</label>
+          <input type="text" id="raise-stage" name="raise_stage" placeholder="e.g. Series A, bridge, extension…">
+        </div>
+        <p class="form-block-desc" style="font-size:18px;margin-top:32px;">What would be most valuable from us during that process? Choose your top 3, ranked.</p>
+        <div class="form-field">
+          <label for="raise-sup-1">1st Priority (Most Important)</label>
+          <select id="raise-sup-1" name="raise_support_1">
+            <option value="">Select one…</option>
+            <option value="Intros to lead investors">Intros to lead investors</option>
+            <option value="Intros to follow-on funds who write our size checks">Intros to follow-on funds who write our size checks</option>
+            <option value="Pitch deck / narrative feedback">Pitch deck / narrative feedback</option>
+            <option value="Help building your investor target list">Help building your investor target list</option>
+            <option value="Mock partner-meeting practice">Mock partner-meeting practice</option>
+            <option value="PR support around the raise">PR support around the raise</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="raise-sup-2">2nd Priority</label>
+          <select id="raise-sup-2" name="raise_support_2">
+            <option value="">Select one…</option>
+            <option value="Intros to lead investors">Intros to lead investors</option>
+            <option value="Intros to follow-on funds who write our size checks">Intros to follow-on funds who write our size checks</option>
+            <option value="Pitch deck / narrative feedback">Pitch deck / narrative feedback</option>
+            <option value="Help building your investor target list">Help building your investor target list</option>
+            <option value="Mock partner-meeting practice">Mock partner-meeting practice</option>
+            <option value="PR support around the raise">PR support around the raise</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="raise-sup-3">3rd Priority</label>
+          <select id="raise-sup-3" name="raise_support_3">
+            <option value="">Select one…</option>
+            <option value="Intros to lead investors">Intros to lead investors</option>
+            <option value="Intros to follow-on funds who write our size checks">Intros to follow-on funds who write our size checks</option>
+            <option value="Pitch deck / narrative feedback">Pitch deck / narrative feedback</option>
+            <option value="Help building your investor target list">Help building your investor target list</option>
+            <option value="Mock partner-meeting practice">Mock partner-meeting practice</option>
+            <option value="PR support around the raise">PR support around the raise</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-top:20px;">
+          <label for="raise-targets">Any specific funds or investors you'd want a warm intro to? Name names. <span style="text-transform:none;font-weight:400;">(Tip: leave your email at the end if you want us to act on this specifically for you.)</span></label>
+          <textarea id="raise-targets" name="raise_targets" rows="2" placeholder="e.g. specific fund names, partners…"></textarea>
+        </div>
+      </div>
+
+      <!-- 04 Perks & Credits -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">04</span>
+          <span class="form-block-title">Perks & Credits</span>
+        </div>
+        <p class="form-block-desc">Which of these would you actually use if we set them up? Choose your top 3, ranked.</p>
+        <div class="form-field">
+          <label for="perk-1">1st Priority (Most Important)</label>
+          <select id="perk-1" name="perks_1">
+            <option value="">Select one…</option>
+            <option value="Cloud credits (AWS / GCP / Azure)">Cloud credits (AWS / GCP / Azure)</option>
+            <option value="AI inference credits (OpenAI / Anthropic / Google)">AI inference credits (OpenAI / Anthropic / Google)</option>
+            <option value="Recruiting discounts">Recruiting discounts</option>
+            <option value="Legal / accounting discounts">Legal / accounting discounts</option>
+            <option value="SaaS stack discounts (Stripe, HubSpot, Notion, etc.)">SaaS stack discounts (Stripe, HubSpot, Notion, etc.)</option>
+            <option value="Conference / event budget support">Conference / event budget support</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="perk-2">2nd Priority</label>
+          <select id="perk-2" name="perks_2">
+            <option value="">Select one…</option>
+            <option value="Cloud credits (AWS / GCP / Azure)">Cloud credits (AWS / GCP / Azure)</option>
+            <option value="AI inference credits (OpenAI / Anthropic / Google)">AI inference credits (OpenAI / Anthropic / Google)</option>
+            <option value="Recruiting discounts">Recruiting discounts</option>
+            <option value="Legal / accounting discounts">Legal / accounting discounts</option>
+            <option value="SaaS stack discounts (Stripe, HubSpot, Notion, etc.)">SaaS stack discounts (Stripe, HubSpot, Notion, etc.)</option>
+            <option value="Conference / event budget support">Conference / event budget support</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="perk-3">3rd Priority</label>
+          <select id="perk-3" name="perks_3">
+            <option value="">Select one…</option>
+            <option value="Cloud credits (AWS / GCP / Azure)">Cloud credits (AWS / GCP / Azure)</option>
+            <option value="AI inference credits (OpenAI / Anthropic / Google)">AI inference credits (OpenAI / Anthropic / Google)</option>
+            <option value="Recruiting discounts">Recruiting discounts</option>
+            <option value="Legal / accounting discounts">Legal / accounting discounts</option>
+            <option value="SaaS stack discounts (Stripe, HubSpot, Notion, etc.)">SaaS stack discounts (Stripe, HubSpot, Notion, etc.)</option>
+            <option value="Conference / event budget support">Conference / event budget support</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-top:20px;">
+          <label for="perks-other">Anything specific — a vendor, a tool, a discount — you wish we already had set up?</label>
+          <textarea id="perks-other" name="perks_other" rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- 05 The Portal -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">05</span>
+          <span class="form-block-title">The Portal</span>
+        </div>
+        <p class="form-block-desc">We're building a private portal just for our portfolio founders.</p>
+        <div class="form-field">
+          <label>What would make you actually open it every week — not just once? Choose your top 3, ranked.</label>
+        </div>
+        <div class="form-field">
+          <label for="portal-1">1st Priority (Most Important)</label>
+          <select id="portal-1" name="portal_features_1">
+            <option value="">Select one…</option>
+            <option value="Job board / talent pipeline">Job board / talent pipeline</option>
+            <option value="Warm intro requests (customers, investors, hires)">Warm intro requests (customers, investors, hires)</option>
+            <option value="Curated resource library by stage">Curated resource library by stage</option>
+            <option value="Perks & credits marketplace">Perks & credits marketplace</option>
+            <option value="Founder community / peer Slack">Founder community / peer Slack</option>
+            <option value="Event calendar">Event calendar</option>
+            <option value="Fundraising CRM / investor tracking">Fundraising CRM / investor tracking</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="portal-2">2nd Priority</label>
+          <select id="portal-2" name="portal_features_2">
+            <option value="">Select one…</option>
+            <option value="Job board / talent pipeline">Job board / talent pipeline</option>
+            <option value="Warm intro requests (customers, investors, hires)">Warm intro requests (customers, investors, hires)</option>
+            <option value="Curated resource library by stage">Curated resource library by stage</option>
+            <option value="Perks & credits marketplace">Perks & credits marketplace</option>
+            <option value="Founder community / peer Slack">Founder community / peer Slack</option>
+            <option value="Event calendar">Event calendar</option>
+            <option value="Fundraising CRM / investor tracking">Fundraising CRM / investor tracking</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="portal-3">3rd Priority</label>
+          <select id="portal-3" name="portal_features_3">
+            <option value="">Select one…</option>
+            <option value="Job board / talent pipeline">Job board / talent pipeline</option>
+            <option value="Warm intro requests (customers, investors, hires)">Warm intro requests (customers, investors, hires)</option>
+            <option value="Curated resource library by stage">Curated resource library by stage</option>
+            <option value="Perks & credits marketplace">Perks & credits marketplace</option>
+            <option value="Founder community / peer Slack">Founder community / peer Slack</option>
+            <option value="Event calendar">Event calendar</option>
+            <option value="Fundraising CRM / investor tracking">Fundraising CRM / investor tracking</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-top:20px;">
+          <label for="portal-ignore">Honestly — what would make you ignore it entirely?</label>
+          <textarea id="portal-ignore" name="portal_ignore" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- 06 Community -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">06</span>
+          <span class="form-block-title">Community</span>
+        </div>
+        <div class="form-field">
+          <label for="event-interest">Interested in in-person dinners, socials, or fireside chats with the partners?</label>
+          <select id="event-interest" name="event_interest">
+            <option value="">Select one…</option>
+            <option value="Yes">Yes</option>
+            <option value="Maybe">Maybe</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="newsletter-interest">Interested in a monthly newsletter highlighting portfolio wins, hard lessons, and job openings?</label>
+          <select id="newsletter-interest" name="newsletter_interest">
+            <option value="">Select one…</option>
+            <option value="Yes">Yes</option>
+            <option value="Maybe">Maybe</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 07 The Team -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">07</span>
+          <span class="form-block-title">The Team</span>
+        </div>
+        <div class="form-field">
+          <label for="team-feedback">Any specific feedback — positive or constructive — on working with Andre, John, or Jane?</label>
+          <textarea id="team-feedback" name="team_feedback" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- 08 One Wish -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">08</span>
+          <span class="form-block-title">One Wish</span>
+        </div>
+        <div class="form-field">
+          <label for="magic-wand">If you could wave a magic wand and get ONE thing from Maple in the next 12 months, what would it be?</label>
+          <textarea id="magic-wand" name="magic_wand" rows="3"></textarea>
+        </div>
+      </div>
+
+      <!-- 09 Stay In Touch (Optional) -->
+      <div class="form-block">
+        <div class="form-block-header">
+          <span class="form-block-num">09</span>
+          <span class="form-block-title">Stay In Touch (Optional)</span>
+        </div>
+        <p class="form-block-desc">This survey is anonymous by default. Only fill this in if you want us to follow up with you directly on anything above — an intro, credits, whatever.</p>
+        <div class="form-field">
+          <label for="contact-email">Your Email (Optional)</label>
+          <input type="email" id="contact-email" name="contact_email" placeholder="Leave blank to stay fully anonymous">
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit">
+        <button type="submit" class="form-submit-btn">Submit →</button>
+        <p class="form-submit-note">Submitted anonymously — nothing here is attributed to you unless you left an email above.</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Maple</a>
+    <address class="footer-address" style="font-style:normal">
+      Maple VC<br>Ferry Building, 1, Suite 201<br>San Francisco, CA 94111<br>hello@maplevc.com
+    </address>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/maple-vc" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/MapleVCFund" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span class="copyright-year">2026</span> Maple VC. All rights reserved.</span>
+    <span>Built by Maple &nbsp;·&nbsp; Hosted on Netlify</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // ── Founder survey: submit to Netlify Forms (system of record) AND
+  // mirror each response into a Google Sheet via a Google Apps Script
+  // Web App webhook. See google-apps-script/founder-survey-to-sheet.gs
+  // for the script to deploy, and paste its Web App URL below.
+  (function () {
+    var SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    var form = document.getElementById('founder-survey-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var btn = form.querySelector('.form-submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      var formData = new FormData(form);
+
+      var sheetPromise = Promise.resolve();
+      if (SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR') === -1) {
+        sheetPromise = fetch(SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        }).catch(function () { /* non-blocking: Netlify submission is the source of truth */ });
+      }
+
+      var netlifyPromise = fetch('/founder-survey.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      Promise.all([sheetPromise, netlifyPromise])
+        .then(function () { window.location.href = '/thanks.html'; })
+        .catch(function () { window.location.href = '/thanks.html'; });
+    });
+  })();
+</script>
+</body>
+</html>
