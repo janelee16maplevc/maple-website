@@ -26,6 +26,8 @@ var COLUMNS = [
   'interests_other',
   'coinvest_interest',
   'coinvest_detail',
+  'fund_iv_interest',
+  'fund_iv_contact_email',
   'comparison',
   'reup_drivers',
   'reup_likelihood',
