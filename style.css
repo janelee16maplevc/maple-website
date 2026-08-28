@@ -128,11 +128,11 @@ button, input, textarea { font-family: inherit; }
 ════════════════════════════════════════ */
 .hero {
   background: radial-gradient(140% 120% at 25% -10%, #FBE9B8 0%, #FFF7E8 35%, #F7F3E9 55%, #EFEEE7 75%, #E7E8E2 100%);
-  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(100px, 16vh, 180px);
-  min-height: 96vh;
-  display: flex; align-items: flex-end;
+  padding: clamp(40px, 6vh, 70px) var(--pad) clamp(60px, 8vh, 100px);
+  min-height: 62vh;
+  display: flex; align-items: center; justify-content: center;
 }
-.hero-inner { max-width: 1100px; }
+.hero-inner { max-width: 1100px; text-align: center; margin: 0 auto; }
 .hero-eyebrow {
   font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--muted); font-weight: 600;
