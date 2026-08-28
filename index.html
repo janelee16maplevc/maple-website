@@ -102,7 +102,7 @@
     /* ── How We Find Our Founders ── */
     .find-founders {
       background: var(--yellow);
-      padding: clamp(72px, 10vh, 120px) var(--pad) 0;
+      padding: clamp(72px, 10vh, 120px) var(--pad) clamp(90px, 12vh, 140px);
     }
     .find-founders-inner { max-width: var(--max-w); margin: 0 auto; }
 
@@ -171,28 +171,40 @@
     @media (max-width: 600px)  { .first-check-grid { grid-template-columns: 1fr; } }
 
     .fc-card {
+      position: relative;
       aspect-ratio: 1 / 1;
-      text-decoration: none; color: var(--black);
+      overflow: hidden;
+      text-decoration: none; color: #fff;
       display: flex; flex-direction: column; justify-content: space-between;
       padding: clamp(22px, 3vw, 36px);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .fc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(10,10,10,0.14); }
-    .fc-card--yellow { background: var(--yellow); color: var(--black); }
-    .fc-card--black  { background: var(--black); color: var(--cream); }
-    .fc-card--teal    { background: #2E9E93; color: var(--cream); }
-    .fc-card--terracotta { background: #E2704A; color: var(--cream); }
+    .fc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(10,10,10,0.24); }
+    .fc-card-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease;
+      z-index: 0;
+    }
+    .fc-card:hover .fc-card-photo { transform: scale(1.04); }
+    .fc-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.05) 35%, rgba(10,10,10,0.05) 55%, rgba(10,10,10,0.65) 100%);
+      z-index: 1;
+    }
+    .fc-card-top, .fc-card-bottom { position: relative; z-index: 2; }
     .fc-card-tag {
       font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
-      font-weight: 700; opacity: 0.6;
+      font-weight: 700; opacity: 0.85;
     }
     .fc-card-company {
       font-family: var(--font-display);
       font-size: clamp(28px, 3.6vw, 46px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.05;
       margin-top: 12px;
     }
-    .fc-card-meta { font-size: 14px; line-height: 1.6; opacity: 0.85; font-weight: 500; }
-    .fc-card-arrow { font-size: 16px; opacity: 0.5; margin-top: 12px; transition: opacity 0.2s, transform 0.2s; }
+    .fc-card-meta { font-size: 14px; line-height: 1.6; opacity: 0.92; font-weight: 500; }
+    .fc-card-arrow { font-size: 16px; opacity: 0.7; margin-top: 12px; transition: opacity 0.2s, transform 0.2s; }
     .fc-card:hover .fc-card-arrow { opacity: 1; transform: translateX(4px); }
     .first-check-bridge-footer {
       padding: 28px 0 0; display: flex; justify-content: flex-end;
@@ -518,18 +530,22 @@
 
     /* ── Our People (typewriter mantra) ── */
     .our-people {
-      background: linear-gradient(180deg, #EFEEE7 0%, var(--yellow) 50%, #EFEEE7 100%);
+      background: #EFEEE7;
       padding: clamp(90px, 14vh, 150px) var(--pad);
       text-align: center;
     }
     .our-people-inner { max-width: 820px; margin: 0 auto; }
+    .our-people-line-wrap { position: relative; }
     .our-people-line {
       font-family: var(--font-display);
       font-size: clamp(24px, 3.4vw, 42px);
       font-style: italic;
       font-weight: 400; line-height: 1.4; letter-spacing: -0.015em;
       color: var(--black);
-      min-height: 1.4em;
+    }
+    .our-people-ghost { visibility: hidden; }
+    .our-people-typed {
+      position: absolute; top: 0; left: 0; width: 100%;
     }
     .type-caret.typing::after {
       content: '';
@@ -663,7 +679,10 @@
 <!-- ═══════════════════════ OUR PEOPLE ═══════════════════════ -->
 <section class="our-people">
   <div class="our-people-inner">
-    <p class="our-people-line"><span class="type-caret" data-typeline data-pause="0">Not central casting means the ambition showed up before the résumé did. It means conviction the market hadn't caught up to yet. We're in the business of </span><strong class="hero-highlight type-caret" data-typeline data-pause="0">closing that gap</strong><span class="type-caret" data-typeline data-pause="0" data-final>.</span></p>
+    <div class="our-people-line-wrap">
+      <p class="our-people-line our-people-ghost" aria-hidden="true">Not central casting means the ambition showed up before the résumé did. It means conviction the market hadn't caught up to yet. We're in the business of <strong class="hero-highlight">closing that gap</strong>.</p>
+      <p class="our-people-line our-people-typed"><span class="type-caret" data-typeline data-pause="0">Not central casting means the ambition showed up before the résumé did. It means conviction the market hadn't caught up to yet. We're in the business of </span><strong class="hero-highlight type-caret" data-typeline data-pause="0">closing that gap</strong><span class="type-caret" data-typeline data-pause="0" data-final>.</span></p>
+    </div>
   </div>
 </section>
 
@@ -672,9 +691,8 @@
   <div class="find-founders-inner">
 
     <h2 class="find-founders-heading reveal">We don't invest early — we <em>invest first.</em></h2>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:0;">
-      <p class="find-founders-sub reveal" style="margin:0;">Why we wrote the first check — and why they said yes.<br><br>When evaluating companies at the earliest stages, we rely on our Maple Investment Framework: the Talent Framework and the Investment Framework to clarify our conviction.</p>
-      <a href="/blog.html" class="first-check-bridge-link reveal d1" style="flex-shrink:0;margin-bottom:4px;">See all posts →</a>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:0;">
+      <a href="/blog.html" class="first-check-bridge-link reveal d1">See all posts →</a>
     </div>
 
     <!-- First Check series -->
@@ -682,48 +700,52 @@
 
       <div class="first-check-grid">
 
-        <a class="fc-card fc-card--yellow" href="/first-check-clay.html">
-          <div>
+        <a class="fc-card" href="/first-check-clay.html">
+          <img class="fc-card-photo" src="images/clay-blog.jpg" alt="Clay">
+          <div class="fc-card-top">
             <span class="fc-card-tag">First Check</span>
             <div class="fc-card-company">Clay</div>
           </div>
-          <div>
+          <div class="fc-card-bottom">
             <div class="fc-card-meta">First Check: 2017</div>
             <div class="fc-card-meta">Current Valuation: $5B</div>
             <div class="fc-card-arrow">→</div>
           </div>
         </a>
 
-        <a class="fc-card fc-card--black" href="/first-check-finny.html">
-          <div>
+        <a class="fc-card" href="/first-check-finny.html">
+          <img class="fc-card-photo" src="images/first-check-finny.jpg" alt="Finny">
+          <div class="fc-card-top">
             <span class="fc-card-tag">First Check</span>
             <div class="fc-card-company">Finny</div>
           </div>
-          <div>
+          <div class="fc-card-bottom">
             <div class="fc-card-meta">First Check: 2024</div>
             <div class="fc-card-meta">Current Valuation: $150M</div>
             <div class="fc-card-arrow">→</div>
           </div>
         </a>
 
-        <a class="fc-card fc-card--teal" href="/first-check-fey.html">
-          <div>
+        <a class="fc-card" href="/first-check-fey.html">
+          <img class="fc-card-photo" src="images/first-check-fey.jpg" alt="Fey">
+          <div class="fc-card-top">
             <span class="fc-card-tag">First Check</span>
             <div class="fc-card-company">Fey</div>
           </div>
-          <div>
+          <div class="fc-card-bottom">
             <div class="fc-card-meta">First Check: 2021</div>
             <div class="fc-card-meta">Current Status: Acquired</div>
             <div class="fc-card-arrow">→</div>
           </div>
         </a>
 
-        <a class="fc-card fc-card--terracotta" href="/first-check-benchiq.html">
-          <div>
+        <a class="fc-card" href="/first-check-benchiq.html">
+          <img class="fc-card-photo" src="images/first-check-benchiq.jpg" alt="Bench IQ">
+          <div class="fc-card-top">
             <span class="fc-card-tag">First Check</span>
             <div class="fc-card-company">Bench IQ</div>
           </div>
-          <div>
+          <div class="fc-card-bottom">
             <div class="fc-card-meta">First Check: 2023</div>
             <div class="fc-card-meta">Current Status: $5.3M Series A</div>
             <div class="fc-card-arrow">→</div>
