@@ -524,6 +524,51 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
       filter: grayscale(100%);
     }
+
+    /* ── Our People (typewriter) ── */
+    .our-people {
+      background: var(--yellow);
+      padding: clamp(90px, 14vh, 150px) var(--pad);
+    }
+    .our-people-inner { max-width: 900px; margin: 0 auto; }
+    .our-people-line {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.6vw, 46px);
+      font-weight: 400; line-height: 1.35; letter-spacing: -0.02em;
+      color: var(--black);
+      min-height: 1.35em;
+    }
+    .our-people-closer { margin-top: 0.7em; }
+    .type-caret.typing::after {
+      content: '';
+      display: inline-block;
+      width: 2px; height: 0.9em; margin-left: 2px;
+      background: var(--black);
+      vertical-align: -0.08em;
+      animation: type-caret-blink 0.85s steps(1) infinite;
+    }
+    @keyframes type-caret-blink { 50% { opacity: 0; } }
+    .our-people-circle-wrap { position: relative; display: inline-block; }
+    .our-people-circle {
+      position: absolute;
+      left: -6%; top: -42%;
+      width: 112%; height: 190%;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .our-people-circle path {
+      fill: none; stroke: #2E9E93; stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+    }
+    .our-people-circle.drawn path {
+      transition: stroke-dashoffset 1.1s ease;
+      stroke-dashoffset: 0;
+    }
+    .our-people-circle.drawn path:nth-child(2) {
+      transition-delay: 0.15s;
+    }
   </style>
 </head>
 <body>
@@ -641,6 +686,21 @@
       <div class="founder-uni">From McGill</div>
     </div>
 
+  </div>
+</section>
+
+<!-- ═══════════════════════ OUR PEOPLE ═══════════════════════ -->
+<section class="our-people">
+  <div class="our-people-inner">
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The self-taught.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The overlooked.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The underdogs.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The unconventional.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The relentless.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The stubborn optimists.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="260">The ones without the pedigree.</p>
+    <p class="our-people-line type-caret" data-typeline data-pause="500">The ambitious before the proven.</p>
+    <p class="our-people-line our-people-closer"><span class="type-caret" data-typeline data-pause="0">These are </span><span class="our-people-circle-wrap"><span class="type-caret" data-typeline data-pause="0">our people</span><svg class="our-people-circle" viewBox="0 0 240 100" aria-hidden="true"><path d="M16,52 C10,20 66,6 122,7 C180,8 230,20 232,48 C234,78 178,92 118,91 C58,90 12,76 17,54" /><path d="M20,56 C16,30 70,16 124,15 C176,14 226,28 228,52" /></svg></span><span class="type-caret" data-typeline data-pause="0" data-final>.</span></p>
   </div>
 </section>
 
@@ -836,5 +896,51 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+// ── "Our People" typewriter reveal ──
+(function () {
+  const section = document.querySelector('.our-people');
+  if (!section) return;
+  const nodes = Array.from(section.querySelectorAll('[data-typeline]'));
+  const originals = nodes.map(el => el.textContent);
+  nodes.forEach(el => { el.textContent = ''; });
+  const circle = section.querySelector('.our-people-circle');
+  let started = false;
+
+  function typeNode(i) {
+    if (i >= nodes.length) return;
+    const el = nodes[i];
+    const text = originals[i];
+    el.classList.add('typing');
+    let c = 0;
+    const tick = () => {
+      c++;
+      el.textContent = text.slice(0, c);
+      if (c < text.length) {
+        setTimeout(tick, 26);
+      } else {
+        el.classList.remove('typing');
+        if (el.hasAttribute('data-final') && circle) {
+          setTimeout(() => circle.classList.add('drawn'), 200);
+        }
+        const pause = parseInt(el.getAttribute('data-pause'), 10) || 0;
+        setTimeout(() => typeNode(i + 1), pause);
+      }
+    };
+    tick();
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !started) {
+        started = true;
+        typeNode(0);
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.35 });
+  obs.observe(section);
+})();
+</script>
 </body>
 </html>
