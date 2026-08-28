@@ -57,7 +57,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ── Mobile hamburger menu ──
 const burger = document.querySelector('.nav-burger');
-const navLinks = document.querySelector('.nav-links');
+const navLinks = document.querySelector('.nav-links-mobile') || document.querySelector('.nav-links');
 if (burger && navLinks) {
   burger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
