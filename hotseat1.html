@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -16,10 +16,36 @@
       background: var(--black);
       margin: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       font-family: 'Inter', sans-serif;
+    }
+
+    .hotseat-banner {
+      width: 100%;
+      max-width: 800px;
+      padding: 2.5rem 2rem 0.5rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .hotseat-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--yellow);
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .hotseat-banner p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,249,237,0.55);
+      margin: 0;
     }
 
     .video-wrapper {
@@ -46,6 +72,10 @@
   </style>
 </head>
 <body>
+  <div class="hotseat-banner">
+    <h1>Hot Seat</h1>
+    <p>Sixty seconds each. No second takes.<br>Get to know our founders in 5 minutes.</p>
+  </div>
   <div class="video-wrapper">
     <div class="video-container">
       <iframe src="https://share.descript.com/embed/rMR5EpdO147" frameborder="0" allowfullscreen></iframe>
